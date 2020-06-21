@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.OCSFMediatorExample.client.TeacherController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0">
+         <image>
+            <Image url="@../../../../../../../../../../../../teacher-powerpoint-background-9323.jpeg" />
+         </image>
+      </ImageView>
+      <Button fx:id="taddqustbtn" layoutX="224.0" layoutY="98.0" mnemonicParsing="false" onAction="#taddqustionbtn" prefHeight="42.0" prefWidth="167.0" text="ADD Question">
+         <font>
+            <Font name="Algerian" size="10.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#cccccc" />
+               </light>
+            </Lighting>
+         </effect></Button>
+      <Button fx:id="tcreateexbtn" layoutX="224.0" layoutY="165.0" mnemonicParsing="false" onAction="#tcreateexac" prefHeight="42.0" prefWidth="167.0" text="CREATE EXAM">
+         <font>
+            <Font name="Algerian" size="10.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#cccccc" />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button fx:id="tchngegrdbtn" layoutX="224.0" layoutY="236.0" mnemonicParsing="false" onAction="#tchngegrdbac" prefHeight="42.0" prefWidth="167.0" text="CHANGE GRADE">
+         <font>
+            <Font name="Algerian" size="12.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#cccccc" />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button fx:id="tdsplyexamrsltbtn" layoutX="224.0" layoutY="309.0" mnemonicParsing="false" onAction="#tdsplyexamrsltac" prefHeight="42.0" prefWidth="167.0" text="Display Exam Results">
+         <font>
+            <Font name="Algerian" size="10.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#cccccc" />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
+      <Button fx:id="tsignoutbtn" layoutX="510.0" layoutY="30.0" mnemonicParsing="false" onAction="#tsignoutac" prefHeight="15.0" prefWidth="74.0" text="Sign out">
+         <effect>
+            <Lighting bumpInput="$null">
+               <light>
+                  <Light.Distant color="#cccccc" />
+               </light>
+               <contentInput>
+                  <Lighting>
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </contentInput>
+            </Lighting>
+         </effect>
+         <font>
+            <Font name="Aharoni Bold" size="14.0" />
+         </font>
+      </Button>
+      <Text fill="WHITE" layoutX="184.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TEACHER Interface">
+         <font>
+            <Font name="Algerian" size="24.0" />
+         </font></Text>
+   </children>
+</AnchorPane>
