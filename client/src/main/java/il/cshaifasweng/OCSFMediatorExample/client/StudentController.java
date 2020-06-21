@@ -40,11 +40,7 @@ public class StudentController  {
     @FXML
     void OnExecution(ActionEvent event) {
     	try {
-			 scene=FXMLLoader.load(getClass().getResource("/client/src/main/resources/il/cshaifasweng/OCSFMediatorExample/client/examexec.fxml"));
-			 stage.setScene(scene);
-		     stage.show();
-		     System.out.print(event);
-			
+			App.getInstance().showExecutelogView();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

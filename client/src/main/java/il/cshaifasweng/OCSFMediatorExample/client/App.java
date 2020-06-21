@@ -104,6 +104,14 @@ public class App extends Application {             ////ask le2el how to make an 
 		this.stage.show();
 	}
 	
+	public void showStudentView() throws IOException
+	{
+		this.stage = new Stage();
+		scene = new Scene(loadFXML("student"), 600, 400);
+		this.stage.setScene(scene);
+		this.stage.show();
+	}
+	
 	public void showManagerView() throws IOException
 	{
 		this.stage = new Stage();
@@ -116,6 +124,14 @@ public class App extends Application {             ////ask le2el how to make an 
 		}
 		this.stage.setScene(scene);
 		this.stage.show(); 
+	}
+	
+	public void showExecutelogView() throws IOException
+	{
+		this.stage = new Stage();
+		scene = new Scene(loadFXML("examexec"), 600, 400);
+		this.stage.setScene(scene);
+		this.stage.show();
 	}
 	
 	public void showAddQuestionView() throws IOException

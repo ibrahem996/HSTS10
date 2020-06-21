@@ -45,7 +45,15 @@ public class SimpleClient extends AbstractClient {
 	     	String[] msg = (String[]) command.getCommand();
 			System.out.println(msg[0]);
 			System.out.println(msg[1]);
- 			App.getInstance().showTeacherView();
+			if(msg[2]=="teacher") {
+				App.getInstance().showTeacherView();
+			}else if(msg[2]=="student") {
+				App.getInstance().showStudentView();
+			}
+			else if(msg[2]=="manager") {
+				App.getInstance().showManagerView();
+			}
+ 			
 		/*
 		 * if(msg[0].equalsIgnoreCase("true")) {
 		 * System.out.print("HEREEEEEEEEEEs the 7mar");
