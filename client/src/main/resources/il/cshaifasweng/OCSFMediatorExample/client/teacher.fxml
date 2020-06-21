@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="@../../../../../../../../../../../../teacher-powerpoint-background-9323.jpeg" />
+            <Image url="@teacherImage.jpeg" />
          </image>
       </ImageView>
       <Button fx:id="taddqustbtn" layoutX="224.0" layoutY="98.0" mnemonicParsing="false" onAction="#taddqustionbtn" prefHeight="42.0" prefWidth="167.0" text="ADD Question">
