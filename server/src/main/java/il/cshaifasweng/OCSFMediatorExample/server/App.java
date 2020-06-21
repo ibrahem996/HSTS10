@@ -19,9 +19,9 @@ public class App
     public static void main( String[] args ) throws IOException, SQLException
     {
     	String name,pass,url;
-		url = "jdbc:mysql://127.0.0.1/project";
+		url = "jdbc:mysql://127.0.0.1/hsts";
 		name = "root";
-		pass = "9064";
+		pass = "t12345";
 		Connection myConnection = DriverManager.getConnection(url,name,pass);
         Statement stmt = (Statement) myConnection.createStatement();
         String details = "SELECT * FROM `question` WHERE `id`=2500";
