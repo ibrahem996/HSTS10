@@ -12,40 +12,34 @@ import java.util.concurrent.TimeUnit;
 
 import il.cshaifasweng.OCSFMediatorExample.entities.Question;
 
-
-
 /**
  * JavaFX App
  */
-public class App extends Application {             ////ask le2el how to make an column dissapear from database sql
-													//// REMEMBER CLOSE STAGE
+public class App extends Application { //// ask le2el how to make an column dissapear from database sql
+										//// REMEMBER CLOSE STAGE
 
 	private static App app;
 	private static Scene scene;
 	private SimpleClient client;
 	private Stage stage;
 	private String UserInfo;
-	
-	
+
 	public static App getInstance() {
 		if (app == null)
 			app = new App();
 		return app;
 	}
-	 
-	
+
 	@Override
 	public void start(Stage stage) throws IOException {
 		this.stage = stage;
 		client = SimpleClient.getClient();
 		client.openConnection();
 		showPrimaryView();
-		
+
 	}
-	
-	
-	public void showPrimaryView() throws IOException
-	{
+
+	public void showPrimaryView() throws IOException {
 		scene = new Scene(loadFXML("primary"), 600, 400);
 		this.stage.setScene(scene);
 		this.stage.setTitle("HSTS");
@@ -53,11 +47,9 @@ public class App extends Application {             ////ask le2el how to make an 
 
 	}
 
-	
 	/*
 	 * public void closeStage(Stage stage) { stage.close(); }
 	 */
-
 
 	static void setRoot(String fxml) throws IOException {
 		scene.setRoot(loadFXML(fxml));
@@ -73,69 +65,56 @@ public class App extends Application {             ////ask le2el how to make an 
 		// TODO Auto-generated method stub
 		super.stop();
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	public void LoginIn(String[] arr) throws IOException {
 		this.UserInfo = arr[0];
 		SimpleClient.getClient().handleLoginIn(arr);
-		
+
 	}
-	
-	public void checkSubject() throws IOException
-	{
+
+	public void checkSubject() throws IOException {
 		SimpleClient.getClient().handlecheckSubject(UserInfo);
 	}
-	
+
 	public void AddQuestion(Question question) throws IOException {
 		SimpleClient.getClient().handleAddQuestion(question);
-		
+
 	}
-	
-	public void showTeacherView() throws IOException
-	{
+
+	public void showTeacherView() throws IOException {
 		this.stage = new Stage();
 		scene = new Scene(loadFXML("teacher"), 600, 400);
 		this.stage.setScene(scene);
 		this.stage.show();
 	}
-	
-	public void showStudentView() throws IOException
-	{
+
+	public void showStudentView() throws IOException {
 		this.stage = new Stage();
 		scene = new Scene(loadFXML("student"), 600, 400);
 		this.stage.setScene(scene);
 		this.stage.show();
 	}
-	
-	public void showManagerView() throws IOException
-	{
+
+	public void showManagerView() throws IOException {
 		this.stage = new Stage();
-		try 
-		{
+		try {
 			scene = new Scene(loadFXML("manager"), 600, 400);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		this.stage.setScene(scene);
-		this.stage.show(); 
+		this.stage.show();
 	}
-	
-	public void showExecutelogView() throws IOException
-	{
+
+	public void showExecutelogView() throws IOException {
 		this.stage = new Stage();
 		scene = new Scene(loadFXML("examexec"), 600, 400);
 		this.stage.setScene(scene);
 		this.stage.show();
 	}
-	
-	public void showAddQuestionView() throws IOException
-	{
+
+	public void showAddQuestionView() throws IOException {
 		this.stage = new Stage();
 		scene = new Scene(loadFXML("addquestion"), 600, 400);
 		this.stage.setScene(scene);
@@ -145,8 +124,5 @@ public class App extends Application {             ////ask le2el how to make an 
 	public static void main(String[] args) {
 		launch();
 	}
-
-
-	
 
 }
