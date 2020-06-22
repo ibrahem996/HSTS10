@@ -28,11 +28,7 @@ public class loginAPI {													///// remember to check if connected
 			String name,pass,url;
 			url = "jdbc:mysql://127.0.0.1/hsts";
 			name = "root";
-<<<<<<< HEAD
 			pass = "t12345";
-=======
-			pass = "Lilyan$4";
->>>>>>> a9484d2740d5481d40aa5799c1af01e8804f4d9b
 			Connection myConnection = DriverManager.getConnection(url,name,pass);
 	        Statement stmt = (Statement) myConnection.createStatement();
 	        if (type.equalsIgnoreCase("Student"))

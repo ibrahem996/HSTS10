@@ -83,14 +83,14 @@ public class App extends Application { //// ask le2el how to make an column diss
 
 	public void showTeacherView() throws IOException {
 		this.stage = new Stage();
-		scene = new Scene(loadFXML("teacher"), 600, 400);
+		scene = new Scene(loadFXML("/teacher"), 600, 400);
 		this.stage.setScene(scene);
 		this.stage.show();
 	}
 
 	public void showStudentView() throws IOException {
 		this.stage = new Stage();
-		scene = new Scene(loadFXML("student"), 600, 400);
+		scene = new Scene(loadFXML("/student"), 600, 400);
 		this.stage.setScene(scene);
 		this.stage.show();
 	}
@@ -98,7 +98,7 @@ public class App extends Application { //// ask le2el how to make an column diss
 	public void showManagerView() throws IOException {
 		this.stage = new Stage();
 		try {
-			scene = new Scene(loadFXML("manager"), 600, 400);
+			scene = new Scene(loadFXML("/manager"), 600, 400);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -109,14 +109,14 @@ public class App extends Application { //// ask le2el how to make an column diss
 
 	public void showExecutelogView() throws IOException {
 		this.stage = new Stage();
-		scene = new Scene(loadFXML("examexec"), 600, 400);
+		scene = new Scene(loadFXML("/examexec"), 600, 400);
 		this.stage.setScene(scene);
 		this.stage.show();
 	}
 
 	public void showAddQuestionView() throws IOException {
 		this.stage = new Stage();
-		scene = new Scene(loadFXML("addquestion"), 600, 400);
+		scene = new Scene(loadFXML("/addquestion"), 600, 400);
 		this.stage.setScene(scene);
 		this.stage.show();
 	}

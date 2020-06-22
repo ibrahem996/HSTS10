@@ -42,7 +42,6 @@ public class SimpleClient extends AbstractClient {
 		String[] msg = (String[]) command.getCommand();
 		System.out.println(msg[0]);
 		System.out.println(msg[1]);
-		String temp = "teacher";
 		switch (msg[1]) {
 
 		case ("teacher"):
