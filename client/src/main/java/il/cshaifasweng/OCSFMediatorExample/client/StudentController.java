@@ -50,7 +50,12 @@ public class StudentController {
 
 	@FXML
 	void OnGrades(ActionEvent event) {
-
+		try {
+			App.getInstance().showGradesView();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@FXML
@@ -60,7 +65,12 @@ public class StudentController {
 
 	@FXML
 	void OnScanned(ActionEvent event) {
-
+		try {
+			App.getInstance().showScannedExam();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@FXML

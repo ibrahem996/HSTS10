@@ -7,16 +7,27 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="il.cshaifasweng.OCSFMediatorExample.client.ExamExecController">
-   <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField fx:id="IDText" layoutX="226.0" layoutY="159.0" promptText="Enter ID..." />
-      <TextField fx:id="ExamCode" layoutX="226.0" layoutY="241.0" promptText="Enter 4 letters/digits" />
-      <Text layoutX="158.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exam Code:" />
-      <Text layoutX="205.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
-      <Button fx:id="StartButton" layoutX="475.0" layoutY="324.0" mnemonicParsing="false" onAction="#OnStart" text="Start Exam" />
-      <Button fx:id="Backid" layoutX="40.0" layoutY="324.0" mnemonicParsing="false" onAction="#OnBack" text="Back" />
-      <Text fx:id="WrongCode" layoutX="226.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Text fx:id="WrongId" layoutX="226.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-   </children>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1"
+	xmlns="http://javafx.com/javafx/11.0.1"
+	fx:controller="il.cshaifasweng.OCSFMediatorExample.client.ExamExecController">
+	<children>
+		<ImageView fitHeight="400.0" fitWidth="600.0"
+			pickOnBounds="true" preserveRatio="true" />
+		<TextField fx:id="IDText" layoutX="226.0" layoutY="159.0"
+			promptText="Enter ID..." />
+		<TextField fx:id="ExamCode" layoutX="226.0" layoutY="241.0"
+			promptText="Enter 4 letters/digits" />
+		<Text layoutX="158.0" layoutY="258.0" strokeType="OUTSIDE"
+			strokeWidth="0.0" text="Exam Code:" />
+		<Text layoutX="205.0" layoutY="176.0" strokeType="OUTSIDE"
+			strokeWidth="0.0" text="ID:" />
+		<Button fx:id="StartButton" layoutX="475.0" layoutY="324.0"
+			mnemonicParsing="false" onAction="#OnStart" text="Start Exam" />
+		<Button fx:id="Backid" layoutX="40.0" layoutY="324.0"
+			mnemonicParsing="false" onAction="#OnBack" text="Back" />
+		<Text fx:id="WrongCode" layoutX="226.0" layoutY="287.0"
+			strokeType="OUTSIDE" strokeWidth="0.0" />
+		<Text fx:id="WrongId" layoutX="226.0" layoutY="205.0"
+			strokeType="OUTSIDE" strokeWidth="0.0" />
+	</children>
 </AnchorPane>

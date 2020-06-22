@@ -42,12 +42,12 @@ public class ExamExecController {
 	private Button StartButton;
 
 	@FXML
-	private Button Backid;
+	private Button BackID;
 
 	@FXML
 	void OnBack(ActionEvent event) {
 		try {
-			App.getInstance().showBackToPrimaryView();
+			App.getInstance().showBackToStrudentView();
 		} catch (IOException e) {
 			// TOD Auto-generated catch block
 			e.printStackTrace();
