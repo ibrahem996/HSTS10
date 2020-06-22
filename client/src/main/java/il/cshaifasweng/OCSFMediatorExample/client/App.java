@@ -72,6 +72,24 @@ public class App extends Application { //// ask le2el how to make an column diss
 
 	}
 
+	public void startExam(String[] arr) throws IOException {
+		this.UserInfo = arr[0];
+		SimpleClient.getClient().handleStartExam(arr);
+	}
+
+	public void checkStartExamAnswer(String[] arr) throws IOException {
+
+		System.out.println("5555555555555 tjrebe 55555555555");
+		if (arr[0].equalsIgnoreCase("false")) {
+			System.out.println("6666666666 tjrebe 666666666666");
+
+			ExamExecController.setWrongId("Wrong ID.");
+			System.out.println("77777777777 tjrebe 777777777777777");
+
+		}
+
+	}
+
 	public void checkSubject() throws IOException {
 		SimpleClient.getClient().handlecheckSubject(UserInfo);
 	}
@@ -117,6 +135,13 @@ public class App extends Application { //// ask le2el how to make an column diss
 	public void showAddQuestionView() throws IOException {
 		this.stage = new Stage();
 		scene = new Scene(loadFXML("addquestion"), 600, 400);
+		this.stage.setScene(scene);
+		this.stage.show();
+	}
+
+	public void showBackToPrimaryView() throws IOException {
+		this.stage = new Stage();
+		scene = new Scene(loadFXML("primary"), 600, 400);
 		this.stage.setScene(scene);
 		this.stage.show();
 	}

@@ -37,6 +37,25 @@ public class SimpleClient extends AbstractClient {
 
 	}
 
+	public void handleStartExam(String[] arr) throws IOException {
+		commandRequest = true;
+		command = new Command(arr, CommandType.startExamCommand);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handleStartExamCommandFromServer();
+
+	}
+
+	private void handleStartExamCommandFromServer() throws IOException {
+		System.out.println("handleStartExam111111111");
+		String[] msg = (String[]) command.getCommand();
+		System.out.println(msg[0]);
+		System.out.println(msg[1]);
+
+		App.getInstance().checkStartExamAnswer(msg);
+
+	}
+
 	private void handleLogininCommandFromServer() throws IOException {
 		System.out.println("handleSignin10");
 		String[] msg = (String[]) command.getCommand();
@@ -50,12 +69,10 @@ public class SimpleClient extends AbstractClient {
 			System.out.println("tjrebeeee333333");
 			App.getInstance().showStudentView();
 			break;
-			
+
 		case ("teacher"):
 			App.getInstance().showTeacherView();
 			break;
-
-		
 
 		case ("manager"):
 			App.getInstance().showManagerView();

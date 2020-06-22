@@ -1,4 +1,5 @@
 package il.cshaifasweng.OCSFMediatorExample.client;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,64 +12,64 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-public class StudentController  {
+public class StudentController {
 
-	private  Scene scene;
-    private Stage stage;
-    
-    @FXML
-    private ResourceBundle resources;
+	private Scene scene;
+	private Stage stage;
 
-    @FXML
-    private URL location;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private ImageView welcomesign;
+	@FXML
+	private URL location;
 
-    @FXML
-    private Button scanned;
+	@FXML
+	private ImageView welcomesign;
 
-    @FXML
-    private Button grades;
+	@FXML
+	private Button scanned;
 
-    @FXML
-    private Button execution;
+	@FXML
+	private Button grades;
 
-    @FXML
-    private Button logOut;
+	@FXML
+	private Button execution;
 
-    @FXML
-    void OnExecution(ActionEvent event) {
-    	try {
+	@FXML
+	private Button logOut;
+
+	@FXML
+	void OnExecution(ActionEvent event) {
+		try {
 			App.getInstance().showExecutelogView();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    }
+	}
 
-    @FXML
-    void OnGrades(ActionEvent event) {
-    	
-    }
+	@FXML
+	void OnGrades(ActionEvent event) {
 
-    @FXML
-    void OnLogOut(ActionEvent event) {
-    	
-    }
+	}
 
-    @FXML
-    void OnScanned(ActionEvent event) {
+	@FXML
+	void OnLogOut(ActionEvent event) {
 
-    }
+	}
 
-    @FXML
-    void initialize() {
-        assert welcomesign != null : "fx:id=\"welcomesign\" was not injected: check your FXML file 'student.fxml'.";
-        assert scanned != null : "fx:id=\"scanned\" was not injected: check your FXML file 'student.fxml'.";
-        assert grades != null : "fx:id=\"grades\" was not injected: check your FXML file 'student.fxml'.";
-        assert execution != null : "fx:id=\"execution\" was not injected: check your FXML file 'student.fxml'.";
-        assert logOut != null : "fx:id=\"logOut\" was not injected: check your FXML file 'student.fxml'.";
+	@FXML
+	void OnScanned(ActionEvent event) {
 
-    }
+	}
+
+	@FXML
+	void initialize() {
+		assert welcomesign != null : "fx:id=\"welcomesign\" was not injected: check your FXML file 'student.fxml'.";
+		assert scanned != null : "fx:id=\"scanned\" was not injected: check your FXML file 'student.fxml'.";
+		assert grades != null : "fx:id=\"grades\" was not injected: check your FXML file 'student.fxml'.";
+		assert execution != null : "fx:id=\"execution\" was not injected: check your FXML file 'student.fxml'.";
+		assert logOut != null : "fx:id=\"logOut\" was not injected: check your FXML file 'student.fxml'.";
+
+	}
 }
