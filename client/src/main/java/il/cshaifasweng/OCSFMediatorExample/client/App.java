@@ -1,15 +1,13 @@
 package il.cshaifasweng.OCSFMediatorExample.client;
 
 import javafx.application.Application;
-import javafx.application.Platform;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import il.cshaifasweng.OCSFMediatorExample.entities.Question;
 
 /**
@@ -83,14 +81,14 @@ public class App extends Application { //// ask le2el how to make an column diss
 
 	public void showTeacherView() throws IOException {
 		this.stage = new Stage();
-		scene = new Scene(loadFXML("/teacher"), 600, 400);
+		scene = new Scene(loadFXML("teacher"), 600, 400);
 		this.stage.setScene(scene);
 		this.stage.show();
 	}
 
 	public void showStudentView() throws IOException {
 		this.stage = new Stage();
-		scene = new Scene(loadFXML("/student"), 600, 400);
+		scene = new Scene(loadFXML("student"), 600, 400);
 		this.stage.setScene(scene);
 		this.stage.show();
 	}
@@ -109,14 +107,14 @@ public class App extends Application { //// ask le2el how to make an column diss
 
 	public void showExecutelogView() throws IOException {
 		this.stage = new Stage();
-		scene = new Scene(loadFXML("/examexec"), 600, 400);
+		scene = new Scene(loadFXML("examexec"), 600, 400);
 		this.stage.setScene(scene);
 		this.stage.show();
 	}
 
 	public void showAddQuestionView() throws IOException {
 		this.stage = new Stage();
-		scene = new Scene(loadFXML("/addquestion"), 600, 400);
+		scene = new Scene(loadFXML("addquestion"), 600, 400);
 		this.stage.setScene(scene);
 		this.stage.show();
 	}

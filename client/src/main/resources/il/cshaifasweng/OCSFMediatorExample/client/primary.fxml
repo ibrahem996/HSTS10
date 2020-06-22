@@ -18,7 +18,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="@../../../../../../../../../../../../school-office-supplies-blackboard-background_93675-26814.jpg" />
+            <Image url="@primary image.jpg" />
          </image>
       </ImageView>
       <Text fill="#670101" layoutX="190.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to HSTS">
