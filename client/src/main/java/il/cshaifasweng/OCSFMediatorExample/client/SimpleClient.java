@@ -42,17 +42,20 @@ public class SimpleClient extends AbstractClient {
 		String[] msg = (String[]) command.getCommand();
 		System.out.println(msg[0]);
 		System.out.println(msg[1]);
-		String temp = "teacher";
+//		String temp = "teacher";
+		System.out.println("msg[1]= " + msg[1]);
 		switch (msg[1]) {
-
-		case ("teacher"):
-			App.getInstance().showTeacherView();
-			break;
 
 		case ("student"):
 			System.out.println("tjrebeeee333333");
 			App.getInstance().showStudentView();
 			break;
+			
+		case ("teacher"):
+			App.getInstance().showTeacherView();
+			break;
+
+		
 
 		case ("manager"):
 			App.getInstance().showManagerView();

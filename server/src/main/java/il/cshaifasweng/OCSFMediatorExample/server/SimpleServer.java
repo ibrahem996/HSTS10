@@ -34,9 +34,9 @@ public class SimpleServer extends AbstractServer {                        //////
             case loginCommand:
             	
 
-                System.out.println("loginCommand");
+                System.out.println("loginCommand44444444444444444");
                 //client.setInfo("username", msg);
-                loginAPI.checkSpecificUser(command,client);
+				loginAPI.checkSpecificUser(command,client);
     			System.out.println("Handling Message:");
 
                 break;
