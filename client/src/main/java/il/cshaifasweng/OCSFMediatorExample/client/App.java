@@ -72,6 +72,13 @@ public class App extends Application { //// ask le2el how to make an column diss
 		SimpleClient.getClient().handleLoginIn(arr);
 
 	}
+	
+	public void LogOut() throws IOException {
+		String[] arr=new String[1];
+		arr[0] = this.UserInfo;
+		SimpleClient.getClient().handleLogOut(arr);
+
+	}
 
 	public void startExam(String[] arr) throws IOException {
 		this.UserInfo = arr[0];
@@ -82,16 +89,16 @@ public class App extends Application { //// ask le2el how to make an column diss
 
 		if (arr[0].equalsIgnoreCase("false")) {
 			
-			addingTextToCodeOrId("examexec.fxml", "Wrong ID.");
+			addingTextToCodeOrId("loginexam.fxml", "Wrong ID.");
 		
 
 		}
 		else if (arr[2].equalsIgnoreCase("false")) {
-			addingTextToCodeOrId("examexec.fxml", "Wrong Code.");
+			addingTextToCodeOrId("loginexam.fxml", "Wrong Code.");
 		}
 		if (arr[0].equalsIgnoreCase("true")&&arr[2].equalsIgnoreCase("true")) {
 			if(!(arr[1].equalsIgnoreCase(this.UserId))){
-				addingTextToCodeOrId("examexec.fxml", "Incompetable ID.");
+				addingTextToCodeOrId("loginexam.fxml", "Incompetable ID.");
 			}else {
 				//7sb alcode if mmo7shav of ydne
 				SimpleClient.getClient().handleStartExam(arr);
@@ -111,7 +118,7 @@ public class App extends Application { //// ask le2el how to make an column diss
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		ExamExecController  controller = fxmlLoader.getController();
+		LoginExamController  controller = fxmlLoader.getController();
 		switch(putthis){
 			case("Wrong ID."):
 				controller.getWrongId().setText("Wrong ID.");
@@ -160,7 +167,7 @@ public class App extends Application { //// ask le2el how to make an column diss
 	}
 
 	public void showExecutelogView() throws IOException {
-		scene = new Scene(loadFXML("examexec"), 600, 400);
+		scene = new Scene(loadFXML("loginexam"), 600, 400);
 		stage.setScene(scene);
 		stage.show();
 	}

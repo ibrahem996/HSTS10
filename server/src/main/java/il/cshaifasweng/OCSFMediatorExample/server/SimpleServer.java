@@ -7,9 +7,11 @@ import javax.persistence.criteria.CriteriaBuilder.Case;
 import il.cshaifasweng.OCSFMediatorExample.Commands.Command;
 import il.cshaifasweng.OCSFMediatorExample.Commands.CommandType;
 import il.cshaifasweng.OCSFMediatorExample.app.QuestionsAPI;
+import il.cshaifasweng.OCSFMediatorExample.app.StartExamAPI;
 import il.cshaifasweng.OCSFMediatorExample.app.checkSubjectAPI;
 import il.cshaifasweng.OCSFMediatorExample.app.loginAPI;
-import il.cshaifasweng.OCSFMediatorExample.app.startExamAPI;
+import il.cshaifasweng.OCSFMediatorExample.app.loginExamAPI;
+import il.cshaifasweng.OCSFMediatorExample.app.logoutAPI;
 import il.cshaifasweng.OCSFMediatorExample.server.ocsf.AbstractServer;
 import il.cshaifasweng.OCSFMediatorExample.server.ocsf.ConnectionToClient;
 
@@ -39,9 +41,9 @@ public class SimpleServer extends AbstractServer { //////// remember change from
 
 			break;
 
-		case startExamCommand:
+		case loginExamCommand:
 			System.out.println("start exam 1111111111111");
-			startExamAPI.checkSpecificUser(command, client);
+			loginExamAPI.checkSpecificUser(command, client);
 			break;
 			
 		case checkSubjectCommand:
@@ -62,6 +64,14 @@ public class SimpleServer extends AbstractServer { //////// remember change from
 			}
 
 			break;
+		
+		case startExamCommand:
+			
+			StartExamAPI.ReturnExam(command, client);
+			break;
+			
+		case logoutCommand:
+			logoutAPI.logout(command, client);
 
 		}
 	}

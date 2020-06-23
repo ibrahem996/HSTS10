@@ -60,7 +60,12 @@ public class StudentController {
 
 	@FXML
 	void OnLogOut(ActionEvent event) {
-
+		try {
+			App.getInstance().LogOut();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@FXML

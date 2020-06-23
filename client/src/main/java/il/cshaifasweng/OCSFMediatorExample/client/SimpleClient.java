@@ -36,10 +36,19 @@ public class SimpleClient extends AbstractClient {
 		handleLogininCommandFromServer();
 
 	}
+	
+	public void handleLogOut(String[] arr) throws IOException {
+		commandRequest = true;
+		command = new Command(arr, CommandType.logoutCommand);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handleLogoutCommandFromServer();
+
+	}
 
 	public void handleLoginToExam(String[] arr) throws IOException {
 		commandRequest = true;
-		command = new Command(arr, CommandType.startExamCommand);
+		command = new Command(arr, CommandType.loginExamCommand);
 		SimpleClient.getClient().sendToServer(command);
 		waitForServerResponse();
 		handleStartExamCommandFromServer();
@@ -54,6 +63,7 @@ public class SimpleClient extends AbstractClient {
 		handleStartExamCommandFromServer();
 
 	}
+	
 
 	private void handleStartExamCommandFromServer() throws IOException {
 		System.out.println("handleStartExam111111111");
@@ -65,6 +75,13 @@ public class SimpleClient extends AbstractClient {
 
 	}
 
+	
+	
+	private void handleLogoutCommandFromServer() throws IOException {
+		App.getInstance().showBackToPrimaryView();
+	}
+	
+	
 	private void handleLogininCommandFromServer() throws IOException {
 		System.out.println("handleSignin10");
 		String[] msg = (String[]) command.getCommand();

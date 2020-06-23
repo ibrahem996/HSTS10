@@ -5,7 +5,9 @@ public enum CommandType {
 	loginCommand(1),
 	checkSubjectCommand(2),
 	addQuestionCommand(3),
-    startExamCommand(4);
+	loginExamCommand(4),
+    startExamCommand(5),
+    logoutCommand(6);
 	
     private int CommandTypeValue;
 

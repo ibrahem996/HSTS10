@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 
-public class ExamExecController {
+public class LoginExamController {
 
 	public Text getWrongCode() {
 		return WrongCode;

@@ -9,7 +9,7 @@ import java.sql.Statement;
 import il.cshaifasweng.OCSFMediatorExample.Commands.Command;
 import il.cshaifasweng.OCSFMediatorExample.server.ocsf.ConnectionToClient;
 
-public class startExamAPI {
+public class loginExamAPI {
 	public static boolean IsConnected = false;
 
 	public static void checkSpecificUser(Command command, ConnectionToClient client) {

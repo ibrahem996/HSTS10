@@ -43,7 +43,9 @@ public class loginAPI { ///// remember to check if connected
 					System.out.println("studenttttttttt");
 					temp2[0] = "true";
 					temp2[1] = "student";
-					
+//					sql = "SELECT * FROM student WHERE userName = '" + userName + "'";we have to add thissssssss
+//					rs = stmt.executeQuery(sql);
+//					rs.updateBoolean("isConnected",true);
 					
 				}
 				sql= "SELECT * FROM student WHERE userName = '" + userName + "' AND password = '"
