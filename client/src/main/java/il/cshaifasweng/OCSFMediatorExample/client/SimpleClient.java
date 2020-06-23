@@ -5,11 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.greenrobot.eventbus.EventBus;
+
 import il.cshaifasweng.OCSFMediatorExample.Commands.Command;
+
 import il.cshaifasweng.OCSFMediatorExample.Commands.CommandType;
+
 import il.cshaifasweng.OCSFMediatorExample.client.ocsf.AbstractClient;
 import il.cshaifasweng.OCSFMediatorExample.entities.Question;
 import il.cshaifasweng.OCSFMediatorExample.entities.Subject;
+import il.cshaifasweng.OCSFMediatorExample.entities.Teacher;
 
 public class SimpleClient extends AbstractClient {
 
@@ -37,13 +42,15 @@ public class SimpleClient extends AbstractClient {
 		String[] msg = (String[]) command.getCommand();
 		System.out.println(msg[0]);
 		System.out.println(msg[1]);
-		String temp = "teacher";
+//		String temp = "teacher";
+		System.out.println("msg[1]= " + msg[1]);
 		switch (msg[1]) {
+
 		case ("student"):
 			System.out.println("tjrebeeee333333");
 			App.getInstance().showStudentView();
 			break;
-
+			
 		case ("teacher"):
 			App.getInstance().showTeacherView();
 			break;

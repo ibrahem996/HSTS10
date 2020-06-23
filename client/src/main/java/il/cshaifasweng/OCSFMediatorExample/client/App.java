@@ -1,13 +1,15 @@
 package il.cshaifasweng.OCSFMediatorExample.client;
 
 import javafx.application.Application;
-
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
 import il.cshaifasweng.OCSFMediatorExample.entities.Question;
 
 /**
@@ -96,7 +98,7 @@ public class App extends Application { //// ask le2el how to make an column diss
 	public void showManagerView() throws IOException {
 		this.stage = new Stage();
 		try {
-			scene = new Scene(loadFXML("/manager"), 600, 400);
+			scene = new Scene(loadFXML("manager"), 600, 400);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -122,5 +124,6 @@ public class App extends Application { //// ask le2el how to make an column diss
 	public static void main(String[] args) {
 		launch();
 	}
+
 
 }

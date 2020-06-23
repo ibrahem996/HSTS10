@@ -12,10 +12,12 @@
 	fx:controller="il.cshaifasweng.OCSFMediatorExample.client.StudentController">
 
 	<ImageView fitHeight="400.0" fitWidth="600.0">
-         <image>
-            <Image url="@primary image.jpg" />
+<!--         <image>
+            <Image url="@primaryImage.jpg" />
          </image>
+ -->         
       </ImageView>
+  
 
 	<children>
 		<ImageView fx:id="welcomesign" fitHeight="372.0"
