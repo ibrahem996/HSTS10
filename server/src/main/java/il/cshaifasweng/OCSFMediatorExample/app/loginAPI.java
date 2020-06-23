@@ -22,12 +22,13 @@ public class loginAPI { ///// remember to check if connected
 		String type = messageArrayList[2];
 		System.out.print("type = " + type + "\n");
 		String temp[] = new String[2];
+		String temp2[] = new String[3];
 
 		try {
 			String name, pass, url;
-			url = "jdbc:mysql://127.0.0.1/hstsdatabase";
+			url = "jdbc:mysql://127.0.0.1/hsts";
 			name = "root";
-			pass = "Lilyan$4";
+			pass = "t12345";
 			Connection myConnection = DriverManager.getConnection(url, name, pass);
 			Statement stmt = (Statement) myConnection.createStatement();
 
@@ -40,9 +41,19 @@ public class loginAPI { ///// remember to check if connected
 				ResultSet rs = stmt.executeQuery(sql);
 				if (rs.next()) {
 					System.out.println("studenttttttttt");
-					temp[0] = "true";
-					temp[1] = "student";
-					command.setCommand(temp);
+					temp2[0] = "true";
+					temp2[1] = "student";
+					
+					
+				}
+				sql= "SELECT * FROM student WHERE userName = '" + userName + "' AND password = '"
+						+ password + "'";
+				
+				rs = stmt.executeQuery(sql);
+				if (rs.next()) {
+					temp2[2]=Integer.toString(rs.getInt("id"));
+					System.out.println("temp2[2]=" + temp2[2]);
+					command.setCommand(temp2);
 				}
 				break;
 
@@ -118,6 +129,11 @@ public class loginAPI { ///// remember to check if connected
 			// TODO: handle exception
 		}
 
+	}
+
+	private static String toString(int int1) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

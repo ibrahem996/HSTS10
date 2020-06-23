@@ -54,272 +54,272 @@ public class InitlizeDataBase {
 
 	public static void initializeData() {
 
-		// Subjects
-
-		Subject math = new Subject(15, "Math");
-		Subject physics = new Subject(75, "Physics");
-		Subject history = new Subject(85, "History");
-		Subject sport = new Subject(95, "Sport");
-
-		session.save(math);
-		session.save(physics);
-		session.save(history);
-		session.save(sport);
-
-		session.flush();
-
-		// Courses
-
-		Course algebra = new Course(60, math, "Alegbra");
-		Course calculos = new Course(61, math, "calculos");
-		Course historyafterhumans = new Course(62, history, "HistoryAfterHumans");
-		Course football = new Course(63, sport, "Football");
-		Course calesthinics = new Course(64, sport, "Calesthinics");
-		Course wresting = new Course(65, sport, "Wrestling");
-		Course mechanics = new Course(66, physics, "Mechanics");
-		Course space = new Course(67, physics, "Space");
-
-		session.save(algebra);
-		session.save(calculos);
-		session.save(historyafterhumans);
-		session.save(football);
-		session.save(calesthinics);
-		session.save(wresting);
-		session.save(mechanics);
-		session.save(space);
-
-		session.flush();
-
-		// Students
-
-		Student shadi = new Student(7, "shadicr7", "rm4ever", "shadi", "halloun");
-		Student noor = new Student(9, "noorking", "loveknafe", "noor", "khmaiasy");
-		Student ibrahim = new Student(17, "penguinLover", "elNasMsale7", "ibrahim", "hmad");
-		Student tareq = new Student(19, "tareq123", "1234", "tareq", "saleh");
-		Student lilyana = new Student(20, "lilyana321", "4321", "lilyana", "khateeb");
-		Student malek = new Student(2, "malek2", "2222", "malik", "egbariye");
-
-		session.save(shadi);
-		session.save(noor);
-		session.save(ibrahim);
-		session.save(tareq);
-		session.save(lilyana);
-		session.save(malek);
-
-		session.flush();
-
-		// Teachers
-
-		Teacher malki = new Teacher(1, "malki123", "123", "malki", "grossman");
-		Teacher oren = new Teacher(2, "oren", "12", "oren", "wayman");
-		Teacher erez = new Teacher(3, "erezloveibrahim", "555", "erez", "hmad");
-		Teacher ronen = new Teacher(4, "ronenhestbrot", "100", "ronen", "shaltel");
-
-		session.save(malki);
-		session.save(oren);
-		session.save(erez);
-		session.save(ronen);
-
-		session.flush();
-
-		history.addTeachertoSubject(malki);
-		physics.addTeachertoSubject(oren);
-		sport.addTeachertoSubject(erez);
-		math.addTeachertoSubject(ronen, oren);
-
-		session.save(history);
-		session.save(physics);
-		session.save(sport);
-		session.save(math);
-
-		session.flush();
-
-		malki.addCoursestoTeacher(historyafterhumans);
-		oren.addCoursestoTeacher(space, mechanics);
-		erez.addCoursestoTeacher(football, calesthinics);
-		ronen.addCoursestoTeacher(algebra, calculos);
-
-		session.save(malki);
-		session.save(oren);
-		session.save(erez);
-		session.save(ronen);
-
-		session.flush();
-
-		// manager
-
-		Manager zidane = new Manager(10, "zizou", "matartzi", "zinadine", "zidane");
-		session.save(zidane);
-
-		session.flush();
-
-		try {
-			i++;
-			Answer answer1_1 = new Answer();
-			Answer answer2_1 = new Answer();
-			Answer answer3_1 = new Answer();
-			Answer answer4_1 = new Answer();
-
-			Question q1 = new Question("What is the capital of Italy ?", answer1_1, answer2_1, answer3_1, answer4_1, 1,
-					history);
-			answer1_1.setAnswer("rome");
-			answer2_1.setAnswer("Prague");
-			answer3_1.setAnswer("Tel-Aviv");
-			answer4_1.setAnswer("Kfr-Kna");
-
-			session.save(q1);
-
-			session.save(answer1_1);
-			session.save(answer2_1);
-			session.save(answer3_1);
-			session.save(answer4_1);
-
-			session.flush();
-
-		} catch (NullPointerException e) {
-
-			System.out.println("\nCorrect answer must be from 1 to 4 at question:" + i
-					+ " , please try to edit the correct answer and reconnect to the server manually !!!\n");
-		}
-
-		try {
-			i++;
-			Answer answer1_2 = new Answer();
-			Answer answer2_2 = new Answer();
-			Answer answer3_2 = new Answer();
-			Answer answer4_2 = new Answer();
-
-			Question q2 = new Question("which of the following numbers are primary ?", answer1_2, answer2_2, answer3_2,
-					answer4_2, 3, math);
-			answer1_2.setAnswer("39");
-			answer2_2.setAnswer("21");
-			answer3_2.setAnswer("2");
-			answer4_2.setAnswer("145");
-
-			session.save(q2);
-
-			session.save(answer1_2);
-			session.save(answer2_2);
-			session.save(answer3_2);
-			session.save(answer4_2);
-
-			session.flush();
-		} catch (NullPointerException e) {
-
-			System.out.println("\nCorrect answer must be from 1 to 4 at question:" + i
-					+ " , please try to edit the correct answer and reconnect to the server manually !!!\n");
-		}
-
-		try {
-			i++;
-			Answer answer1_3 = new Answer();
-			Answer answer2_3 = new Answer();
-			Answer answer3_3 = new Answer();
-			Answer answer4_3 = new Answer();
-
-			Question q3 = new Question("Which year the War World 2 ended ?", answer1_3, answer2_3, answer3_3, answer4_3,
-					3, history);
-			answer1_3.setAnswer("1943");
-			answer2_3.setAnswer("1944");
-			answer3_3.setAnswer("1945");
-			answer4_3.setAnswer("1946");
-
-			session.save(q3);
-
-			session.save(answer1_3);
-			session.save(answer2_3);
-			session.save(answer3_3);
-			session.save(answer4_3);
-
-			session.flush();
-		} catch (NullPointerException e) {
-			System.out.println("\nCorrect answer must be from 1 to 4 at question:" + i
-					+ " , please try to edit the correct answer and reconnect to the server manually !!!\n");
-		}
-		try {
-			i++;
-			Answer answer1_4 = new Answer();
-			Answer answer2_4 = new Answer();
-			Answer answer3_4 = new Answer();
-			Answer answer4_4 = new Answer();
-
-			Question q4 = new Question("Which team has the most Champion Leagues titles ?", answer1_4, answer2_4,
-					answer3_4, answer4_4, 4, sport);
-			answer1_4.setAnswer("Man-Utd");
-			answer2_4.setAnswer("AC-Milan");
-			answer3_4.setAnswer("Liverpool");
-			answer4_4.setAnswer("Real Madrid");
-
-			session.save(q4);
-
-			session.save(answer1_4);
-			session.save(answer2_4);
-			session.save(answer3_4);
-			session.save(answer4_4);
-
-			session.flush();
-
-		} catch (NullPointerException e) {
-			System.out.println("\nCorrect answer must be from 1 to 4 at question:" + i
-					+ " , please try to edit the correct answer and reconnect to the server manually !!!\n");
-		}
-
-		try {
-			i++;
-			Answer answer1_5 = new Answer();
-			Answer answer2_5 = new Answer();
-			Answer answer3_5 = new Answer();
-			Answer answer4_5 = new Answer();
-
-			Question q5 = new Question("Which of these movies has the most Oscar awards ?", answer1_5, answer2_5,
-					answer3_5, answer4_5, 2, history);
-			answer1_5.setAnswer("Avengers EndGame");
-			answer2_5.setAnswer("Titanic");
-			answer3_5.setAnswer("Interstellar");
-			answer4_5.setAnswer("Harry Potter and the Chamber of secrets");
-
-			session.save(q5);
-
-			session.save(answer1_5);
-			session.save(answer2_5);
-			session.save(answer3_5);
-			session.save(answer4_5);
-
-			session.flush();
-
-		} catch (NullPointerException e) {
-			System.out.println("\nCorrect answer must be from 1 to 4 at question:" + i
-					+ " , please try to edit the correct answer and reconnect to the server manually !!!\n");
-		}
-
-		try {
-			i++;
-			Answer answer1_6 = new Answer();
-			Answer answer2_6 = new Answer();
-			Answer answer3_6 = new Answer();
-			Answer answer4_6 = new Answer();
-
-			Question q6 = new Question("Which of these actors has never won the oscar ?", answer1_6, answer2_6,
-					answer3_6, answer4_6, 3, history);
-			answer1_6.setAnswer("Leonardo Di Caprio");
-			answer2_6.setAnswer("Johny Depp");
-			answer3_6.setAnswer("Al pacino");
-			answer4_6.setAnswer("Brad Pitt");
-
-			session.save(q6);
-
-			session.save(answer1_6);
-			session.save(answer2_6);
-			session.save(answer3_6);
-			session.save(answer4_6);
-
-			session.flush();
-		} catch (NullPointerException e) {
-			System.out.println("\nCorrect answer must be from 1 to 4 at question:" + i
-					+ " , please try to edit the correct answer and reconnect to the server manually !!!\n");
-		}
-
-		session.getTransaction().commit();
+//		// Subjects
+//
+//		Subject math = new Subject(15, "Math");
+//		Subject physics = new Subject(75, "Physics");
+//		Subject history = new Subject(85, "History");
+//		Subject sport = new Subject(95, "Sport");
+//
+//		session.save(math);
+//		session.save(physics);
+//		session.save(history);
+//		session.save(sport);
+//
+//		session.flush();
+//
+//		// Courses
+//
+//		Course algebra = new Course(60, math, "Alegbra");
+//		Course calculos = new Course(61, math, "calculos");
+//		Course historyafterhumans = new Course(62, history, "HistoryAfterHumans");
+//		Course football = new Course(63, sport, "Football");
+//		Course calesthinics = new Course(64, sport, "Calesthinics");
+//		Course wresting = new Course(65, sport, "Wrestling");
+//		Course mechanics = new Course(66, physics, "Mechanics");
+//		Course space = new Course(67, physics, "Space");
+//
+//		session.save(algebra);
+//		session.save(calculos);
+//		session.save(historyafterhumans);
+//		session.save(football);
+//		session.save(calesthinics);
+//		session.save(wresting);
+//		session.save(mechanics);
+//		session.save(space);
+//
+//		session.flush();
+//
+//		// Students
+//
+//		Student shadi = new Student(7, "shadicr7", "rm4ever", "shadi", "halloun");
+//		Student noor = new Student(9, "noorking", "loveknafe", "noor", "khmaiasy");
+//		Student ibrahim = new Student(17, "penguinLover", "elNasMsale7", "ibrahim", "hmad");
+//		Student tareq = new Student(19, "tareq123", "1234", "tareq", "saleh");
+//		Student lilyana = new Student(20, "lilyana321", "4321", "lilyana", "khateeb");
+//		Student malek = new Student(2, "malek2", "2222", "malik", "egbariye");
+//
+//		session.save(shadi);
+//		session.save(noor);
+//		session.save(ibrahim);
+//		session.save(tareq);
+//		session.save(lilyana);
+//		session.save(malek);
+//
+//		session.flush();
+//
+//		// Teachers
+//
+//		Teacher malki = new Teacher(1, "malki123", "123", "malki", "grossman");
+//		Teacher oren = new Teacher(2, "oren", "12", "oren", "wayman");
+//		Teacher erez = new Teacher(3, "erezloveibrahim", "555", "erez", "hmad");
+//		Teacher ronen = new Teacher(4, "ronenhestbrot", "100", "ronen", "shaltel");
+//
+//		session.save(malki);
+//		session.save(oren);
+//		session.save(erez);
+//		session.save(ronen);
+//
+//		session.flush();
+//
+//		history.addTeachertoSubject(malki);
+//		physics.addTeachertoSubject(oren);
+//		sport.addTeachertoSubject(erez);
+//		math.addTeachertoSubject(ronen, oren);
+//
+//		session.save(history);
+//		session.save(physics);
+//		session.save(sport);
+//		session.save(math);
+//
+//		session.flush();
+//
+//		malki.addCoursestoTeacher(historyafterhumans);
+//		oren.addCoursestoTeacher(space, mechanics);
+//		erez.addCoursestoTeacher(football, calesthinics);
+//		ronen.addCoursestoTeacher(algebra, calculos);
+//
+//		session.save(malki);
+//		session.save(oren);
+//		session.save(erez);
+//		session.save(ronen);
+//
+//		session.flush();
+//
+//		// manager
+//
+//		Manager zidane = new Manager(10, "zizou", "matartzi", "zinadine", "zidane");
+//		session.save(zidane);
+//
+//		session.flush();
+//
+//		try {
+//			i++;
+//			Answer answer1_1 = new Answer();
+//			Answer answer2_1 = new Answer();
+//			Answer answer3_1 = new Answer();
+//			Answer answer4_1 = new Answer();
+//
+//			Question q1 = new Question("What is the capital of Italy ?", answer1_1, answer2_1, answer3_1, answer4_1, 1,
+//					history);
+//			answer1_1.setAnswer("rome");
+//			answer2_1.setAnswer("Prague");
+//			answer3_1.setAnswer("Tel-Aviv");
+//			answer4_1.setAnswer("Kfr-Kna");
+//
+//			session.save(q1);
+//
+//			session.save(answer1_1);
+//			session.save(answer2_1);
+//			session.save(answer3_1);
+//			session.save(answer4_1);
+//
+//			session.flush();
+//
+//		} catch (NullPointerException e) {
+//
+//			System.out.println("\nCorrect answer must be from 1 to 4 at question:" + i
+//					+ " , please try to edit the correct answer and reconnect to the server manually !!!\n");
+//		}
+//
+//		try {
+//			i++;
+//			Answer answer1_2 = new Answer();
+//			Answer answer2_2 = new Answer();
+//			Answer answer3_2 = new Answer();
+//			Answer answer4_2 = new Answer();
+//
+//			Question q2 = new Question("which of the following numbers are primary ?", answer1_2, answer2_2, answer3_2,
+//					answer4_2, 3, math);
+//			answer1_2.setAnswer("39");
+//			answer2_2.setAnswer("21");
+//			answer3_2.setAnswer("2");
+//			answer4_2.setAnswer("145");
+//
+//			session.save(q2);
+//
+//			session.save(answer1_2);
+//			session.save(answer2_2);
+//			session.save(answer3_2);
+//			session.save(answer4_2);
+//
+//			session.flush();
+//		} catch (NullPointerException e) {
+//
+//			System.out.println("\nCorrect answer must be from 1 to 4 at question:" + i
+//					+ " , please try to edit the correct answer and reconnect to the server manually !!!\n");
+//		}
+//
+//		try {
+//			i++;
+//			Answer answer1_3 = new Answer();
+//			Answer answer2_3 = new Answer();
+//			Answer answer3_3 = new Answer();
+//			Answer answer4_3 = new Answer();
+//
+//			Question q3 = new Question("Which year the War World 2 ended ?", answer1_3, answer2_3, answer3_3, answer4_3,
+//					3, history);
+//			answer1_3.setAnswer("1943");
+//			answer2_3.setAnswer("1944");
+//			answer3_3.setAnswer("1945");
+//			answer4_3.setAnswer("1946");
+//
+//			session.save(q3);
+//
+//			session.save(answer1_3);
+//			session.save(answer2_3);
+//			session.save(answer3_3);
+//			session.save(answer4_3);
+//
+//			session.flush();
+//		} catch (NullPointerException e) {
+//			System.out.println("\nCorrect answer must be from 1 to 4 at question:" + i
+//					+ " , please try to edit the correct answer and reconnect to the server manually !!!\n");
+//		}
+//		try {
+//			i++;
+//			Answer answer1_4 = new Answer();
+//			Answer answer2_4 = new Answer();
+//			Answer answer3_4 = new Answer();
+//			Answer answer4_4 = new Answer();
+//
+//			Question q4 = new Question("Which team has the most Champion Leagues titles ?", answer1_4, answer2_4,
+//					answer3_4, answer4_4, 4, sport);
+//			answer1_4.setAnswer("Man-Utd");
+//			answer2_4.setAnswer("AC-Milan");
+//			answer3_4.setAnswer("Liverpool");
+//			answer4_4.setAnswer("Real Madrid");
+//
+//			session.save(q4);
+//
+//			session.save(answer1_4);
+//			session.save(answer2_4);
+//			session.save(answer3_4);
+//			session.save(answer4_4);
+//
+//			session.flush();
+//
+//		} catch (NullPointerException e) {
+//			System.out.println("\nCorrect answer must be from 1 to 4 at question:" + i
+//					+ " , please try to edit the correct answer and reconnect to the server manually !!!\n");
+//		}
+//
+//		try {
+//			i++;
+//			Answer answer1_5 = new Answer();
+//			Answer answer2_5 = new Answer();
+//			Answer answer3_5 = new Answer();
+//			Answer answer4_5 = new Answer();
+//
+//			Question q5 = new Question("Which of these movies has the most Oscar awards ?", answer1_5, answer2_5,
+//					answer3_5, answer4_5, 2, history);
+//			answer1_5.setAnswer("Avengers EndGame");
+//			answer2_5.setAnswer("Titanic");
+//			answer3_5.setAnswer("Interstellar");
+//			answer4_5.setAnswer("Harry Potter and the Chamber of secrets");
+//
+//			session.save(q5);
+//
+//			session.save(answer1_5);
+//			session.save(answer2_5);
+//			session.save(answer3_5);
+//			session.save(answer4_5);
+//
+//			session.flush();
+//
+//		} catch (NullPointerException e) {
+//			System.out.println("\nCorrect answer must be from 1 to 4 at question:" + i
+//					+ " , please try to edit the correct answer and reconnect to the server manually !!!\n");
+//		}
+//
+//		try {
+//			i++;
+//			Answer answer1_6 = new Answer();
+//			Answer answer2_6 = new Answer();
+//			Answer answer3_6 = new Answer();
+//			Answer answer4_6 = new Answer();
+//
+//			Question q6 = new Question("Which of these actors has never won the oscar ?", answer1_6, answer2_6,
+//					answer3_6, answer4_6, 3, history);
+//			answer1_6.setAnswer("Leonardo Di Caprio");
+//			answer2_6.setAnswer("Johny Depp");
+//			answer3_6.setAnswer("Al pacino");
+//			answer4_6.setAnswer("Brad Pitt");
+//
+//			session.save(q6);
+//
+//			session.save(answer1_6);
+//			session.save(answer2_6);
+//			session.save(answer3_6);
+//			session.save(answer4_6);
+//
+//			session.flush();
+//		} catch (NullPointerException e) {
+//			System.out.println("\nCorrect answer must be from 1 to 4 at question:" + i
+//					+ " , please try to edit the correct answer and reconnect to the server manually !!!\n");
+//		}
+//
+//		session.getTransaction().commit();
 
 	}
 

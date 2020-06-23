@@ -1,15 +1,13 @@
 package il.cshaifasweng.OCSFMediatorExample.client;
 
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
-
 import il.cshaifasweng.OCSFMediatorExample.entities.Question;
 
 /**
@@ -21,8 +19,9 @@ public class App extends Application { //// ask le2el how to make an column diss
 	private static App app;
 	private static Scene scene;
 	private SimpleClient client;
-	private Stage stage;
+	private static Stage stage;
 	private String UserInfo;
+	private String UserId;
 
 	public static App getInstance() {
 		if (app == null)
@@ -32,18 +31,20 @@ public class App extends Application { //// ask le2el how to make an column diss
 
 	@Override
 	public void start(Stage stage) throws IOException {
-		this.stage = stage;
+		
 		client = SimpleClient.getClient();
 		client.openConnection();
-		showPrimaryView();
+		showPrimaryView(stage);
 
 	}
 
-	public void showPrimaryView() throws IOException {
+	public static void  showPrimaryView(Stage stage1) throws IOException {
+		stage=stage1;
 		scene = new Scene(loadFXML("primary"), 600, 400);
-		this.stage.setScene(scene);
-		this.stage.setTitle("HSTS");
-		this.stage.show();
+		stage.setScene(scene);
+		stage.setTitle("HSTS");
+		stage.show();
+		
 
 	}
 
@@ -72,6 +73,62 @@ public class App extends Application { //// ask le2el how to make an column diss
 
 	}
 
+	public void startExam(String[] arr) throws IOException {
+		this.UserInfo = arr[0];
+		SimpleClient.getClient().handleLoginToExam(arr);
+	}
+
+	public void checkStartExamAnswer(String[] arr) throws IOException {
+
+		if (arr[0].equalsIgnoreCase("false")) {
+			
+			addingTextToCodeOrId("examexec.fxml", "Wrong ID.");
+		
+
+		}
+		else if (arr[2].equalsIgnoreCase("false")) {
+			addingTextToCodeOrId("examexec.fxml", "Wrong Code.");
+		}
+		if (arr[0].equalsIgnoreCase("true")&&arr[2].equalsIgnoreCase("true")) {
+			if(!(arr[1].equalsIgnoreCase(this.UserId))){
+				addingTextToCodeOrId("examexec.fxml", "Incompetable ID.");
+			}else {
+				//7sb alcode if mmo7shav of ydne
+				SimpleClient.getClient().handleStartExam(arr);
+			}
+			
+		}
+
+	}
+	
+	public void addingTextToCodeOrId(String fxm,String putthis) {
+		FXMLLoader fxmlLoader = new FXMLLoader();
+		fxmlLoader.setLocation(Main.class.getResource(fxm));
+		AnchorPane mainAnchor = null;
+		try {
+			mainAnchor = (AnchorPane) fxmlLoader.load();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		ExamExecController  controller = fxmlLoader.getController();
+		switch(putthis){
+			case("Wrong ID."):
+				controller.getWrongId().setText("Wrong ID.");
+			break;
+			case("Wrong Code."):
+				controller.getWrongCode().setText("Wrong Code.");
+			break;
+			case("Incompetable ID."):
+				controller.getWrongId().setText("Incompetable ID.");
+		}
+		
+		System.out.println(controller.getWrongId().getText());
+		scene = new Scene(mainAnchor, 600, 400);
+		stage.setScene(scene);
+		stage.show();
+	}
+
 	public void checkSubject() throws IOException {
 		SimpleClient.getClient().handlecheckSubject(UserInfo);
 	}
@@ -82,48 +139,64 @@ public class App extends Application { //// ask le2el how to make an column diss
 	}
 
 	public void showTeacherView() throws IOException {
-		this.stage = new Stage();
+		//this.stage = new Stage();
 		scene = new Scene(loadFXML("teacher"), 600, 400);
-		this.stage.setScene(scene);
-		this.stage.show();
+		stage.setScene(scene);
+		stage.show();
 	}
 
-	public void showStudentView() throws IOException {
-		this.stage = new Stage();
+	public void showStudentView(String [] msg) throws IOException {
+		this.UserId=msg[2];
 		scene = new Scene(loadFXML("student"), 600, 400);
-		this.stage.setScene(scene);
-		this.stage.show();
+		stage.setScene(scene);
+		stage.show();
+		
 	}
 
 	public void showManagerView() throws IOException {
-		this.stage = new Stage();
-		try {
-			scene = new Scene(loadFXML("manager"), 600, 400);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		this.stage.setScene(scene);
-		this.stage.show();
+		scene = new Scene(loadFXML("manager"), 600, 400);
+		stage.setScene(scene);
+		stage.show();
 	}
 
 	public void showExecutelogView() throws IOException {
-		this.stage = new Stage();
 		scene = new Scene(loadFXML("examexec"), 600, 400);
-		this.stage.setScene(scene);
-		this.stage.show();
+		stage.setScene(scene);
+		stage.show();
 	}
 
+	public void showGradesView() throws IOException {
+		scene = new Scene(loadFXML("showgrades"), 600, 400);
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	public void showScannedExam() throws IOException {
+		scene = new Scene(loadFXML("showscanned"), 600, 400);
+		stage.setScene(scene);
+		stage.show();
+	}
+	
 	public void showAddQuestionView() throws IOException {
-		this.stage = new Stage();
 		scene = new Scene(loadFXML("addquestion"), 600, 400);
-		this.stage.setScene(scene);
-		this.stage.show();
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	public void showBackToStudentView() throws IOException {
+		scene = new Scene(loadFXML("student"), 600, 400);
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	public void showBackToPrimaryView() throws IOException {
+		scene = new Scene(loadFXML("primary"), 600, 400);
+		stage.setScene(scene);
+		stage.show();
 	}
 
 	public static void main(String[] args) {
 		launch();
 	}
-
 
 }
