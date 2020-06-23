@@ -132,9 +132,30 @@ public class App extends Application { //// ask le2el how to make an column diss
 		this.stage.show();
 	}
 
+	public void showGradesView() throws IOException {
+		this.stage = new Stage();
+		scene = new Scene(loadFXML("showgrades"), 600, 400);
+		this.stage.setScene(scene);
+		this.stage.show();
+	}
+
+	public void showScannedExam() throws IOException {
+		this.stage = new Stage();
+		scene = new Scene(loadFXML("showscanned"), 600, 400);
+		this.stage.setScene(scene);
+		this.stage.show();
+	}
+	
 	public void showAddQuestionView() throws IOException {
 		this.stage = new Stage();
 		scene = new Scene(loadFXML("addquestion"), 600, 400);
+		this.stage.setScene(scene);
+		this.stage.show();
+	}
+
+	public void showBackToStrudentView() throws IOException {
+		this.stage = new Stage();
+		scene = new Scene(loadFXML("student"), 600, 400);
 		this.stage.setScene(scene);
 		this.stage.show();
 	}

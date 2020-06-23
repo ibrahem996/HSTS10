@@ -10,14 +10,14 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1"
 	xmlns="http://javafx.com/javafx/11.0.1"
 	fx:controller="il.cshaifasweng.OCSFMediatorExample.client.StudentController">
- 
+
+<!-- 
 	<ImageView fitHeight="400.0" fitWidth="600.0">
-<!--         <image>
-            <Image url="@primaryImage.jpg" />
-         </image>
- -->         
-      </ImageView>
-  
+		<image>
+			<Image url="@studentImage.jpg" />
+		</image>
+	</ImageView>
+	-->
 	<children>
 		<ImageView fx:id="welcomesign" fitHeight="372.0"
 			fitWidth="480.0" pickOnBounds="true" preserveRatio="true" />
