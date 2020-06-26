@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.OCSFMediatorExample.client.DisplayExamsController">
+   <children>
+      <Button fx:id="signoutbtn" layoutX="522.0" layoutY="14.0" mnemonicParsing="false" onAction="#signoutac" text="Sign Out">
+         <font>
+            <Font name="Aharoni Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="backbtn" layoutX="522.0" layoutY="363.0" mnemonicParsing="false" onAction="#backac" prefHeight="22.0" prefWidth="65.0" text="back">
+         <font>
+            <Font name="Aharoni Bold" size="12.0" />
+         </font>
+      </Button>
+      <ListView fx:id="listViewid" layoutY="-4.0" orientation="HORIZONTAL" prefHeight="400.0" prefWidth="390.0" />
+      <Button fx:id="submitbtn" layoutX="425.0" layoutY="363.0" mnemonicParsing="false" onAction="#submitac" prefHeight="22.0" prefWidth="65.0" text="Submit">
+         <font>
+            <Font name="Aharoni Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="examextractionbtn" layoutX="422.0" layoutY="83.0" mnemonicParsing="false" onAction="#examextractionac" prefHeight="22.0" prefWidth="163.0" text="Selected Exam Extraction">
+         <font>
+            <Font name="Aharoni Bold" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="codebtn" layoutX="410.0" layoutY="171.0" prefHeight="26.0" prefWidth="175.0" promptText="Code (4 Digits)" />
+      <CheckBox fx:id="manualbtn" layoutX="411.0" layoutY="243.0" mnemonicParsing="false" onAction="#manualac" text="Manual" />
+      <CheckBox fx:id="compbtn" layoutX="491.0" layoutY="243.0" mnemonicParsing="false" onAction="#compac" text="Computrizied" />
+      <Button fx:id="DisplaySelectedExambtn" layoutX="422.0" layoutY="297.0" mnemonicParsing="false" onAction="#DisplaySelectedExamac" prefHeight="22.0" prefWidth="163.0" text="Display Selected Exam">
+         <font>
+            <Font name="Aharoni Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
