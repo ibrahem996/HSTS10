@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.OCSFMediatorExample.client.LoginExamController">
+	<children>
+		<ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+		<TextField fx:id="IDText" layoutX="226.0" layoutY="159.0" promptText="Enter ID..." />
+		<TextField fx:id="ExamCode" layoutX="226.0" layoutY="241.0" promptText="Enter 4 letters/digits" />
+		<Text layoutX="158.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Exam Code:" />
+		<Text layoutX="205.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
+		<Button fx:id="StartButton" layoutX="475.0" layoutY="324.0" mnemonicParsing="false" onAction="#OnStart" text="Start Exam" />
+		<Button fx:id="Backid" layoutX="40.0" layoutY="324.0" mnemonicParsing="false" onAction="#OnBack" text="Back" />
+		<Text fx:id="WrongCode" layoutX="226.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="122.66670227050781" />
+		<Text fx:id="WrongId" layoutX="226.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="122.6667022705077" />
+	</children>
+</AnchorPane>

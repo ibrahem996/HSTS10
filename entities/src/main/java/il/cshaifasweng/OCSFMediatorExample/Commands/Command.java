@@ -26,7 +26,7 @@ public class Command  implements Serializable  {
     }
     
     public void setCommand(Object object)
-    {  
+    { 
     	this.command = object;
     }
 }

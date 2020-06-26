@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.OCSFMediatorExample.client.StudentController">
+
+	<!-- <ImageView fitHeight="400.0" fitWidth="600.0"> <image> <Image url="@studentImage.jpg" 
+		/> </image> </ImageView> -->
+	<children>
+		<ImageView fx:id="welcomesign" fitHeight="372.0" fitWidth="480.0" pickOnBounds="true" preserveRatio="true" />
+		<Text id="welcomesign" layoutX="6.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Your Grades" textAlignment="CENTER" wrappingWidth="467.3333435058594">
+			<font>
+				<Font name="Algerian" size="28.0" />
+			</font>
+		</Text>
+	</children>
+</AnchorPane>

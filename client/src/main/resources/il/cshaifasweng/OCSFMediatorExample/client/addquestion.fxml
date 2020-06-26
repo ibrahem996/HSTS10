@@ -18,7 +18,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="@../../../../../../../../../../../../7-Key-Questions-Which-Staffing-Industry-Clients-Fail-To-Ask-Background-Screening-Companies-o2w7zsqugwunxz1vskmroz3tqchqht4ewouh038p6w.jpg" />
+            <Image url="@ addQuestionImage.jpg" />
          </image>
       </ImageView>
       <Text fill="WHITE" layoutX="270.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADDING QUESTION">
@@ -106,3 +106,4 @@
       </Button>
    </children>
 </AnchorPane>
+

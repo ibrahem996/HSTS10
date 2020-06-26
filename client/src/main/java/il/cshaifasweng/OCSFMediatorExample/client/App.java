@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import net.bytebuddy.asm.Advice.This;
 
@@ -14,6 +15,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import il.cshaifasweng.OCSFMediatorExample.entities.Course;
+import il.cshaifasweng.OCSFMediatorExample.entities.Exam;
 import il.cshaifasweng.OCSFMediatorExample.entities.Question;
 import il.cshaifasweng.OCSFMediatorExample.entities.Subject;
 
@@ -30,7 +32,8 @@ public class App extends Application {             ////remember update question
 	private static Scene scene;
 	private SimpleClient client;
 	private static Stage stage;
-	private String UserInfo;
+	private static String UserInfo;
+	private String UserId;
 
 	
 	
@@ -46,7 +49,14 @@ public class App extends Application {             ////remember update question
 		client = SimpleClient.getClient();
 		client.openConnection();
 		showPrimaryView(stage);
-		
+		stage.setOnCloseRequest(event -> {
+		    try {
+				App.getInstance().LogOut();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
+
 	}
 	
 	
@@ -57,6 +67,7 @@ public class App extends Application {             ////remember update question
 		stage.setScene(scene);
 		stage.setTitle("HSTS");
 		stage.show();
+		
 
 	}
 
@@ -64,7 +75,6 @@ public class App extends Application {             ////remember update question
 	/*
 	 * public void closeStage(Stage stage) { stage.close(); }
 	 */
-
 
 	static void setRoot(String fxml) throws IOException {
 		scene.setRoot(loadFXML(fxml));
@@ -84,16 +94,25 @@ public class App extends Application {             ////remember update question
 	
 	
 	public void LoginIn(String[] arr) throws IOException {
-		this.UserInfo = arr[0];
+		UserInfo = arr[0];
 		SimpleClient.getClient().handleLoginIn(arr);
-		
+
 	}
 	
-	public void checkSubject(int i) throws IOException
+    
+	public void LogOut() throws IOException {
+		String[] arr=new String[1];
+		System.out.println("username =" + UserInfo);
+		arr[0] = UserInfo;
+		SimpleClient.getClient().handleLogOut(arr);
+
+	}
+    
+    public void checkSubject(int i) throws IOException
 	{
 		SimpleClient.getClient().handlecheckSubject(UserInfo,i);
 	}
-	
+
 	public void AddQuestion(Question newQuestion,int editing) throws IOException {
 		SimpleClient.getClient().handleAddQuestion(newQuestion,editing);
 		
@@ -108,110 +127,212 @@ public class App extends Application {             ////remember update question
 		examInfoObjects[2] = UserInfo;
 		SimpleClient.getClient().handlebringquestionsforspecialcoursebysubject(examInfoObjects);
 	}
+    
+	public void startExam(String[] arr) throws IOException {
+		this.UserId = arr[0];
+		SimpleClient.getClient().handleLoginToExam(arr);
+	}
 
-	
-	public void showTeacherView() throws IOException
-	{
-		scene = new Scene(loadFXML("teacher"), 600, 400);
-		stage.setScene(scene);
-		stage.setTitle("Teacher Actions");
-		stage.show();
+	public void checkStartExamAnswer(String[] arr) throws IOException {
+
+		if (arr[0].equalsIgnoreCase("false")) {
+			
+			addingTextToCodeOrId("loginexam.fxml", "Wrong ID.");
+		
+
+		}
+		else if (arr[2].equalsIgnoreCase("false")) {
+			addingTextToCodeOrId("loginexam.fxml", "Wrong Code.");
+		}
+		if (arr[0].equalsIgnoreCase("true")&&arr[2].equalsIgnoreCase("true")) {
+			if(!(arr[1].equalsIgnoreCase(this.UserId))){
+				addingTextToCodeOrId("loginexam.fxml", "Incompetable ID.");
+			}else {
+				//7sb alcode if mmo7shav of ydne
+				SimpleClient.getClient().handleStartExam(arr);
+			}
+			
+		}
+
 	}
 	
-	public void showManagerView() throws IOException
-	{
-		this.stage = new Stage();
-		try 
-		{
-			scene = new Scene(loadFXML("manager"), 600, 400);
+	public void addingTextToCodeOrId(String fxm,String putthis) {
+		FXMLLoader fxmlLoader = new FXMLLoader();
+		fxmlLoader.setLocation(Main.class.getResource(fxm));
+		AnchorPane mainAnchor = null;
+		try {
+			mainAnchor = (AnchorPane) fxmlLoader.load();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.stage.setScene(scene);
-		this.stage.setTitle("Manager Actions");
-		this.stage.show(); 
+		Object controller = null ;
+		switch(fxm) {
+		case("primary.fxml"):
+			controller = (PrimaryController) fxmlLoader.getController();
+			break;
+		
+		case("loginexam.fxml"):
+			controller = (LoginExamController) fxmlLoader.getController();
+			break;
+		}
+		
+		switch(putthis){
+			case("Wrong ID."):
+				((LoginExamController) controller).getWrongId().setText("Wrong ID.");
+			break;
+			case("Wrong Code."):
+				((LoginExamController) controller).getWrongCode().setText("Wrong Code.");
+			break;
+			case("Incompetable ID."):
+				((LoginExamController) controller).getWrongId().setText("Incompetable ID.");
+			break;
+			case("false"):
+				((PrimaryController) controller).getUserNameText().setText("Invalid input!");
+			break;
+			case("isconnected"):
+				((PrimaryController) controller).getUserNameText().setText("Your account is already cnnected!");
+			break;
+		}
+		
+		scene = new Scene(mainAnchor, 600, 400);
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	public void checkSubject() throws IOException {
+		SimpleClient.getClient().handlecheckSubject(UserInfo);
+	}
+
+	
+
+	public void showTeacherView() throws IOException {
+		scene = new Scene(loadFXML("teacher"), 600, 400);
+		stage.setScene(scene);
+        stage.setTitle("Teacher Actions");
+		stage.show();
+	}
+
+	public void showStudentView(String [] msg) throws IOException {
+		this.UserId=msg[2];
+		if(msg[0].equalsIgnoreCase("false")) {
+			addingTextToCodeOrId("primary.fxml","false");
+		}
+		else if  (msg[0].equalsIgnoreCase("isconnected")) {
+			addingTextToCodeOrId("primary.fxml","isconnected");
+		}else {
+			scene = new Scene(loadFXML("student"), 600, 400);
+			stage.setScene(scene);
+			stage.show();
+		}
+		
+	}
+
+	public void showManagerView() throws IOException {
+		scene = new Scene(loadFXML("manager"), 600, 400);
+		stage.setScene(scene);
+        stage.setTitle("Manager Actions");
+		stage.show();
+	}
+
+	public void showExecutelogView() throws IOException {
+		scene = new Scene(loadFXML("loginexam"), 600, 400);
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	public void showGradesView() throws IOException {
+		scene = new Scene(loadFXML("showgrades"), 600, 400);
+		stage.setScene(scene);
+		stage.show();
+	}
+
+	public void showScannedExam() throws IOException {
+		scene = new Scene(loadFXML("showscanned"), 600, 400);
+		stage.setScene(scene);
+		stage.show();
 	}
 	
-	public void showAddQuestionView() throws IOException
-	{
-		this.stage = new Stage();
+	public void showAddQuestionView() throws IOException {
 		scene = new Scene(loadFXML("addquestion"), 600, 400);
-		this.stage.setScene(scene);
-		this.stage.setTitle("Adding Questions");
-		this.stage.show();
+		stage.setScene(scene);
+        stage.setTitle("Adding Questions");
+		stage.show();
 	}
 
-	public static void main(String[] args) {
-		launch();
+	public void showBackToStudentView() throws IOException {
+		scene = new Scene(loadFXML("student"), 600, 400);
+		stage.setScene(scene);
+		stage.show();
 	}
 
-
-	public void showlastStageView() throws IOException {
-		this.stage = new Stage();
-		scene = new Scene(loadFXML("laststage"), 600, 400);
-		this.stage.setScene(scene);
-		this.stage.setTitle("HSTS");
-		this.stage.show();
+	public void showBackToPrimaryView() throws IOException {
+		scene = new Scene(loadFXML("primary"), 600, 400);
+		stage.setScene(scene);
+		stage.show();
+	}
+	public void StartExamAnswer(Exam msg) throws IOException {/////////////////sending exam to the controller to show it
+		scene = new Scene(loadFXML("examexecuting"), 600, 400);
+		stage.setScene(scene);
+		stage.show();
 		
 	}
-
-
-	public void checkCourses(int stage) throws IOException {
-		
-
-		SimpleClient.getClient().handlecheckCourses(stage,UserInfo);
-	}
-
-
-	public void showQuestionListnView() throws IOException {
-		this.stage = new Stage();
-		scene = new Scene(loadFXML("shoquestionlist"), 600, 400);
-		this.stage.setScene(scene);
-		this.stage.setTitle("Showing Questions");
-		this.stage.show();
-		
-	}
-
-
-	public void showingTheQuestions() throws IOException {
-		this.stage = new Stage();
-		scene = new Scene(loadFXML("shoquestionlistsubject"), 600, 400);
-		this.stage.setScene(scene);
-		this.stage.setTitle("Showing Questions");
-		this.stage.show();
-		
-	}
-
-
-	public void showCreateExamView() throws IOException {
-		this.stage = new Stage();
-		scene = new Scene(loadFXML("exams"), 600, 400);
-		this.stage.setScene(scene);
-		this.stage.setTitle("Creating Exam");
-		this.stage.show();
-		
-	}
-
-
-	public void startAgain() throws IOException {
+    
+    public void startAgain() throws IOException {
 		scene = new Scene(loadFXML("primary"), 600, 400);
 		stage.setScene(scene);
 		stage.setTitle("HSTS");
 		stage.show();
 		
 	}
+    
+    public void showlastStageView() throws IOException {
+		scene = new Scene(loadFXML("laststage"), 600, 400);
+		stage.setScene(scene);
+		stage.setTitle("HSTS");
+		stage.show();
+		
+	}
+    
+    public void checkCourses(int stage) throws IOException {
+		
+
+		SimpleClient.getClient().handlecheckCourses(stage,UserInfo);
+	}
+    
+    public void showQuestionListnView() throws IOException {
+		scene = new Scene(loadFXML("shoquestionlist"), 600, 400);
+		stage.setScene(scene);
+		stage.setTitle("Showing Questions");
+		stage.show();
+		
+	}
+    
+    public void showingTheQuestions() throws IOException {
+		scene = new Scene(loadFXML("shoquestionlistsubject"), 600, 400);
+		stage.setScene(scene);
+		stage.setTitle("Showing Questions");
+		stage.show();
+		
+	}
 
 
-	public void ShowingBuildingTheExam() throws IOException {
+	public void showCreateExamView() throws IOException {
+		scene = new Scene(loadFXML("exams"), 600, 400);
+		stage.setScene(scene);
+		stage.setTitle("Creating Exam");
+		stage.show();
+		
+	}
+    
+    public void ShowingBuildingTheExam() throws IOException {
 		scene = new Scene(loadFXML("choosingquestionstoexam"), 600, 400);
 		stage.setScene(scene);
 		stage.setTitle("Building Exam");
 		stage.show();
 		
 	}
-
-
+    
 	public void SavingTheExamWithQuestions(Object[] examInfoObjects1) throws IOException {
 		
 		SimpleClient.getClient().handleSavingTheExamWithQuestions(examInfoObjects1);
@@ -226,34 +347,32 @@ public class App extends Application {             ////remember update question
 		stage.show();
 		
 	}
-
-
-	public void bringExams(int courseId) throws IOException {
-		
-		SimpleClient.getClient().handleBringingExamsInfo(courseId);
-
+    
+	public static void main(String[] args) throws IOException {
+		launch();
 		
 	}
-
-
-	public void displayExamView() throws IOException {
+    
+    public void displayExamView() throws IOException {
 		scene = new Scene(loadFXML("displayexams"), 600, 400);
 		stage.setScene(scene);
 		stage.setTitle("Displaying Exam");
 		stage.show();
 		
 	}
-
-
+    
 	public void GivingCodeToExam(int chosenintger, char[] choseCode, int examExecutaion) throws IOException {
 		
 		SimpleClient.getClient().handleGivingCodeToExam(chosenintger,choseCode,examExecutaion);
 
 	}
+    
+    public void bringExams(int courseId) throws IOException {
+		
+		SimpleClient.getClient().handleBringingExamsInfo(courseId);
 
-
-	
-
+		
+	}
 
 	
 

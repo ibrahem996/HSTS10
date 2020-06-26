@@ -385,8 +385,8 @@ public class InitlizeDataBase {
 		{
 			System.out.println("\nCorrect answer must be from 1 to 4 at question:" + i + " , please try to edit the correct answer and reconnect to the server manually !!!\n");				
 		}
-*/		
 		
+		*/
 		session.getTransaction().commit();
 
 	}
@@ -559,6 +559,11 @@ public class InitlizeDataBase {
 
 	}
 
+	public static List<Exam> getAllexams() {
+		List<Exam> exams = new ArrayList<Exam>();
+		exams = getAll(Exam.class);
+		return exams;
+	}
 	
 	public static void LoadData(String[] args,int flag) {
 		try {

@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="@../../../../../../../../../../../../istock-487974242-1024x620.jpg" />
+            <Image url="@ manage image.jpg" />
          </image>
       </ImageView>
       <Button fx:id="mdsplyexamsbtn" layoutX="472.0" layoutY="114.0" mnemonicParsing="false" onAction="#mdsplyexamsac" prefHeight="36.0" prefWidth="98.0" text="Display Exams">

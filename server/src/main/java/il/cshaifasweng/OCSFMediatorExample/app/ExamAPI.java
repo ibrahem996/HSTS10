@@ -23,9 +23,9 @@ public class ExamAPI {
 	
 	public static Statement connectionToDB() throws SQLException
 	{
-		String url = "jdbc:mysql://127.0.0.1/hstsdatabase";
+		String url = "jdbc:mysql://127.0.0.1/hsts";
 		String name = "root";
-		String pass = "9064";
+		String pass = "t12345";
 		Connection myConnection = DriverManager.getConnection(url,name,pass);
 		Statement stmt = (Statement) myConnection.createStatement();
 		return stmt;

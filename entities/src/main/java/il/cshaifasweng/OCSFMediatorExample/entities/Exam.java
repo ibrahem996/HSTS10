@@ -1,5 +1,6 @@
 package il.cshaifasweng.OCSFMediatorExample.entities;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List; 
 
@@ -16,6 +17,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import il.cshaifasweng.OCSFMediatorExample.databaseinitilize.InitlizeDataBase;
 
 
 @Entity
@@ -217,6 +220,22 @@ public class Exam
 
 	public void setTeacherComment(List<String> teacherComment) {
 		this.teacherComment = teacherComment;
+	}
+	
+	public Exam getExamByuserID(int id)
+	{
+		Exam chosenExam = null;
+		List<Exam> exams = new  ArrayList<Exam>();
+		exams = InitlizeDataBase.getAllexams();
+		for(Exam exam : exams)
+		{
+			if (exam.id == id)
+			{
+				chosenExam = exam;
+			}
+		}
+		
+		return chosenExam;
 	}
 	
 	

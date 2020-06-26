@@ -1,3 +1,4 @@
+
 package il.cshaifasweng.OCSFMediatorExample.server;
 
 import java.io.IOException;
@@ -6,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import il.cshaifasweng.OCSFMediatorExample.databaseinitilize.InitlizeDataBase;
 
 /**
@@ -20,9 +22,9 @@ public class App
     {
     	String name,pass,url;
 		
-		  url = "jdbc:mysql://127.0.0.1/hstsdatabase"; 
+		  url = "jdbc:mysql://127.0.0.1/hsts"; 
 		  name = "root"; 
-		  pass = "9064";
+		  pass = "t12345";
 		  
 		  Connection myConnection = DriverManager.getConnection(url,name,pass);
 		  Statement stmt = (Statement) myConnection.createStatement();
@@ -42,9 +44,10 @@ public class App
 
 			  InitlizeDataBase.LoadData(args,1);
 		  }
-		 
+		
         server = new SimpleServer(3000);
         server.listen();
     
         }
 }
+

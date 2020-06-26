@@ -1,3 +1,4 @@
+
 package il.cshaifasweng.OCSFMediatorExample.Commands;
 
 public enum CommandType {
@@ -10,9 +11,10 @@ public enum CommandType {
 	bringquestionsforspecialcoursebysubjectCommand(6),
 	savingTheExamCommand(7), 
 	bringExamInfoCommand(8),
-	CreatingCodeCommand(9);
-	
-    
+	CreatingCodeCommand(9),
+	loginExamCommand(10),
+    startExamCommand(11),
+    logoutCommand(12);
     private int CommandTypeValue;
 
     CommandType(int value) {
@@ -27,4 +29,5 @@ public enum CommandType {
          return this.name();
     }
 	
+
 }
