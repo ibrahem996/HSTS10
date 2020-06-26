@@ -10,6 +10,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 import il.cshaifasweng.OCSFMediatorExample.client.App;
 
 public class PrimaryController {
@@ -41,7 +42,14 @@ public class PrimaryController {
 	@FXML
 	private Button loginbtn;
 
+	@FXML
+	private Text usernametext;
+
 	String userType;
+
+	public Text getUserNameText() {
+		return usernametext;
+	}
 
 	@FXML
 	void interfaceac(ActionEvent event) {

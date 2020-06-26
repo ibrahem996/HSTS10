@@ -8,6 +8,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import il.cshaifasweng.OCSFMediatorExample.entities.Exam;
 import il.cshaifasweng.OCSFMediatorExample.entities.Question;
 
 /**
@@ -20,7 +22,7 @@ public class App extends Application { //// ask le2el how to make an column diss
 	private static Scene scene;
 	private SimpleClient client;
 	private static Stage stage;
-	private String UserInfo;
+	private static String UserInfo;
 	private String UserId;
 
 	public static App getInstance() {
@@ -35,6 +37,13 @@ public class App extends Application { //// ask le2el how to make an column diss
 		client = SimpleClient.getClient();
 		client.openConnection();
 		showPrimaryView(stage);
+		stage.setOnCloseRequest(event -> {
+		    try {
+				App.getInstance().LogOut();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
 
 	}
 
@@ -68,20 +77,21 @@ public class App extends Application { //// ask le2el how to make an column diss
 	}
 
 	public void LoginIn(String[] arr) throws IOException {
-		this.UserInfo = arr[0];
+		UserInfo = arr[0];
 		SimpleClient.getClient().handleLoginIn(arr);
 
 	}
 	
 	public void LogOut() throws IOException {
 		String[] arr=new String[1];
-		arr[0] = this.UserInfo;
+		System.out.println("username =" + UserInfo);
+		arr[0] = UserInfo;
 		SimpleClient.getClient().handleLogOut(arr);
 
 	}
 
 	public void startExam(String[] arr) throws IOException {
-		this.UserInfo = arr[0];
+		this.UserId = arr[0];
 		SimpleClient.getClient().handleLoginToExam(arr);
 	}
 
@@ -118,19 +128,35 @@ public class App extends Application { //// ask le2el how to make an column diss
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		LoginExamController  controller = fxmlLoader.getController();
-		switch(putthis){
-			case("Wrong ID."):
-				controller.getWrongId().setText("Wrong ID.");
+		Object controller = null ;
+		switch(fxm) {
+		case("primary.fxml"):
+			controller = (PrimaryController) fxmlLoader.getController();
 			break;
-			case("Wrong Code."):
-				controller.getWrongCode().setText("Wrong Code.");
+		
+		case("loginexam.fxml"):
+			controller = (LoginExamController) fxmlLoader.getController();
 			break;
-			case("Incompetable ID."):
-				controller.getWrongId().setText("Incompetable ID.");
 		}
 		
-		System.out.println(controller.getWrongId().getText());
+		switch(putthis){
+			case("Wrong ID."):
+				((LoginExamController) controller).getWrongId().setText("Wrong ID.");
+			break;
+			case("Wrong Code."):
+				((LoginExamController) controller).getWrongCode().setText("Wrong Code.");
+			break;
+			case("Incompetable ID."):
+				((LoginExamController) controller).getWrongId().setText("Incompetable ID.");
+			break;
+			case("false"):
+				((PrimaryController) controller).getUserNameText().setText("Invalid input!");
+			break;
+			case("isconnected"):
+				((PrimaryController) controller).getUserNameText().setText("Your account is already cnnected!");
+			break;
+		}
+		
 		scene = new Scene(mainAnchor, 600, 400);
 		stage.setScene(scene);
 		stage.show();
@@ -154,9 +180,16 @@ public class App extends Application { //// ask le2el how to make an column diss
 
 	public void showStudentView(String [] msg) throws IOException {
 		this.UserId=msg[2];
-		scene = new Scene(loadFXML("student"), 600, 400);
-		stage.setScene(scene);
-		stage.show();
+		if(msg[0].equalsIgnoreCase("false")) {
+			addingTextToCodeOrId("primary.fxml","false");
+		}
+		else if  (msg[0].equalsIgnoreCase("isconnected")) {
+			addingTextToCodeOrId("primary.fxml","isconnected");
+		}else {
+			scene = new Scene(loadFXML("student"), 600, 400);
+			stage.setScene(scene);
+			stage.show();
+		}
 		
 	}
 
@@ -201,9 +234,19 @@ public class App extends Application { //// ask le2el how to make an column diss
 		stage.setScene(scene);
 		stage.show();
 	}
-
-	public static void main(String[] args) {
-		launch();
+	public void StartExamAnswer(Exam msg) throws IOException {/////////////////sending exam to the controller to show it
+		scene = new Scene(loadFXML("examexecuting"), 600, 400);
+		stage.setScene(scene);
+		stage.show();
+		
 	}
+
+	public static void main(String[] args) throws IOException {
+		launch();
+		
+	}
+	
+
+	
 
 }

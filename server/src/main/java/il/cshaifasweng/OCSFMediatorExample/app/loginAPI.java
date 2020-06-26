@@ -36,27 +36,35 @@ public class loginAPI { ///// remember to check if connected
 
 			case ("Student"):
 				System.out.println("studenttttttttt1111111111111");
-				String sql = "SELECT userName FROM student WHERE userName = '" + userName + "' AND password = '"
-						+ password + "'";
+				String sql = "SELECT * FROM student WHERE userName = '" + userName + "' AND password = '" + password
+						+ "'";
 				ResultSet rs = stmt.executeQuery(sql);
+
 				if (rs.next()) {
 					System.out.println("studenttttttttt");
-					temp2[0] = "true";
-					temp2[1] = "student";
-//					sql = "SELECT * FROM student WHERE userName = '" + userName + "'";we have to add thissssssss
-//					rs = stmt.executeQuery(sql);
-//					rs.updateBoolean("isConnected",true);
-					
+					if (rs.getBoolean("isConnected")) {
+						temp2[0] = "isconnected";
+					} else {
+						temp2[0] = "true";
+						String sql5 = "UPDATE student SET isConnected = 1 WHERE userName = " + "'" + userName + "'";
+						stmt.executeUpdate(sql5);
+					}
+					sql = "SELECT * FROM student WHERE userName = '" + userName + "' AND password = '" + password + "'";
+					rs = stmt.executeQuery(sql);
+					if (rs.next()) {
+						temp2[2] = Integer.toString(rs.getInt("id"));
+						System.out.println("temp2[2]=" + temp2[2]);
+
+						System.out.println("trueeeeeeeeeeeee= " + rs.getBoolean("isConnected"));
+						
+
+					}
+				} else {
+					temp2[0] = "false";
 				}
-				sql= "SELECT * FROM student WHERE userName = '" + userName + "' AND password = '"
-						+ password + "'";
-				
-				rs = stmt.executeQuery(sql);
-				if (rs.next()) {
-					temp2[2]=Integer.toString(rs.getInt("id"));
-					System.out.println("temp2[2]=" + temp2[2]);
-					command.setCommand(temp2);
-				}
+				temp2[1] = "student";
+				command.setCommand(temp2);
+				System.out.println("temp2[0]========"+temp2[0]);
 				break;
 
 			case ("Teacher"):
@@ -81,42 +89,6 @@ public class loginAPI { ///// remember to check if connected
 					command.setCommand(temp);
 				}
 				break;
-
-//			if (type.equalsIgnoreCase("Student")) {
-//				System.out.println("studenttttttttt1111111111111");
-//				String sql = "SELECT userName FROM student WHERE userName = '" + userName + "' AND password = '"
-//						+ password + "' AND isConnected = '" + IsConnected + "'";
-//				ResultSet rs = stmt.executeQuery(sql);
-//				System.out.print(rs.next());
-//				if (rs.next()) {
-//					System.out.println("studenttttttttt");
-//					temp[0] = "true";
-//					temp[1] = "student";
-//					command.setCommand(temp);
-//				}
-//
-//			} else if (type.equalsIgnoreCase("Teacher")) {
-//				System.out.println("teacheeeeeeerrrr");
-//				String sql = "SELECT userName FROM teacher WHERE userName = '" + userName + "' AND password = '"
-//						+ password + "'";
-//				ResultSet rs = stmt.executeQuery(sql);
-//				if (rs.next()) {
-//					temp[0] = "true";
-//					temp[1] = "teacher";
-//					command.setCommand(temp);
-//				}
-//			}
-//
-//			else if (type.equalsIgnoreCase("Manager")) {
-//				String sql = "SELECT userName FROM manager WHERE userName = '" + userName + "' AND password = '"
-//						+ password + "'";
-//				ResultSet rs = stmt.executeQuery(sql);
-//				if (rs.next()) {
-//					temp[0] = "true";
-//					temp[1] = "manager";
-//					command.setCommand(temp);
-//				}
-//			}
 
 			}
 

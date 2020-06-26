@@ -12,6 +12,7 @@ import il.cshaifasweng.OCSFMediatorExample.Commands.Command;
 import il.cshaifasweng.OCSFMediatorExample.Commands.CommandType;
 
 import il.cshaifasweng.OCSFMediatorExample.client.ocsf.AbstractClient;
+import il.cshaifasweng.OCSFMediatorExample.entities.Exam;
 import il.cshaifasweng.OCSFMediatorExample.entities.Question;
 import il.cshaifasweng.OCSFMediatorExample.entities.Subject;
 import il.cshaifasweng.OCSFMediatorExample.entities.Teacher;
@@ -51,7 +52,7 @@ public class SimpleClient extends AbstractClient {
 		command = new Command(arr, CommandType.loginExamCommand);
 		SimpleClient.getClient().sendToServer(command);
 		waitForServerResponse();
-		handleStartExamCommandFromServer();
+		handleLoginToExamCommandFromServer();
 
 	}
 	
@@ -64,8 +65,14 @@ public class SimpleClient extends AbstractClient {
 
 	}
 	
-
+	
 	private void handleStartExamCommandFromServer() throws IOException {
+		System.out.println("handleStartExam111111111");
+		Exam msg = (Exam) command.getCommand();
+		App.getInstance().StartExamAnswer(msg);
+
+	}
+	private void handleLoginToExamCommandFromServer() throws IOException {
 		System.out.println("handleStartExam111111111");
 		String[] msg = (String[]) command.getCommand();
 		System.out.println(msg[0]);

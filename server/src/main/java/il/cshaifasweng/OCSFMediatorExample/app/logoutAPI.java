@@ -25,9 +25,8 @@ public class logoutAPI {
 		try {
 			myConnection = DriverManager.getConnection(url, name, pass);
 			Statement stmt = (Statement) myConnection.createStatement();
-//			String sql = "SELECT * FROM student WHERE userName = '" + userName + "'"; we have to add thisssssssssss
-//			ResultSet rs = stmt.executeQuery(sql);
-//			rs.updateObject("isConnected",0);
+			String sql = "UPDATE student SET isConnected = 0 WHERE userName = '" + userName + "'";
+			stmt.executeUpdate(sql);
 			arr[0] = "logout";
 			command.setCommand(arr);
 			client.sendToClient(command);

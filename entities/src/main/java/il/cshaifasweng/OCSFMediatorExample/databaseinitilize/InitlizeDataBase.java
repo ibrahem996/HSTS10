@@ -337,6 +337,12 @@ public class InitlizeDataBase {
 		teachers = getAll(Teacher.class);
 		return teachers;
 	}
+	
+	public static List<Exam> getAllexams() {
+		List<Exam> exams = new ArrayList<Exam>();
+		exams = getAll(Exam.class);
+		return exams;
+	}
 
 	public static String getAllQuestionsAnswers() throws Exception {
 

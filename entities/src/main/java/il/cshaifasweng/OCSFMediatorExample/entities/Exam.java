@@ -1,5 +1,6 @@
 package il.cshaifasweng.OCSFMediatorExample.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.mysql.cj.conf.ConnectionUrlParser.Pair;
+
+import il.cshaifasweng.OCSFMediatorExample.databaseinitilize.InitlizeDataBase;
 
 @Entity
 @Table(name = "exam")
@@ -127,6 +130,22 @@ public class Exam {
 			Pair<Question, Double> onePair = new Pair<>(question, graded);
 			this.QuestionGrade.add(onePair);
 		}
+	}
+	
+	public Exam getExamByuserID(int id)
+	{
+		Exam chosenExam = null;
+		List<Exam> exams = new  ArrayList<Exam>();
+		exams = InitlizeDataBase.getAllexams();
+		for(Exam exam : exams)
+		{
+			if (exam.id == id)
+			{
+				chosenExam = exam;
+			}
+		}
+		
+		return chosenExam;
 	}
 
 }
