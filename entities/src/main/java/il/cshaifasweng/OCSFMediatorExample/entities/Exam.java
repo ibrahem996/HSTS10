@@ -1,5 +1,6 @@
 package il.cshaifasweng.OCSFMediatorExample.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List; 
@@ -23,7 +24,7 @@ import il.cshaifasweng.OCSFMediatorExample.databaseinitilize.InitlizeDataBase;
 
 @Entity
 @Table(name = "exam")
-public class Exam
+public class Exam implements Serializable
 {																		     
 	
 	@Id
@@ -222,14 +223,14 @@ public class Exam
 		this.teacherComment = teacherComment;
 	}
 	
-	public Exam getExamByuserID(int id)
+	public Exam getExamByID(int id)
 	{
 		Exam chosenExam = null;
 		List<Exam> exams = new  ArrayList<Exam>();
 		exams = InitlizeDataBase.getAllexams();
 		for(Exam exam : exams)
 		{
-			if (exam.id == id)
+			if (exam.getId() == id)
 			{
 				chosenExam = exam;
 			}

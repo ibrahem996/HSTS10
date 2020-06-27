@@ -408,6 +408,18 @@ public class InitlizeDataBase {
 		teachers = getAll(Teacher.class);
 		return teachers;
 	}
+	public static List<Student> getAllstudents()
+	{
+		List<Student> students = new  ArrayList<Student>();
+		students = getAll(Student.class);
+		return students;
+	}
+	
+	public static List<Exam> getAllexams() {
+		List<Exam> exams = new ArrayList<Exam>();
+		exams = getAll(Exam.class);
+		return exams;
+	}
 	
 	public static List<Question> getAllQuestions()
 	{
@@ -559,11 +571,7 @@ public class InitlizeDataBase {
 
 	}
 
-	public static List<Exam> getAllexams() {
-		List<Exam> exams = new ArrayList<Exam>();
-		exams = getAll(Exam.class);
-		return exams;
-	}
+	
 	
 	public static void LoadData(String[] args,int flag) {
 		try {

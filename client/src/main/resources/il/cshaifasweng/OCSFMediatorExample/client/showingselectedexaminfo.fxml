@@ -11,9 +11,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.OCSFMediatorExample.client.ShowingSelectedExamInfo">
    <children>
-      <ImageView fitHeight="406.0" fitWidth="607.0" layoutX="-3.0" layoutY="-3.0">
+      <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="@../../../../../../../../../../../../af8d63a477078732b79ff9d9fc60873f.jpg" />
+            <Image url="@../../../../../../../../../../../../76785673-mockup-for-check-list-empty-note-paper-with-pen-on-brown-wood-background-office-writer-or-study-conc.jpg" />
          </image>
       </ImageView>
       <Button fx:id="signoutbtn" layoutX="523.0" layoutY="14.0" mnemonicParsing="false" onAction="#signoutac" text="Sign Out">
@@ -28,16 +28,18 @@
       </Button>
       <TextArea fx:id="comenttxt" layoutX="22.0" layoutY="218.0" prefHeight="42.0" prefWidth="247.0" />
       <Text fill="WHITE" layoutX="22.0" layoutY="205.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comments :" wrappingWidth="72.8460693359375" />
-      <TextArea fx:id="cmntformetxt" layoutX="24.0" layoutY="298.0" prefHeight="42.0" prefWidth="126.0" />
-      <Text fill="WHITE" layoutX="24.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comments For Me :" />
+      <TextArea fx:id="cmntformetxt" layoutX="24.0" layoutY="320.0" prefHeight="42.0" prefWidth="126.0" />
+      <Text fill="WHITE" layoutX="24.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comments For Me :" />
       <TextField fx:id="durationtxt" layoutX="20.0" layoutY="155.0" />
-      <Text fill="WHITE" layoutX="22.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration :" wrappingWidth="72.8460693359375" />
+      <Text fill="WHITE" layoutX="22.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duration :" wrappingWidth="72.8460693359375" />
       <Button fx:id="nextbtn" layoutX="416.0" layoutY="363.0" mnemonicParsing="false" onAction="#nextac" prefHeight="22.0" prefWidth="65.0" text="next">
          <font>
             <Font name="Aharoni Bold" size="12.0" />
          </font>
       </Button>
-      <TextField fx:id="durationtxt1" layoutX="20.0" layoutY="81.0" />
-      <Text fill="WHITE" layoutX="22.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Name:" wrappingWidth="94.44610595703125" />
+      <TextField fx:id="coursenametxt" layoutX="20.0" layoutY="70.0" />
+      <Text fill="WHITE" layoutX="22.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Course Name :" wrappingWidth="94.44610595703125" />
+      <TextField fx:id="createdBytxt" layoutX="169.0" layoutY="322.0" prefHeight="42.0" prefWidth="230.0" />
+      <Text fill="WHITE" layoutX="174.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Created By :" wrappingWidth="94.44610595703125" />
    </children>
 </AnchorPane>

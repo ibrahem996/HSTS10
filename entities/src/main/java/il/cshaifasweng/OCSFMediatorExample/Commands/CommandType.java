@@ -14,7 +14,9 @@ public enum CommandType {
 	CreatingCodeCommand(9),
 	loginExamCommand(10),
     startExamCommand(11),
-    logoutCommand(12);
+    logoutCommand(12),
+    savingtheeditedexamCommand(13),
+    savingthesolvedexam(14);
     private int CommandTypeValue;
 
     CommandType(int value) {
