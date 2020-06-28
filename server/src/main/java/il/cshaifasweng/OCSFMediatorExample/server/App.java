@@ -22,15 +22,15 @@ public class App
     {
     	String name,pass,url;
 		
-		  url = "jdbc:mysql://127.0.0.1/hsts"; 
+		  url = "jdbc:mysql://127.0.0.1/hstsdatabase"; 
 		  name = "root"; 
-		  pass = "t12345";
+		  pass = "lioncatc1";
 		  
 		  Connection myConnection = DriverManager.getConnection(url,name,pass);
 		  Statement stmt = (Statement) myConnection.createStatement();
 		  String details = "SELECT * FROM `subject` ";
 		  ResultSet rs = stmt.executeQuery(details);
-		  
+		
 		  
 		  
 		  if (rs.next()) {

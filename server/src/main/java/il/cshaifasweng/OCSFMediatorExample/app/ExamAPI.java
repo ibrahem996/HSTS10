@@ -23,9 +23,9 @@ public class ExamAPI {
 	
 	public static Statement connectionToDB() throws SQLException
 	{
-		String url = "jdbc:mysql://127.0.0.1/hsts";
+		String url = "jdbc:mysql://127.0.0.1/hstsdatabase";
 		String name = "root";
-		String pass = "t12345";
+		String pass = "lioncatc1";
 		Connection myConnection = DriverManager.getConnection(url,name,pass);
 		Statement stmt = (Statement) myConnection.createStatement();
 		return stmt;
@@ -87,7 +87,7 @@ public class ExamAPI {
 		double d = Double.valueOf(str).doubleValue();
 		 
         duration =  d;
-        Boolean examExecution ;
+     
         generalCommentStudent = (String) examsInfo[4];
         gradesDoubles = (List<Double>) examsInfo[5];
 
@@ -143,11 +143,11 @@ public class ExamAPI {
         exam.setQuestions(questionsobjects);
         exam.setStudentComment(commentStudent);
         exam.setTeacherComment(commentTeacher);
-        examExecution = true;
-        System.out.println( "HEHEHEHE3");
+     
+      
 
         System.out.println( course.getCourseName());
-        System.out.println( "HEHEHEHE44");
+  
 
         System.out.println( teacher.getLastName());
 
@@ -259,7 +259,7 @@ public class ExamAPI {
         
         int examExecutaion = (int) codeInfoObject.get(2);
         
-        System.out.println("LLLLLLL");
+       
         String codeEString = String.valueOf(codeExam); 
         
         String sql2 = "UPDATE exam SET code = '" + codeEString + "' WHERE id ='" + examID + "'";
@@ -289,12 +289,72 @@ public class ExamAPI {
 					// TODO Auto-generated catch block
 			e.printStackTrace();
 			}
-        
-
-		
+   
 	}
 		
+	public static void BringaSelectedExam(Command command, ConnectionToClient client)
+	{
+		List <Question>allexamQuestions=new ArrayList<Question>();
+		List <Double>graded=new ArrayList<Double>();
+		 int id_examSelected = (int) command.getCommand();
+		 Exam exam = new Exam();
+		 exam = exam.getExamByuserID(id_examSelected);
 		
+		String questionString;
+		 String answer0String;
+		 String answer1String;
+		 String answer2String;
+		 String answer3String;
+		double grade ;
+		String teatchercomment;
+		String studentStringcomment;
+		
+		command.setCommand(exam);
+		allexamQuestions=exam.getQuestions();
+		graded=exam.getGrades();
+		for (int i=0;i<allexamQuestions.size();i++)
+		{
+			questionString = exam.getQuestions().get(i).getQuestion();
+			answer0String = allexamQuestions.get(i).getAnswers().get(0).getAnswer();
+			answer1String = allexamQuestions.get(i).getAnswers().get(1).getAnswer();
+			answer2String = allexamQuestions.get(i).getAnswers().get(2).getAnswer();
+			answer3String = allexamQuestions.get(i).getAnswers().get(3).getAnswer();
+			
+			teatchercomment = exam.getTeacherComment().get(i);
+			studentStringcomment = exam.getStudentComment().get(i);
+			grade = exam.getGrades().get(i);
+			/* System.out.println(exam.getQuestions().get(i).getQuestion());
+			System.out.println(allexamQuestions.get(i).getAnswers().get(0).getAnswer());
+			System.out.println(allexamQuestions.get(i).getAnswers().get(1).getAnswer());
+			System.out.println(allexamQuestions.get(i).getAnswers().get(2).getAnswer());
+			System.out.println(allexamQuestions.get(i).getAnswers().get(3).getAnswer());
+			System.out.println(exam.getTeacherComment().get(i));
+			 System.out.println(exam.getStudentComment().get(i));
+			System.out.println(exam.getGrades().get(i));
+			*/
+		
+		}
+	
+		//  System.out.println(exam.getDuration());
+		//  System.out.println(exam.getGeneralCommentStudent());
+		 
+		 
+	        try {
+		    	client.sendToClient(command);
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+				e.printStackTrace();
+				}
+
+		 
+		
+	}
+			
+	
+	
+	
+	
+	
 		
 	}
 

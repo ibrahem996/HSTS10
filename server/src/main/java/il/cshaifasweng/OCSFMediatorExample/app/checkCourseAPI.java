@@ -6,6 +6,7 @@ import java.util.List;
 
 import il.cshaifasweng.OCSFMediatorExample.Commands.Command;
 import il.cshaifasweng.OCSFMediatorExample.entities.Course;
+import il.cshaifasweng.OCSFMediatorExample.entities.Subject;
 import il.cshaifasweng.OCSFMediatorExample.entities.Teacher;
 import il.cshaifasweng.OCSFMediatorExample.server.ocsf.ConnectionToClient;
 
@@ -32,4 +33,37 @@ public class checkCourseAPI {
 			}
 	}
 
+	public static void bringallCoursesformanager(Command command, ConnectionToClient client)
+	{
+		
+       List <Course> allCourses = new ArrayList<Course>();
+		
+		Course course = new Course();
+		allCourses =course.getallCourses();
+		
+
+		command.setCommand(allCourses);
+		
+		System.out.println(allCourses.get(0).getCourseName());
+		System.out.println(allCourses.get(1).getCourseName());
+		System.out.println(allCourses.get(2).getCourseName());
+		
+		
+		 try {		
+
+				client.sendToClient(command);
+	
+				System.out.format("Sent specific subjects to client %s\n", client.getInetAddress().getHostAddress());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 }

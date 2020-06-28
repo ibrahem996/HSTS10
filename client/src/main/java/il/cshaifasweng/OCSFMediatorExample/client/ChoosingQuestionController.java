@@ -209,7 +209,7 @@ public class ChoosingQuestionController {
     	}
     	
     	else if (questionNum == allQuestions.size()) {
-        	App.getInstance().showlastStageView(); 
+        	App.getInstance().showTeacherView();
     	}
     	
     	else {

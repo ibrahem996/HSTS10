@@ -17,6 +17,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import net.bytebuddy.asm.Advice.This;
 
 public class ShowingListQuestionSubjectController {
 
@@ -77,8 +78,11 @@ public class ShowingListQuestionSubjectController {
     int chosenAnswer;
     
     int questionNum = 0;
+    
     int questionseditid=0;///////////////////this is endicate how many questions we have add and them to the if in 160
     
+   
+    static String whatiam; 
     static private List<Object> allQuestions = new ArrayList<Object>();
     
     static private List<Subject> subjects = new ArrayList<Subject>();
@@ -90,9 +94,12 @@ public class ShowingListQuestionSubjectController {
     	
 	}
     
-    public ShowingListQuestionSubjectController(List<Object> allQuestions,List<Subject> subjects) {
+    public ShowingListQuestionSubjectController(List<Object> allQuestions,List<Subject> subjects,String whatiam) {
 		this.allQuestions = allQuestions;
 		this.subjects = subjects;
+		this.whatiam=whatiam;
+		
+	
 	}
 
 	@FXML
@@ -164,7 +171,7 @@ public class ShowingListQuestionSubjectController {
     	}
     	
     	else if (questionNum == allQuestions.size()) {
-        	App.getInstance().showlastStageView(); 
+        	App.getInstance().showwhatiamView(); 
     	}
     	
     	else {
@@ -185,6 +192,7 @@ public class ShowingListQuestionSubjectController {
     
     	
     	if (questionNum < 0) {
+    		
         	App.getInstance().showQuestionListnView();
         	
     	}
@@ -290,9 +298,20 @@ public class ShowingListQuestionSubjectController {
     void initialize() {
     	
     	questionNum = 0;
+
     	
+    	 if  (whatiam.equalsIgnoreCase("Manager"))
+	       {
+			  editbtn.setVisible(false);
+			  qusttext.setEditable(false);
+			  answer1txt.setEditable(false);
+			  answer2txt.setEditable(false);
+			  answer3txt.setEditable(false);
+			  answer3txt.setEditable(false);
+			  
+		   }
     	lastQuestionLabel.setVisible(false);
-    	    	
+    	
         assert qbackbtn != null : "fx:id=\"qbackbtn\" was not injected: check your FXML file 'shoquestionlistsubject.fxml'.";
         assert signoutbtn != null : "fx:id=\"signoutbtn\" was not injected: check your FXML file 'shoquestionlistsubject.fxml'.";
         assert nextbtn != null : "fx:id=\"nextbtn\" was not injected: check your FXML file 'shoquestionlistsubject.fxml'.";
@@ -301,7 +320,7 @@ public class ShowingListQuestionSubjectController {
         assert answer1txt != null : "fx:id=\"answer1txt\" was not injected: check your FXML file 'shoquestionlistsubject.fxml'.";
         assert answer2txt != null : "fx:id=\"answer2txt\" was not injected: check your FXML file 'shoquestionlistsubject.fxml'.";
         assert answer3txt != null : "fx:id=\"answer3txt\" was not injected: check your FXML file 'shoquestionlistsubject.fxml'.";
-        assert answer4txt != null : "fx:id=\"answer4txt\" was not injected: check your FXML file 'shoquestionlistsubject.fxml'.";
+        assert answer3txt != null : "fx:id=\"answer4txt\" was not injected: check your FXML file 'shoquestionlistsubject.fxml'.";
         assert select1btn != null : "fx:id=\"select1btn\" was not injected: check your FXML file 'shoquestionlistsubject.fxml'.";
         assert select3btn != null : "fx:id=\"select3btn\" was not injected: check your FXML file 'shoquestionlistsubject.fxml'.";
         assert select2btn != null : "fx:id=\"select2btn\" was not injected: check your FXML file 'shoquestionlistsubject.fxml'.";

@@ -28,6 +28,7 @@ public class SimpleClient extends AbstractClient {
 	private List<Subject> subjects = new ArrayList<Subject>();
 	private List<Course> courses = new ArrayList<Course>();
 	private Object[] examInfoObjects = new Object[9];
+	private String  whatiam;//TeatcherORManger
 
 	private SimpleClient(String host, int port) {
 		super(host, port);
@@ -36,6 +37,7 @@ public class SimpleClient extends AbstractClient {
 
 	public void handleLoginIn(String[] arr) throws IOException {
 		commandRequest = true;
+		whatiam=arr[2];//TeatcherORManger
 		command = new Command(arr, CommandType.loginCommand);
 		SimpleClient.getClient().sendToServer(command);
 		waitForServerResponse();
@@ -94,6 +96,7 @@ public class SimpleClient extends AbstractClient {
 	private void handleLogininCommandFromServer() throws IOException {
 		System.out.println("handleSignin10");
 		String[] msg = (String[]) command.getCommand();
+		
 		System.out.println(msg[0]);
 		System.out.println(msg[1]);
 		System.out.println("msg[1]= " + msg[1]);
@@ -216,7 +219,7 @@ public class SimpleClient extends AbstractClient {
 	}
 
 	public void handleAddQuestionFromServer() throws IOException {
-		App.getInstance().showlastStageView();
+		App.getInstance().showTeacherView();
 
 	}
 
@@ -233,9 +236,10 @@ public class SimpleClient extends AbstractClient {
 		List<Object> allQuestions = new ArrayList<Object>();
 		System.out.println("handlingbringingquestion from server");//ُTODO why the flowing variable is not used!!
 		allQuestions = (List<Object>) command.getCommand();
+		System.out.println (this.whatiam+"nhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 
 		ShowingListQuestionSubjectController showingListQuestionSubjectController = new ShowingListQuestionSubjectController(
-				allQuestions, subjects);
+				allQuestions, subjects,whatiam);// whatiam Manager or Teatcher 
 
 		App.getInstance().showingTheQuestions();
 
@@ -313,7 +317,7 @@ public class SimpleClient extends AbstractClient {
 
 	private void handleSavingTheExamWithQuestionsFromServer() throws IOException {
 
-		App.getInstance().showlastStageView();
+		App.getInstance().showTeacherView();
 	}
 
 	public void handleBringingExamsInfo(int courseId) throws IOException {
@@ -331,7 +335,7 @@ public class SimpleClient extends AbstractClient {
 		System.out.println("handleBringingExamsInfoFromServer from server");
 		examsInfoList = (List<Object>) command.getCommand();
 
-		DisplayExamsController displayExamsController = new DisplayExamsController(examsInfoList);
+		DisplayExamsController displayExamsController = new DisplayExamsController(examsInfoList,whatiam);
 
 		App.getInstance().displayExamView();
 
@@ -349,8 +353,86 @@ public class SimpleClient extends AbstractClient {
 		handleGivingCodeToExamFromServer();
 	}
 
-	private void handleGivingCodeToExamFromServer() {
-		// TODO Auto-generated method stub
+	private void handleGivingCodeToExamFromServer() throws IOException {
+		App.getInstance().showTeacherView();
+	}
+	
+	
+	public void handlebringselectedexam(int chosenExamID) throws IOException {
+		
+		commandRequest = true;
+        command = new Command(chosenExamID, CommandType.bringselectedexamCommand);
+        SimpleClient.getClient().sendToServer(command);
+        waitForServerResponse();
+        handlebringselectedexamFromServer();
+		
+	}
+	
+	
+	private void handlebringselectedexamFromServer() throws IOException {
+		Exam exam = new Exam();
+		 System.out.println("handlebringselectedexam from server");
+				 exam =  (Exam) command.getCommand();
+				 ShowingSelectedExamInfo showingSelectedExamInfo = new ShowingSelectedExamInfo(exam,whatiam);
+
+				 
+		App.getInstance().ShowingSelectedExamInfo();
+		
+	}
+	public void handlesavingtheeditedexam(Object[] examInfoObjects1) throws IOException {
+		commandRequest = true;
+        command = new Command(examInfoObjects1, CommandType.savingtheeditedexamCommand);
+        System.out.println("hhhhhhhhhhhhhhhhhhhhhhh");
+        SimpleClient.getClient().sendToServer(command);
+        waitForServerResponse();
+        handlesavingtheeditedexamFromServer();
+		
+	}
+	private void handlesavingtheeditedexamFromServer() throws IOException {
+		
+		App.getInstance().showTeacherView();
+	}
+
+	public void handleBringingallsubjectsformanager() throws IOException {
+		commandRequest = true;
+        command = new Command(null, CommandType.bringingallsubjectformanagerCommand);
+        SimpleClient.getClient().sendToServer(command);
+        waitForServerResponse();
+        handleBringingallsubjectsformanagerFromServer();
+		
+	}
+
+	private void handleBringingallsubjectsformanagerFromServer() throws IOException {
+		List<Subject> subjects = new ArrayList<Subject>();
+		subjects = (List<Subject>) command.getCommand();
+		this.subjects = subjects;
+		System.out.print(subjects.get(0).getName());
+		
+
+			ShowQuestionsListController showQuestionsListController = new ShowQuestionsListController(subjects);
+			App.getInstance().showQuestionListnView();
+
+		}
+		
+	
+	public void handleBringingallCoursedformanager() throws IOException {
+		commandRequest = true;
+        command = new Command(null, CommandType.bringingallCoursesformanagerCommand);
+        SimpleClient.getClient().sendToServer(command);
+        waitForServerResponse();
+        handleBringingallCoursesformanagerFromServer();
+		
+	}
+
+	private void handleBringingallCoursesformanagerFromServer() throws IOException {
+		List<Course> courses = new ArrayList<Course>();
+		courses = (List<Course>) command.getCommand();
+		this.courses = courses;
+		
+		ChooseCourseController chooseCourseController = new ChooseCourseController(courses);
+			App.getInstance().chooseCourseController();
 
 	}
+	
+	
 }

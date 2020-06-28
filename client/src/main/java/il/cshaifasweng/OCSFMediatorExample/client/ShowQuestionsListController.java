@@ -76,13 +76,9 @@ public class ShowQuestionsListController {
             }
         	 
             chosesubbtn.setText(((MenuItem)e.getSource()).getText());
-            
-            
-            System.out.println(chosen.getId());
-
            
+            System.out.println(chosen.getId());
             System.out.println(chosen.getName());
-            
             System.out.println(subjectString);
 
             try {

@@ -565,6 +565,18 @@ public class InitlizeDataBase {
 		return exams;
 	}
 	
+	public static List<Subject> getAllSubects() {
+		List<Subject> subjects = new ArrayList<Subject>();
+		subjects = getAll(Subject.class);
+		return subjects;
+	}
+	
+	public static List<Course> getallCourses() {
+		List<Course> courses = new ArrayList<Course>();
+		courses = getAll(Course.class);
+		return courses;
+	}
+	
 	public static void LoadData(String[] args,int flag) {
 		try {
 			SessionFactory sessionFactory = getSessionFactory();
@@ -599,6 +611,8 @@ public class InitlizeDataBase {
 	{
 		return session;
 	}
+
+	
 	
 	
 }

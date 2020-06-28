@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import il.cshaifasweng.OCSFMediatorExample.databaseinitilize.InitlizeDataBase;
+
 
 
 @Entity
@@ -122,6 +124,14 @@ public class Course implements Serializable {
 	
 	public void addExam(Exam exam) {
 		exams.add(exam);
+	}
+
+	public List<Course> getallCourses() {
+		
+		List<Course> courses = new  ArrayList<Course>();
+		courses = InitlizeDataBase.getallCourses();
+		
+		return courses;
 	}
 	
 	

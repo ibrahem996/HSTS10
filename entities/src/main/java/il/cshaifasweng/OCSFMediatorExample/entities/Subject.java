@@ -13,6 +13,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import il.cshaifasweng.OCSFMediatorExample.databaseinitilize.InitlizeDataBase;
+
 
 @Entity
 @Table(name = "subject")
@@ -118,5 +120,12 @@ public class Subject implements Serializable{
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
-
+	public List<Subject> getAllSubjects()
+	{
+		
+		List<Subject> subjects = new  ArrayList<Subject>();
+		subjects = InitlizeDataBase.getAllSubects();
+		
+		return subjects;
+	}
 }
