@@ -32,6 +32,9 @@ public class Question implements Serializable{
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private int id;
 		
+
+		int studentAnswer;
+	
 		String questionString;
 		
 		@OneToMany (cascade = CascadeType.ALL, mappedBy = "question")
@@ -144,6 +147,14 @@ public class Question implements Serializable{
 		{
 			return firstAppearance;
 		}
+		public int getStudentAnswer() {
+			return studentAnswer;
+		}
+
+		public void setStudentAnswer(int studentAnswer) {
+			this.studentAnswer = studentAnswer;
+		}
+
 
 		
 		

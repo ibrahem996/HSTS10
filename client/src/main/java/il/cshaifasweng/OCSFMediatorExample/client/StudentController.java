@@ -14,8 +14,6 @@ import javafx.stage.Stage;
 
 public class StudentController {
 
-	private Scene scene;
-	private Stage stage;
 
 	@FXML
 	private ResourceBundle resources;

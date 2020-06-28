@@ -21,59 +21,60 @@ import net.bytebuddy.asm.Advice.This;
 
 public class ShowingListQuestionSubjectController {
 
-    @FXML
-    private ResourceBundle resources;
+	@FXML
+	private ResourceBundle resources;
 
-    @FXML
-    private URL location;
+	@FXML
+	private URL location;
 
-    @FXML
-    private Button qbackbtn;
+	@FXML
+	private Button qbackbtn;
 
-    @FXML
-    private Button signoutbtn;
+	@FXML
+	private Button signoutbtn;
 
-    @FXML
-    private Button nextbtn;
+	@FXML
+	private Button nextbtn;
 
-    @FXML
-    private Button editbtn;
+	@FXML
+	private Button editbtn;
 
-    @FXML
-    private TextArea qusttext;
+	@FXML
+	private TextArea qusttext;
 
-    @FXML
-    private TextField answer1txt;
+	@FXML
+	private TextField answer1txt;
 
-    @FXML
-    private TextField answer2txt;
+	@FXML
+	private TextField answer2txt;
 
-    @FXML
-    private TextField answer3txt;
+	@FXML
+	private TextField answer3txt;
 
-    @FXML
-    private TextField answer4txt;
+	@FXML
+	private TextField answer4txt;
 
-    @FXML
-    private RadioButton select1btn;
+	@FXML
+	private RadioButton select1btn;
 
-    @FXML
-    private RadioButton select3btn;
+	@FXML
+	private RadioButton select3btn;
 
-    @FXML
-    private RadioButton select2btn;
+	@FXML
+	private RadioButton select2btn;
 
-    @FXML
-    private RadioButton select4btn;
-    
-    @FXML
-    private Label lastQuestionLabel;
-    
-    Object[] qinfObjects = new Object [8];
-	
-    Subject currentSubject; 
-    
+	@FXML
+	private RadioButton select4btn;
+
+	@FXML
+	private Label lastQuestionLabel;
+
+	Object[] qinfObjects = new Object[8];
+
+	Subject currentSubject;
+
 	int correctAnwer = 0;
+
 	
     int chosenAnswer;
     
@@ -88,13 +89,23 @@ public class ShowingListQuestionSubjectController {
     static private List<Subject> subjects = new ArrayList<Subject>();
 
 
+	int chosenAnswer;
 
-    public ShowingListQuestionSubjectController() {
-		
-    	
+	int questionNum = 0;
+	int questionseditid = 0;/////////////////// this is endicate how many questions we have add and them to
+							/////////////////// the if in 160
+
+	static private List<Object> allQuestions = new ArrayList<Object>();
+
+	static private List<Subject> subjects = new ArrayList<Subject>();
+
+	public ShowingListQuestionSubjectController() {
+
 	}
+
     
     public ShowingListQuestionSubjectController(List<Object> allQuestions,List<Subject> subjects,String whatiam) {
+
 		this.allQuestions = allQuestions;
 		this.subjects = subjects;
 		this.whatiam=whatiam;
@@ -103,36 +114,35 @@ public class ShowingListQuestionSubjectController {
 	}
 
 	@FXML
-    void editac(ActionEvent event) throws IOException {
-		Object[] newqinfObjects = new Object [8];
-		
+	void editac(ActionEvent event) throws IOException {
+		Object[] newqinfObjects = new Object[8];
+
 		Subject chosenSubject = null;
 		int chosenid = (int) qinfObjects[7];
-	   	for(Subject subject : subjects) {
-			  if(subject.getId() == chosenid ) 
-			  { 
-				  chosenSubject	= subject; 
-				  }
-			  }
+		for (Subject subject : subjects) {
+			if (subject.getId() == chosenid) {
+				chosenSubject = subject;
+			}
+		}
 
-	  	Answer answer1 = new Answer();
-	   	Answer answer2 = new Answer();
-	 	Answer answer3 = new Answer();
-	  	Answer answer4 = new Answer();
-	  	System.out.println(answer1.getId());
-    	System.out.println(answer2.getId());
-    	System.out.println(answer3.getId());
-    	System.out.println(answer4.getId());
+		Answer answer1 = new Answer();
+		Answer answer2 = new Answer();
+		Answer answer3 = new Answer();
+		Answer answer4 = new Answer();
+		System.out.println(answer1.getId());
+		System.out.println(answer2.getId());
+		System.out.println(answer3.getId());
+		System.out.println(answer4.getId());
 		answer1.setAnswer(answer1txt.getText());
-		
-		
-		newqinfObjects[3]=answer1txt.getText();
-		newqinfObjects[4]=answer2txt.getText();
-		newqinfObjects[5]=answer3txt.getText();
-		newqinfObjects[6]=answer4txt.getText();
-		newqinfObjects[7]=chosenid;
-		
+
+		newqinfObjects[3] = answer1txt.getText();
+		newqinfObjects[4] = answer2txt.getText();
+		newqinfObjects[5] = answer3txt.getText();
+		newqinfObjects[6] = answer4txt.getText();
+		newqinfObjects[7] = chosenid;
+
 		allQuestions.add(newqinfObjects);
+
 		
 		
 	  	answer2.setAnswer(answer2txt.getText());
@@ -331,4 +341,5 @@ public class ShowingListQuestionSubjectController {
 
        }
     
+
 }

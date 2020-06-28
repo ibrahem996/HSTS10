@@ -12,13 +12,13 @@
 	fx:controller="il.cshaifasweng.OCSFMediatorExample.client.StudentController">
 
 
- 
+ <!--
 	<ImageView fitHeight="400.0" fitWidth="600.0">
 		<image>
-			<Image url="@studentImage.jpg" />
+			<Image url="@ studentImage.jpg" />
 		</image>
 	</ImageView>
-
+-->
 	<children>
 		<ImageView fx:id="welcomesign" fitHeight="372.0"
 			fitWidth="480.0" pickOnBounds="true" preserveRatio="true" />

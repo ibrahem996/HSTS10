@@ -11,6 +11,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import il.cshaifasweng.OCSFMediatorExample.databaseinitilize.InitlizeDataBase;
+
 @Entity
 @Table(name = "student")
 public class Student implements Serializable {
@@ -107,6 +109,23 @@ public class Student implements Serializable {
 		{
 			this.theexams.add(checkedexam);
 		}
+	}
+	
+	public Student getStudentByuserName(String userName1)
+	{
+		Student chosenStudent = null;
+		List<Student> students = new  ArrayList<Student>();
+		students = InitlizeDataBase.getAllstudents();
+		for(Student student : students)
+		{
+			if (student.userName.equalsIgnoreCase(userName1))
+			{
+				chosenStudent = student;
+			}
+		}
+		
+		return chosenStudent;
+		
 	}
 }
 

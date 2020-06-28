@@ -223,14 +223,14 @@ public class Exam implements Serializable
 		this.teacherComment = teacherComment;
 	}
 	
-	public Exam getExamByuserID(int id)
+	public Exam getExamByID(int id)
 	{
 		Exam chosenExam = null;
 		List<Exam> exams = new  ArrayList<Exam>();
 		exams = InitlizeDataBase.getAllexams();
 		for(Exam exam : exams)
 		{
-			if (exam.id == id)
+			if (exam.getId() == id)
 			{
 				chosenExam = exam;
 			}

@@ -67,7 +67,10 @@ public class SimpleClient extends AbstractClient {
 		commandRequest = true;
 		command = new Command(arr, CommandType.startExamCommand);
 		SimpleClient.getClient().sendToServer(command);
+		System.out.println("aaaaaaaaaaaaaaa");
 		waitForServerResponse();
+		System.out.println("bbbbbbbbbbb");
+
 		handleStartExamCommandFromServer();
 
 	}
@@ -75,7 +78,8 @@ public class SimpleClient extends AbstractClient {
 	private void handleStartExamCommandFromServer() throws IOException {
 		System.out.println("handleStartExam111111111");
 		Exam msg = (Exam) command.getCommand();
-		App.getInstance().StartExamAnswer(msg);
+		ExamExecutingController examexecutingcontroller = new ExamExecutingController(msg);
+		App.getInstance().StartExamAnswer();
 
 	}
 
@@ -305,6 +309,21 @@ public class SimpleClient extends AbstractClient {
 		App.getInstance().ShowingBuildingTheExam();
 
 	}
+	
+	public void handlesavingtheeditedexam(Object[] examInfoObjects1) throws IOException {
+		commandRequest = true;
+        command = new Command(examInfoObjects1, CommandType.savingtheeditedexamCommand);
+        System.out.println("hhhhhhhhhhhhhhhhhhhhhhh");
+        SimpleClient.getClient().sendToServer(command);
+        waitForServerResponse();
+        handlesavingtheeditedexamFromServer();
+		
+	}
+	
+private void handlesavingtheeditedexamFromServer() throws IOException {
+		
+		App.getInstance().showTeacherView();
+	}
 
 	public void handleSavingTheExamWithQuestions(Object[] examInfoObjects1) throws IOException {
 		commandRequest = true;
@@ -433,6 +452,25 @@ public class SimpleClient extends AbstractClient {
 			App.getInstance().chooseCourseController();
 
 	}
-	
+
+
+	public void handlesavingthesolvedexam(Exam exam, int[] choosenAswers, Boolean shefinished, String userInfo) throws IOException {
+		// TODO Auto-generated method stub
+		commandRequest = true;
+		List<Object> CodeInfoExam = new ArrayList<Object>();
+		CodeInfoExam.add(exam);
+		CodeInfoExam.add(choosenAswers);
+		CodeInfoExam.add(shefinished);
+		CodeInfoExam.add(userInfo);
+		command = new Command(CodeInfoExam, CommandType.savingthesolvedexam);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handlesavingthesolvedexamFromServer();
+	}
+	private void handlesavingthesolvedexamFromServer() {
+		// TODO Auto-generated method stub
+
+	}
+
 	
 }

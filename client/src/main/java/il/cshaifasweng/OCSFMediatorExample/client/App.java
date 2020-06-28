@@ -140,8 +140,6 @@ public class App extends Application {             ////remember update question
 		if (arr[0].equalsIgnoreCase("false")) {
 			
 			addingTextToCodeOrId("loginexam.fxml", "Wrong ID.");
-		
-
 		}
 		else if (arr[2].equalsIgnoreCase("false")) {
 			addingTextToCodeOrId("loginexam.fxml", "Wrong Code.");
@@ -150,7 +148,7 @@ public class App extends Application {             ////remember update question
 			if(!(arr[1].equalsIgnoreCase(this.UserId))){
 				addingTextToCodeOrId("loginexam.fxml", "Incompetable ID.");
 			}else {
-				//7sb alcode if mmo7shav of ydne
+				//7sb alcode if mmo7szss
 				SimpleClient.getClient().handleStartExam(arr);
 			}
 			
@@ -273,10 +271,41 @@ public class App extends Application {             ////remember update question
 		stage.setScene(scene);
 		stage.show();
 	}
-	public void StartExamAnswer(Exam msg) throws IOException {/////////////////sending exam to the controller to show it
-		scene = new Scene(loadFXML("examexecuting"), 600, 400);
+	public void StartExamAnswer() throws IOException {/////////////////sending exam to the controller to show it
+		
+
+//		if(msg.getExamExecutaion().equals("true")) {
+//			System.out.println("bbbbbbbbbbb");
+//			scene = new Scene(loadFXML("examexecutintg"), 600, 400);//mmo7shav
+//			stage.setScene(scene);
+//			stage.show();
+//		}else {
+			System.out.println("ccccccccccc");
+			System.out.println("dddddddddd");
+			scene = new Scene(loadFXML("examexecutintg"), 600, 400);//ydne
+			System.out.println("eeeeeee");
+			stage.setScene(scene);
+			System.out.println("ffffffffffff");
+			stage.show();
+			System.out.println("hhhhhhhhhhhh");
+//		}
+		
+		
+	}
+	
+	public void ShowingSelectedExamInfo() throws IOException {
+		scene = new Scene(loadFXML("showingselectedexaminfo"), 600, 400);
 		stage.setScene(scene);
+		stage.setTitle("showing selected exam info");
 		stage.show();
+
+		
+	}
+	
+	public void savingtheeditedexam(Object[] examInfoObjects1) throws IOException {
+		examInfoObjects1[2] = UserInfo;
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhhsavingtheeditedexam");
+		SimpleClient.getClient().handlesavingtheeditedexam(examInfoObjects1);
 		
 	}
     
@@ -376,6 +405,7 @@ public class App extends Application {             ////remember update question
 		
 	}
 
+
 	public void ShowingSelectedExamInfo() throws IOException {
 		scene = new Scene(loadFXML("showingselectedexaminfo"), 600, 400);
 		stage.setScene(scene);
@@ -415,11 +445,18 @@ public class App extends Application {             ////remember update question
 
 
 	public void allsubjectforManager() throws IOException {
+
 	
 		SimpleClient.getClient().handleBringingallsubjectsformanager();
 
 	}
-
+  
+	public void savingthesolvedexam(Exam exam, int[] choosenAswers, Boolean shefinished) throws IOException {
+		SimpleClient.getClient().handlesavingthesolvedexam(exam,choosenAswers,shefinished,UserInfo);
+		scene = new Scene(loadFXML("student"), 600, 400);
+		stage.setScene(scene);
+		stage.show();
+	}
 
 	public void showwhatiamView() throws IOException {
 
