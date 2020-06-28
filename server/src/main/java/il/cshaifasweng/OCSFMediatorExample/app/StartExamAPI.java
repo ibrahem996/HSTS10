@@ -26,9 +26,9 @@ public class StartExamAPI {
 		String ID = arr[1];
 		String Code=arr[3];
 		String name, pass, url;
-		url = "jdbc:mysql://127.0.0.1/hstsdatabase";
+		url = "jdbc:mysql://127.0.0.1/hsts";
 		name = "root";
-		pass = "lioncatc1";
+		pass = "t12345";
 		Exam exam = new Exam();
 		Connection myConnection;
 		try {

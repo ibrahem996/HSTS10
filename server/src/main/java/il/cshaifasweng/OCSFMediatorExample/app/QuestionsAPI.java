@@ -21,9 +21,9 @@ public class QuestionsAPI {																	//remember to add Update Question
 	
 	public static Statement connectionToDB() throws SQLException
 	{
-		String url = "jdbc:mysql://127.0.0.1/hstsdatabase";
+		String url = "jdbc:mysql://127.0.0.1/hsts";
 		String name = "root";
-		String pass = "lioncatc1";
+		String pass = "t12345";
 		Connection myConnection = DriverManager.getConnection(url,name,pass);
 		Statement stmt = (Statement) myConnection.createStatement();
 		return stmt;
@@ -96,9 +96,9 @@ public class QuestionsAPI {																	//remember to add Update Question
 
 
         
-        String sql =  "INSERT INTO question (id, firstAppearance, questionString, TheAnswer, subject_id) VALUES ('"
+        String sql =  "INSERT INTO question (id, firstAppearance, questionString, TheAnswer, subject_id ,studentAnswer) VALUES ('"
       		  + question_id + "', " + "'" + new Timestamp(firstAppearance.getTimeInMillis()) + "', " + "'" + questionString + "', " +
-      		  "'" + answer_id + "', " + "'" + subject_id + "')"; 
+      		  "'" + answer_id + "', " + "'" + subject_id + "' , 0 )"; 
       		  stmt.executeUpdate(sql);
       		  
       		  

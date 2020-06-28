@@ -21,9 +21,9 @@ public class loginExamAPI {
 		String temp[] = new String[4];
 		try {
 			String name, pass, url;
-			url = "jdbc:mysql://127.0.0.1/hstsdatabase";
+			url = "jdbc:mysql://127.0.0.1/hsts";
 			name = "root";
-			pass = "lioncatc1";
+			pass = "t12345";
 			Connection myConnection = DriverManager.getConnection(url, name, pass);
 			Statement stmt = (Statement) myConnection.createStatement();
 

@@ -293,21 +293,9 @@ public class App extends Application {             ////remember update question
 		
 	}
 	
-	public void ShowingSelectedExamInfo() throws IOException {
-		scene = new Scene(loadFXML("showingselectedexaminfo"), 600, 400);
-		stage.setScene(scene);
-		stage.setTitle("showing selected exam info");
-		stage.show();
 
-		
-	}
 	
-	public void savingtheeditedexam(Object[] examInfoObjects1) throws IOException {
-		examInfoObjects1[2] = UserInfo;
-		System.out.println("hhhhhhhhhhhhhhhhhhhhhhsavingtheeditedexam");
-		SimpleClient.getClient().handlesavingtheeditedexam(examInfoObjects1);
-		
-	}
+
     
     public void startAgain() throws IOException {
 		scene = new Scene(loadFXML("primary"), 600, 400);

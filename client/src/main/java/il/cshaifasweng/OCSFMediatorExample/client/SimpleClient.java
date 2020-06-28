@@ -28,7 +28,7 @@ public class SimpleClient extends AbstractClient {
 	private List<Subject> subjects = new ArrayList<Subject>();
 	private List<Course> courses = new ArrayList<Course>();
 	private Object[] examInfoObjects = new Object[9];
-	private String  whatiam;//TeatcherORManger
+	private String whatiam;// TeatcherORManger
 
 	private SimpleClient(String host, int port) {
 		super(host, port);
@@ -37,7 +37,7 @@ public class SimpleClient extends AbstractClient {
 
 	public void handleLoginIn(String[] arr) throws IOException {
 		commandRequest = true;
-		whatiam=arr[2];//TeatcherORManger
+		whatiam = arr[2];// TeatcherORManger
 		command = new Command(arr, CommandType.loginCommand);
 		SimpleClient.getClient().sendToServer(command);
 		waitForServerResponse();
@@ -100,7 +100,7 @@ public class SimpleClient extends AbstractClient {
 	private void handleLogininCommandFromServer() throws IOException {
 		System.out.println("handleSignin10");
 		String[] msg = (String[]) command.getCommand();
-		
+
 		System.out.println(msg[0]);
 		System.out.println(msg[1]);
 		System.out.println("msg[1]= " + msg[1]);
@@ -206,7 +206,7 @@ public class SimpleClient extends AbstractClient {
 		List<Subject> subjects = new ArrayList<Subject>();
 		subjects = (List<Subject>) command.getCommand();
 		System.out.print(subjects.get(0).getName());
-		AddQuestionController addQuestionController = new AddQuestionController(subjects);//TODO this var is not used!!
+		AddQuestionController addQuestionController = new AddQuestionController(subjects);// TODO this var is not used!!
 		App.getInstance().showAddQuestionView();
 
 	}
@@ -238,12 +238,12 @@ public class SimpleClient extends AbstractClient {
 
 	private void handlebringQuestionsFromServer() throws IOException {
 		List<Object> allQuestions = new ArrayList<Object>();
-		System.out.println("handlingbringingquestion from server");//ُTODO why the flowing variable is not used!!
+		System.out.println("handlingbringingquestion from server");// ُTODO why the flowing variable is not used!!
 		allQuestions = (List<Object>) command.getCommand();
-		System.out.println (this.whatiam+"nhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
+		System.out.println(this.whatiam + "nhhhhhhhhhhhhhhhhhhhhhhhhhhhhh");
 
 		ShowingListQuestionSubjectController showingListQuestionSubjectController = new ShowingListQuestionSubjectController(
-				allQuestions, subjects,whatiam);// whatiam Manager or Teatcher 
+				allQuestions, subjects, whatiam);// whatiam Manager or Teatcher
 
 		App.getInstance().showingTheQuestions();
 
@@ -309,19 +309,19 @@ public class SimpleClient extends AbstractClient {
 		App.getInstance().ShowingBuildingTheExam();
 
 	}
-	
+
 	public void handlesavingtheeditedexam(Object[] examInfoObjects1) throws IOException {
 		commandRequest = true;
-        command = new Command(examInfoObjects1, CommandType.savingtheeditedexamCommand);
-        System.out.println("hhhhhhhhhhhhhhhhhhhhhhh");
-        SimpleClient.getClient().sendToServer(command);
-        waitForServerResponse();
-        handlesavingtheeditedexamFromServer();
-		
+		command = new Command(examInfoObjects1, CommandType.savingtheeditedexamCommand);
+		System.out.println("hhhhhhhhhhhhhhhhhhhhhhh");
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handlesavingtheeditedexamFromServer();
+
 	}
-	
-private void handlesavingtheeditedexamFromServer() throws IOException {
-		
+
+	private void handlesavingtheeditedexamFromServer() throws IOException {
+
 		App.getInstance().showTeacherView();
 	}
 
@@ -354,7 +354,7 @@ private void handlesavingtheeditedexamFromServer() throws IOException {
 		System.out.println("handleBringingExamsInfoFromServer from server");
 		examsInfoList = (List<Object>) command.getCommand();
 
-		DisplayExamsController displayExamsController = new DisplayExamsController(examsInfoList,whatiam);
+		DisplayExamsController displayExamsController = new DisplayExamsController(examsInfoList, whatiam);
 
 		App.getInstance().displayExamView();
 
@@ -375,50 +375,37 @@ private void handlesavingtheeditedexamFromServer() throws IOException {
 	private void handleGivingCodeToExamFromServer() throws IOException {
 		App.getInstance().showTeacherView();
 	}
-	
-	
+
 	public void handlebringselectedexam(int chosenExamID) throws IOException {
-		
+
 		commandRequest = true;
-        command = new Command(chosenExamID, CommandType.bringselectedexamCommand);
-        SimpleClient.getClient().sendToServer(command);
-        waitForServerResponse();
-        handlebringselectedexamFromServer();
-		
+		command = new Command(chosenExamID, CommandType.bringselectedexamCommand);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handlebringselectedexamFromServer();
+
 	}
-	
-	
+
 	private void handlebringselectedexamFromServer() throws IOException {
 		Exam exam = new Exam();
-		 System.out.println("handlebringselectedexam from server");
-				 exam =  (Exam) command.getCommand();
-				 ShowingSelectedExamInfo showingSelectedExamInfo = new ShowingSelectedExamInfo(exam,whatiam);
+		System.out.println("handlebringselectedexam from server");
+		exam = (Exam) command.getCommand();
+		ShowingSelectedExamInfo showingSelectedExamInfo = new ShowingSelectedExamInfo(exam, whatiam);
 
-				 
 		App.getInstance().ShowingSelectedExamInfo();
-		
+
 	}
-	public void handlesavingtheeditedexam(Object[] examInfoObjects1) throws IOException {
-		commandRequest = true;
-        command = new Command(examInfoObjects1, CommandType.savingtheeditedexamCommand);
-        System.out.println("hhhhhhhhhhhhhhhhhhhhhhh");
-        SimpleClient.getClient().sendToServer(command);
-        waitForServerResponse();
-        handlesavingtheeditedexamFromServer();
-		
-	}
-	private void handlesavingtheeditedexamFromServer() throws IOException {
-		
-		App.getInstance().showTeacherView();
-	}
+
+
+	
 
 	public void handleBringingallsubjectsformanager() throws IOException {
 		commandRequest = true;
-        command = new Command(null, CommandType.bringingallsubjectformanagerCommand);
-        SimpleClient.getClient().sendToServer(command);
-        waitForServerResponse();
-        handleBringingallsubjectsformanagerFromServer();
-		
+		command = new Command(null, CommandType.bringingallsubjectformanagerCommand);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handleBringingallsubjectsformanagerFromServer();
+
 	}
 
 	private void handleBringingallsubjectsformanagerFromServer() throws IOException {
@@ -426,35 +413,33 @@ private void handlesavingtheeditedexamFromServer() throws IOException {
 		subjects = (List<Subject>) command.getCommand();
 		this.subjects = subjects;
 		System.out.print(subjects.get(0).getName());
-		
 
-			ShowQuestionsListController showQuestionsListController = new ShowQuestionsListController(subjects);
-			App.getInstance().showQuestionListnView();
+		ShowQuestionsListController showQuestionsListController = new ShowQuestionsListController(subjects);
+		App.getInstance().showQuestionListnView();
 
-		}
-		
-	
+	}
+
 	public void handleBringingallCoursedformanager() throws IOException {
 		commandRequest = true;
-        command = new Command(null, CommandType.bringingallCoursesformanagerCommand);
-        SimpleClient.getClient().sendToServer(command);
-        waitForServerResponse();
-        handleBringingallCoursesformanagerFromServer();
-		
+		command = new Command(null, CommandType.bringingallCoursesformanagerCommand);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handleBringingallCoursesformanagerFromServer();
+
 	}
 
 	private void handleBringingallCoursesformanagerFromServer() throws IOException {
 		List<Course> courses = new ArrayList<Course>();
 		courses = (List<Course>) command.getCommand();
 		this.courses = courses;
-		
+
 		ChooseCourseController chooseCourseController = new ChooseCourseController(courses);
-			App.getInstance().chooseCourseController();
+		App.getInstance().chooseCourseController();
 
 	}
 
-
-	public void handlesavingthesolvedexam(Exam exam, int[] choosenAswers, Boolean shefinished, String userInfo) throws IOException {
+	public void handlesavingthesolvedexam(Exam exam, int[] choosenAswers, Boolean shefinished, String userInfo)
+			throws IOException {
 		// TODO Auto-generated method stub
 		commandRequest = true;
 		List<Object> CodeInfoExam = new ArrayList<Object>();
@@ -467,10 +452,10 @@ private void handlesavingtheeditedexamFromServer() throws IOException {
 		waitForServerResponse();
 		handlesavingthesolvedexamFromServer();
 	}
+
 	private void handlesavingthesolvedexamFromServer() {
 		// TODO Auto-generated method stub
 
 	}
 
-	
 }

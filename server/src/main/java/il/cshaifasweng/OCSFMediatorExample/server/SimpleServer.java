@@ -48,7 +48,7 @@ public class SimpleServer extends AbstractServer { //////// remember change from
 			System.out.println("start exam 1111111111111");
 			loginExamAPI.checkSpecificUser(command, client);
 			break;
-
+			
 		case checkSubjectCommand:
 
 			System.out.println("checkCommand");
@@ -66,102 +66,80 @@ public class SimpleServer extends AbstractServer { //////// remember change from
 			}
 
 			break;
-		case checkCourseCommand:
+          case checkCourseCommand:
+				
+            	System.out.println("checkCourseCommand");
+            	checkCourseAPI.checkSpecificCourses(command, client);
 
-			System.out.println("checkCourseCommand");
-			checkCourseAPI.checkSpecificCourses(command, client);
+				break;
+          case bringQuestionbySubjectCommand:
+            	
+            	System.out.println("bringQuestionbySubjectCommand");
+            	try {
+					QuestionsAPI.bringQuestionsSubject(command, client);
 
-			break;
-		case bringQuestionbySubjectCommand:
-
-			System.out.println("bringQuestionbySubjectCommand");
-			try {
-				QuestionsAPI.bringQuestionsSubject(command, client);
-
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-
-		case bringquestionsforspecialcoursebysubjectCommand:
-
-			System.out.println("bringquestionsforspecialcoursebysubjectCommand");
-
-			try {
-				QuestionsAPI.bringQuestionsSubject(command, client);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-
-		case savingTheExamCommand:
-			System.out.println("savingTheExamCommand");
-
-			try {
-				ExamAPI.SavingTheExam(command, client);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			break;
-
+					
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            break;
+            
+            case bringquestionsforspecialcoursebysubjectCommand:
+				
+            	System.out.println("bringquestionsforspecialcoursebysubjectCommand");
+            	
+            	try {
+					QuestionsAPI.bringQuestionsSubject(command, client);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+                
+                	case savingTheExamCommand:
+            	System.out.println("savingTheExamCommand");
+            	
+            	try {
+					ExamAPI.SavingTheExam(command, client);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				break;
+		
 		case startExamCommand:
-
+			
 			StartExamAPI.ReturnExam(command, client);
 			break;
-
+			
 		case logoutCommand:
 			logoutAPI.logout(command, client);
-			break;
-		case bringExamInfoCommand:
-			System.out.println("bringExamInfoCommand");
+            break;
+            	case bringExamInfoCommand:
+            	System.out.println("bringExamInfoCommand");
 
-			try {
-				ExamAPI.BringingExamInfo(command, client);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+				try {
+					ExamAPI.BringingExamInfo(command,client);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				break;
+				
+			case CreatingCodeCommand:
+            	System.out.println("CreatingCodeCommand");
 
-			break;
-
-		case CreatingCodeCommand:
-			System.out.println("CreatingCodeCommand");
-
-			try {
-				ExamAPI.creatingCodeForExam(command, client);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			break;
-
-		case savingtheeditedexamCommand:
-
-			try {
-				System.out.println("savingtheeditedexamCommand");
-				ExamAPI.SavingTheExam(command, client);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-
-		case savingthesolvedexam:
-
-			System.out.println("savingthesolvedexamCommand");
-			try {
-				ExamAPI.SavingTheSolvedExam(command, client);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			break;
+				try {
+					ExamAPI.creatingCodeForExam(command,client);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				break;
 
 	      case bringselectedexamCommand:
 				
@@ -188,6 +166,18 @@ public class SimpleServer extends AbstractServer { //////// remember change from
 				System.out.println("bringingallCoursesformanagerCommand");
 				checkCourseAPI.bringallCoursesformanager(command, client);
 				break;
+                
+               case savingthesolvedexam:
+
+			System.out.println("savingthesolvedexamCommand");
+			try {
+				ExamAPI.SavingTheSolvedExam(command, client);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			break;
 		}
 	}
 

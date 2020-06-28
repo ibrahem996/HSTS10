@@ -15,14 +15,10 @@ public enum CommandType {
 	loginExamCommand(10),
     startExamCommand(11),
     logoutCommand(12),
-
 	bringselectedexamCommand(13),
 	savingtheeditedexamCommand(14),
 	bringingallsubjectformanagerCommand(15),
-	bringingallCoursesformanagerCommand(16);
-	
-
-    savingtheeditedexamCommand(17),
+	bringingallCoursesformanagerCommand(16),
     savingthesolvedexam(18);
 
     private int CommandTypeValue;
