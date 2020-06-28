@@ -11,7 +11,11 @@ import java.util.TimerTask;
 import il.cshaifasweng.OCSFMediatorExample.entities.Course;
 import il.cshaifasweng.OCSFMediatorExample.entities.Exam;
 import il.cshaifasweng.OCSFMediatorExample.entities.Question;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -89,6 +93,7 @@ public class ExamExecutingController {
 
 	static int choosenAnswer;
 	static int duration;
+	static Boolean submitted;
 
 	public ExamExecutingController(Exam exam1) {
 		System.out.println("controllll");
@@ -96,6 +101,7 @@ public class ExamExecutingController {
 		ChoosenAswers = new int[exam.getQuestions().size()];
 		numofques = exam.getQuestions().size();
 		duration = (int) exam.getDuration();
+		submitted = false;
 		System.out.println("enddddddddddcontrollll");
 	}
 
@@ -191,9 +197,8 @@ public class ExamExecutingController {
 
 	@FXML
 	void submiteditingac(ActionEvent event) throws IOException {
-
+		submitted=true;
 		App.getInstance().savingthesolvedexam(exam, ChoosenAswers, true);
-		System.out.println(commentPerStudentList.size());
 	}
 
 	void FillTheQuestions(int i) {
@@ -228,6 +233,9 @@ public class ExamExecutingController {
 
 	}
 
+	
+
+	
 	@FXML
 	void initialize() {
 
@@ -266,23 +274,35 @@ public class ExamExecutingController {
 		assert Rad4 != null : "fx:id=\"Rad4\" was not injected: check your FXML file 'examexecutintg.fxml'.";
 
 		FillTheQuestions(questionNum);
-		Timer myTimer = new Timer();
-		timertxt.setText(Integer.toString(duration) + " minutes left");
-		myTimer.schedule(new TimerTask() {
-			@Override
-			public void run() {
-				timertxt.setText(Integer.toString(--duration) + " minutes left");
-				if (duration <= 0) {
-					try {
-						App.getInstance().savingthesolvedexam(exam, ChoosenAswers, false);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			}
-		}, 60000);
 
+		Task<Void> sleeper = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                try {
+                	while(duration>0) {
+                		timertxt.setText(Integer.toString(duration--) + " minutes left");
+                		Thread.sleep(60000);
+                	}
+                } catch (InterruptedException e) {
+                }
+                return null;
+            }
+        };
+        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+            @Override
+            public void handle(WorkerStateEvent event) {
+            	try {
+            		if(!submitted) {
+            			App.getInstance().savingthesolvedexam(exam, ChoosenAswers, false);
+            		}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }
+        });
+        new Thread(sleeper).start();
+    
 		System.out.println("enddddddddinittttttttttt");
 
 	}

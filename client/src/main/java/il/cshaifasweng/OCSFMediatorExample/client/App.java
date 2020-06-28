@@ -144,6 +144,9 @@ public class App extends Application {             ////remember update question
 		else if (arr[2].equalsIgnoreCase("false")) {
 			addingTextToCodeOrId("loginexam.fxml", "Wrong Code.");
 		}
+		else if (arr[2].equalsIgnoreCase("submitted")) {
+			addingTextToCodeOrId("loginexam.fxml", "This exam already submitted.");
+		}
 		if (arr[0].equalsIgnoreCase("true")&&arr[2].equalsIgnoreCase("true")) {
 			if(!(arr[1].equalsIgnoreCase(this.UserId))){
 				addingTextToCodeOrId("loginexam.fxml", "Incompetable ID.");
@@ -187,12 +190,16 @@ public class App extends Application {             ////remember update question
 			case("Incompetable ID."):
 				((LoginExamController) controller).getWrongId().setText("Incompetable ID.");
 			break;
+			case("This exam already submitted."):
+				((LoginExamController) controller).getWrongId().setText("This exam already submitted.");
+			break;
 			case("false"):
 				((PrimaryController) controller).getUserNameText().setText("Invalid input!");
 			break;
 			case("isconnected"):
 				((PrimaryController) controller).getUserNameText().setText("Your account is already cnnected!");
 			break;
+			
 		}
 		
 		scene = new Scene(mainAnchor, 600, 400);
