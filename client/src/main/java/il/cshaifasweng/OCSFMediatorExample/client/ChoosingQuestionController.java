@@ -197,6 +197,25 @@ public class ChoosingQuestionController {
 			FillTheQuestions(questionNum);
 		}
 
+    	setvisibleselected (false);
+    	if(questionNum == allQuestions.size()-1)
+    	{
+    		FillTheQuestions(questionNum);
+    		lastqustionlabel.setVisible(true);
+        	submitbtn.setVisible(true);
+        	nextbtn1.setVisible(false);
+
+    	}
+    	
+    	else if (questionNum == allQuestions.size()) {
+        	App.getInstance().showTeacherView();
+    	}
+    	
+    	else {
+    		
+    		FillTheQuestions(questionNum);
+
+
 	}
 
 	@FXML
@@ -214,6 +233,7 @@ public class ChoosingQuestionController {
 			selectbtn.setText("Select");
 
 			selectedOrnot[questionNum] = false;
+
 
 		}
 

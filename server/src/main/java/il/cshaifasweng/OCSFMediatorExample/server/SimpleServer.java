@@ -163,6 +163,31 @@ public class SimpleServer extends AbstractServer { //////// remember change from
 
 			break;
 
+	      case bringselectedexamCommand:
+				
+				System.out.println("bringselectedexamCommand");
+				ExamAPI.BringaSelectedExam(command,client);
+				break;
+			case savingtheeditedexamCommand:
+				
+				try {
+					System.out.println("savingtheeditedexamCommand");
+					ExamAPI.SavingTheExam(command, client);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				break;
+				
+			case bringingallsubjectformanagerCommand:
+				
+				System.out.println("bringingallsubjectformanager");
+				checkSubjectAPI.bringallsubjectformanager(command, client);
+				break;
+			case bringingallCoursesformanagerCommand:
+				System.out.println("bringingallCoursesformanagerCommand");
+				checkCourseAPI.bringallCoursesformanager(command, client);
+				break;
 		}
 	}
 

@@ -31,7 +31,31 @@ public class checkSubjectAPI {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+	
+	}
+
+	public static void bringallsubjectformanager(Command command,ConnectionToClient client) {
+		List <Subject> allSubjects = new ArrayList<Subject>();
 		
+		Subject subject = new Subject();
+		allSubjects =subject.getAllSubjects();
+		
+
+		command.setCommand(allSubjects);
+		
+		System.out.println(allSubjects.get(0).getName());
+		System.out.println(allSubjects.get(1).getName());
+		System.out.println(allSubjects.get(2).getName());
+		
+		
+		 try {		
+
+				client.sendToClient(command);
+	
+				System.out.format("Sent specific subjects to client %s\n", client.getInetAddress().getHostAddress());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		
 	}
 

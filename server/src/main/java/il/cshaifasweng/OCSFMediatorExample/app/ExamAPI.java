@@ -24,6 +24,7 @@ import il.cshaifasweng.OCSFMediatorExample.server.ocsf.ConnectionToClient;
 
 public class ExamAPI {
 
+
 	public static Statement connectionToDB() throws SQLException {
 		String url = "jdbc:mysql://127.0.0.1/hsts";
 		String name = "root";
@@ -81,32 +82,113 @@ public class ExamAPI {
 		String str = examsInfo[0].toString();
 		double d = Double.valueOf(str).doubleValue();
 
-		duration = d;
-		System.out.println(duration);
-		System.out.println(generalCommentStudent);
+		 
+        duration =  d;
+     
+        generalCommentStudent = (String) examsInfo[4];
+        gradesDoubles = (List<Double>) examsInfo[5];
 
-		generalCommentStudent = (String) examsInfo[4];
-		gradesDoubles = (List<Double>) examsInfo[5];
+        questionsId = (List<Integer>) examsInfo[6];
+        commentStudent = (List<String>) examsInfo[7];
+        commentTeacher = (List<String>) examsInfo[8];
+        
+        /////////// Everything Works ^^^
+        
+        Teacher teacher = new Teacher();
+        Exam exam = new Exam();
 
-		questionsId = (List<Integer>) examsInfo[6];
-		commentStudent = (List<String>) examsInfo[7];
-		commentTeacher = (List<String>) examsInfo[8];
-
-		/////////// Everything Works ^^^
-
-		Teacher teacher = new Teacher();
-		Exam exam = new Exam();
 		teacher = teacher.getTeacherByuserName(userInfo);
 
 		questionsobjects = questionfromidtopbject(questionsId);
 
 		String foundType = null;
 
-		String sql1 = "SELECT number FROM course WHERE id = '" + course.getId() + "'";
-		ResultSet rs = stmt.executeQuery(sql1);
-		if (rs.next()) {
-			foundType = rs.getString(1);
-			System.out.println(foundType);
+
+        String sql1 = "SELECT number FROM course WHERE id = '" + course.getId() + "'";
+	    ResultSet rs = stmt.executeQuery(sql1);
+	    if(rs.next()){
+	    	   foundType = rs.getString(1);
+	           System.out.println( foundType);
+
+	    	}
+	    
+	    int foundValue = Integer.parseInt(foundType);
+        ++foundValue;
+        System.out.println( foundValue);
+        
+        String sql2 = "UPDATE course SET number = '" + foundValue + "' WHERE id ='" + course.getId() + "'";
+        stmt.executeUpdate(sql2);
+        
+        System.out.println( "HEHEHEHE");
+
+        System.out.println(course.getId()* 100 + course.getSubject().getId()*10000 + foundValue);
+        
+        System.out.println( "HEHEHEHE1");
+
+        exam.setId(course.getId()* 100 + course.getSubject().getId()*10000 + foundValue);
+		
+        System.out.println( "HEHEHEHE2");
+
+        System.out.println( exam.getId());
+        
+        
+        exam.setDuration(duration);
+        exam.setCourse(course);
+        exam.setCreatedByteacher(teacher);
+        exam.setGeneralCommentTeacher(generalCommentTeacher);
+        exam.setGeneralCommentStudent(generalCommentStudent);
+        exam.setGrades(gradesDoubles);
+        exam.setQuestions(questionsobjects);
+        exam.setStudentComment(commentStudent);
+        exam.setTeacherComment(commentTeacher);
+     
+      
+
+        System.out.println( course.getCourseName());
+  
+
+        System.out.println( teacher.getLastName());
+
+		//course.addExam(exam);
+		//teacher.addExamstoTeacher(exam);
+        
+       
+		
+				
+		
+		String sql =  "INSERT INTO exam (id, code, duration, number, course_id,teacher_id,examExecutaion,GeneralCommentStudent,GeneralCommentTeacher) VALUES ('"
+	      		  + exam.getId() + "', " + "'" + null + "', " + "'" + duration + "', " +
+	      		  "'" + foundValue + "', " + "'" + course.getId() + "', " + "'" + teacher.getId() + "', " + " 1 , " + "'" + generalCommentStudent +
+	      		"', " + "'" + generalCommentTeacher + "') "; 
+		
+	      		  stmt.executeUpdate(sql);
+	    int i = 0; 		  
+	    for (Question question : questionsobjects)
+	    {
+	    	
+	    sql = "INSERT INTO exam_question (Exam_id,question_id ) VALUES ('" + exam.getId() +  "', " + "'" +  question.getId() + "')";
+	    stmt.executeUpdate(sql);
+	    
+	    sql = "INSERT INTO exam_questiongrade (Exam_id,QuestionGrade ) VALUES ('" + exam.getId() +  "', " + "'" + gradesDoubles.get(i) + "')";
+	    stmt.executeUpdate(sql);
+	    
+	    sql = "INSERT INTO exam_studentcomment (Exam_id, StudentComment) VALUES ('" + exam.getId() +  "', " + "'" + commentStudent.get(i) + "')";
+	    stmt.executeUpdate(sql);
+	     
+	    
+	    sql = "INSERT INTO exam_teachercomment (Exam_id, TeacherComment) VALUES ('" + exam.getId() +  "', " + "'" + commentTeacher.get(i) + "')";
+	    stmt.executeUpdate(sql);
+	     i++;
+
+	    }
+   	
+		 try {
+		    	client.sendToClient(command);
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+				e.printStackTrace();
+				}
+			
 
 		}
 
@@ -239,36 +321,38 @@ public class ExamAPI {
 
 		char[] codeExam = new char[4];
 
-		codeInfoObject = (List<Object>) command.getCommand();
+		
+        codeInfoObject =  (List<Object>) command.getCommand();
+        
+        int examID = (int) codeInfoObject.get(0);
+        
+        codeExam = (char[]) codeInfoObject.get(1);
+        
+        int examExecutaion = (int) codeInfoObject.get(2);
+        
+       
+        String codeEString = String.valueOf(codeExam); 
+        
+        String sql2 = "UPDATE exam SET code = '" + codeEString + "' WHERE id ='" + examID + "'";
+        stmt.executeUpdate(sql2);
+        
+        Statement stmt1 = connectionToDB();
 
-		int examID = (int) codeInfoObject.get(0);
+        if (examExecutaion == 1)
+        	
+        {
+            System.out.println("comp");
 
-		codeExam = (char[]) codeInfoObject.get(1);
+        String sql3 = "UPDATE exam SET examExecutaion = 1 WHERE id ='" + examID + "'";
+        stmt1.executeUpdate(sql3);
+        }
+        
+        else {
+            System.out.println("manual");
 
-		int examExecutaion = (int) codeInfoObject.get(2);
+        	String sql3 = "UPDATE exam SET examExecutaion = 0 WHERE id ='" + examID + "'";
+            stmt1.executeUpdate(sql3);
 
-		System.out.println("LLLLLLL");
-		String codeEString = String.valueOf(codeExam);
-
-		String sql2 = "UPDATE exam SET code = '" + codeEString + "' WHERE id ='" + examID + "'";
-		stmt.executeUpdate(sql2);
-
-		Statement stmt1 = connectionToDB();
-
-		if (examExecutaion == 1)
-
-		{
-			System.out.println("comp");
-
-			String sql3 = "UPDATE exam SET examExecutaion = 1 WHERE id ='" + examID + "'";
-			stmt1.executeUpdate(sql3);
-		}
-
-		else {
-			System.out.println("manual");
-
-			String sql3 = "UPDATE exam SET examExecutaion = 0 WHERE id ='" + examID + "'";
-			stmt1.executeUpdate(sql3);
 		}
 
 		try {
@@ -276,63 +360,70 @@ public class ExamAPI {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-
+			}
+   
 	}
+		
 
-	public static void BringaSelectedExam(Command command, ConnectionToClient client) {
-		List<Question> allexamQuestions = new ArrayList<Question>();
-		List<Double> graded = new ArrayList<Double>();
-		int id_examSelected = (int) command.getCommand();
-		Exam exam = new Exam();
-		exam = exam.getExamByID(id_examSelected);
 
+public static void BringaSelectedExam(Command command, ConnectionToClient client)
+	{
+		List <Question>allexamQuestions=new ArrayList<Question>();
+		List <Double>graded=new ArrayList<Double>();
+		 int id_examSelected = (int) command.getCommand();
+		 Exam exam = new Exam();
+		 exam = exam.getExamByuserID(id_examSelected);
+		
 		String questionString;
-		String answer0String;
-		String answer1String;
-		String answer2String;
-		String answer3String;
-		double grade;
+		 String answer0String;
+		 String answer1String;
+		 String answer2String;
+		 String answer3String;
+		double grade ;
 		String teatchercomment;
 		String studentStringcomment;
-
+		
 		command.setCommand(exam);
-		allexamQuestions = exam.getQuestions();
-		graded = exam.getGrades();
-		for (int i = 0; i < allexamQuestions.size(); i++) {
+		allexamQuestions=exam.getQuestions();
+		graded=exam.getGrades();
+		for (int i=0;i<allexamQuestions.size();i++)
+		{
 			questionString = exam.getQuestions().get(i).getQuestion();
 			answer0String = allexamQuestions.get(i).getAnswers().get(0).getAnswer();
 			answer1String = allexamQuestions.get(i).getAnswers().get(1).getAnswer();
 			answer2String = allexamQuestions.get(i).getAnswers().get(2).getAnswer();
 			answer3String = allexamQuestions.get(i).getAnswers().get(3).getAnswer();
-
+			
 			teatchercomment = exam.getTeacherComment().get(i);
 			studentStringcomment = exam.getStudentComment().get(i);
 			grade = exam.getGrades().get(i);
-			/*
-			 * System.out.println(exam.getQuestions().get(i).getQuestion());
-			 * System.out.println(allexamQuestions.get(i).getAnswers().get(0).getAnswer());
-			 * System.out.println(allexamQuestions.get(i).getAnswers().get(1).getAnswer());
-			 * System.out.println(allexamQuestions.get(i).getAnswers().get(2).getAnswer());
-			 * System.out.println(allexamQuestions.get(i).getAnswers().get(3).getAnswer());
-			 * System.out.println(exam.getTeacherComment().get(i));
-			 * System.out.println(exam.getStudentComment().get(i));
-			 * System.out.println(exam.getGrades().get(i));
-			 */
-
+			/* System.out.println(exam.getQuestions().get(i).getQuestion());
+			System.out.println(allexamQuestions.get(i).getAnswers().get(0).getAnswer());
+			System.out.println(allexamQuestions.get(i).getAnswers().get(1).getAnswer());
+			System.out.println(allexamQuestions.get(i).getAnswers().get(2).getAnswer());
+			System.out.println(allexamQuestions.get(i).getAnswers().get(3).getAnswer());
+			System.out.println(exam.getTeacherComment().get(i));
+			 System.out.println(exam.getStudentComment().get(i));
+			System.out.println(exam.getGrades().get(i));
+			*/
+		
 		}
+	
+		//  System.out.println(exam.getDuration());
+		//  System.out.println(exam.getGeneralCommentStudent());
+		 
+		 
+	        try {
+		    	client.sendToClient(command);
+				} catch (IOException e) {
+						// TODO Auto-generated catch block
+				e.printStackTrace();
+				}
 
-		// System.out.println(exam.getDuration());
-		// System.out.println(exam.getGeneralCommentStudent());
-
-		try {
-			client.sendToClient(command);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		 
+		
 	}
+		
 
 	public static void SavingTheSolvedExam(Command command, ConnectionToClient client) throws SQLException {
 		// command[0]=exam;command[1]=answers;command[2]=finished;command[3]=studentusername

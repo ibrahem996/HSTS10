@@ -1,5 +1,6 @@
 package il.cshaifasweng.OCSFMediatorExample.client;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -44,13 +45,13 @@ public class ManagerController {
     }
 
     @FXML
-    void mdsplyexamsac(ActionEvent event) {
-
+    void mdsplyexamsac(ActionEvent event) throws IOException {
+    	App.getInstance().BringingallCoursedformanager();
     }
 
     @FXML
-    void mdsplyquestionac(ActionEvent event) {
-
+    void mdsplyquestionac(ActionEvent event) throws IOException {
+    	App.getInstance().allsubjectforManager();
     }
 
     @FXML

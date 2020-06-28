@@ -65,21 +65,35 @@ public class DisplayExamsController {
     Object[] examobjects = new Object [3];
     
     int examExecutaion;
+    static String whatiam; 
 
 
     
-    public DisplayExamsController(List<Object> examsInfoList) {
+    public DisplayExamsController(List<Object> examsInfoList,String whatiam) {
 
     	this.examsInfo = examsInfoList;
-    	
+    	this.whatiam = whatiam;
 	}
     
     public DisplayExamsController() {
    	}
     
     @FXML
-    void DisplaySelectedExamac(ActionEvent event) {
+    void DisplaySelectedExamac(ActionEvent event) throws IOException {
 
+    	char[] choseCode = new char[4];
+    	String selectedString = "";
+    	ObservableList<String> exam;
+    	exam = listViewid.getSelectionModel().getSelectedItems();
+    	for (String mString : exam) 
+    	{
+    		selectedString += mString;
+    	}
+
+    	String chosen = selectedString.substring(9, 15);
+    	
+    	int chosenintger =Integer.parseInt(chosen);
+    	App.getInstance().bringselectedexam(chosenintger);
     }
     
 
@@ -152,6 +166,17 @@ public class DisplayExamsController {
     	submitbtn.setVisible(false);
     	ObservableList<String> itemStrings;
 		listViewid.setOrientation(Orientation.VERTICAL);
+		
+		
+		
+		
+		
+
+   	 if  (whatiam.equalsIgnoreCase("Manager"))
+	       {
+			  examextractionbtn.setVisible(false);
+			  
+		   }
 
         assert signoutbtn != null : "fx:id=\"signoutbtn\" was not injected: check your FXML file 'displayexams.fxml'.";
         assert backbtn != null : "fx:id=\"backbtn\" was not injected: check your FXML file 'displayexams.fxml'.";

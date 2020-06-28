@@ -1,7 +1,8 @@
+
 package il.cshaifasweng.OCSFMediatorExample.client;
 
 import java.io.IOException;
-import java.net.URL; 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -66,7 +67,7 @@ public class ShowingSelectedExamQuestionController {
     @FXML
     private Label lastquestionlabel;
 
-    
+    static String whatiam; 
     static Exam exam = new Exam();
     int questionNum = 0;
     static Object[] examInfoObjects1 = new Object [9];
@@ -82,13 +83,14 @@ public class ShowingSelectedExamQuestionController {
     static List <String> commentPerTeacherList = new ArrayList<String>();
     static List <String> newCommentPerTeacherList = new ArrayList<String>();
 
-    static List<Integer>questionsremoved = new ArrayList<Integer>();
+    static List<Integer>questionsID = new ArrayList<Integer>();
 
     
 
-    public ShowingSelectedExamQuestionController(Exam exam, Object[] examInfoObjects) {
+    public ShowingSelectedExamQuestionController(Exam exam, Object[] examInfoObjects,String whatiam) {
     	this.exam = exam;
     	examInfoObjects1 = examInfoObjects;
+    	this.whatiam=whatiam;
     }
     
     public ShowingSelectedExamQuestionController() {
@@ -97,7 +99,7 @@ public class ShowingSelectedExamQuestionController {
 	@FXML
     void backac(ActionEvent event) throws IOException {
 
-		questionNum--;
+		    questionNum--;
 		if (questionNum < 0) {
 
         	App.getInstance().ShowingSelectedExamInfo();
@@ -121,12 +123,18 @@ public class ShowingSelectedExamQuestionController {
      	{
        	    FillTheQuestions(questionNum);
      		lastquestionlabel.setVisible(true);
-     		submiteditingbtn.setVisible(true);
+     		
+     		 if  (whatiam.equalsIgnoreCase("Teacher"))
+     	       {
+     			submiteditingbtn.setVisible(true);
+     		   }
+     	    	
+     		
 
      	}
      	
      	else if (questionNum == questions.size()) {
-         	App.getInstance().showTeacherView();
+        	App.getInstance().showwhatiamView(); 
      	}
      	
      	else {
@@ -161,12 +169,17 @@ public class ShowingSelectedExamQuestionController {
     @FXML
     void submiteditingac(ActionEvent event) throws IOException {
 
+    	for (int i=0;i<questions.size();i++)
+    	{
+    		questionsID.add(questions.get(i).getId());
+  
+    	}
     	System.out.println(examInfoObjects1[0]);
     	Course course = (Course) examInfoObjects1[1];
     	System.out.println(course.getCourseName());
     	System.out.println(commentPerStudentList.size());
     	examInfoObjects1[5]=newGradesDoubles;
-    	examInfoObjects1[6]=questions;
+    	examInfoObjects1[6]=questionsID;
     	examInfoObjects1[7]=newCommentPerStudentList;
     	examInfoObjects1[8]=newCommentPerTeacherList;
     	App.getInstance().savingtheeditedexam(examInfoObjects1);
@@ -210,6 +223,30 @@ public class ShowingSelectedExamQuestionController {
     	commentPerStudentList = exam.getStudentComment();
     	commentPerTeacherList = exam.getTeacherComment();
 
+    	
+   	 if  (whatiam.equalsIgnoreCase("Manager"))
+       {
+   		questiontxt.setEditable(false);
+   		answer1txt.setEditable(false);
+   		answer2txt.setEditable(false);
+   		answer3txt.setEditable(false);
+   		answer4txt.setEditable(false);
+   		teachercmnttxt.setEditable(false);
+   		studntcmnttxt.setEditable(false);
+   		gradetxt.setEditable(false);
+   		removebtn.setVisible(false);
+
+
+	   }
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     	
     	lastquestionlabel.setVisible(false);
     	submiteditingbtn.setVisible(false);

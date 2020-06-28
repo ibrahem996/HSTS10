@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.persistence.criteria.CriteriaBuilder.Case;
+
 import il.cshaifasweng.OCSFMediatorExample.entities.Course;
 import il.cshaifasweng.OCSFMediatorExample.entities.Exam;
 import il.cshaifasweng.OCSFMediatorExample.entities.Question;
@@ -34,9 +36,9 @@ public class App extends Application {             ////remember update question
 	private static Stage stage;
 	private static String UserInfo;
 	private String UserId;
-
-	
-	
+    private String whatiam;//TeatcherORManger
+    static Exam exam = new Exam();
+ 
 	public static App getInstance() {
 		if (app == null)
 			app = new App();
@@ -72,9 +74,8 @@ public class App extends Application {             ////remember update question
 	}
 
 	
-	/*
-	 * public void closeStage(Stage stage) { stage.close(); }
-	 */
+	
+	
 
 	static void setRoot(String fxml) throws IOException {
 		scene.setRoot(loadFXML(fxml));
@@ -95,6 +96,7 @@ public class App extends Application {             ////remember update question
 	
 	public void LoginIn(String[] arr) throws IOException {
 		UserInfo = arr[0];
+		whatiam=arr[2];
 		SimpleClient.getClient().handleLoginIn(arr);
 
 	}
@@ -315,14 +317,14 @@ public class App extends Application {             ////remember update question
 		
 	}
     
-    public void showlastStageView() throws IOException {
+  /*  public void showlastStageView() throws IOException {
 		scene = new Scene(loadFXML("laststage"), 600, 400);
 		stage.setScene(scene);
 		stage.setTitle("HSTS");
 		stage.show();
 		
 	}
-    
+    */
     public void checkCourses(int stage) throws IOException {
 		
 
@@ -404,6 +406,51 @@ public class App extends Application {             ////remember update question
 	}
 
 
+	public void ShowingSelectedExamInfo() throws IOException {
+		scene = new Scene(loadFXML("showingselectedexaminfo"), 600, 400);
+		stage.setScene(scene);
+		stage.setTitle("showing selected exam info");
+		stage.show();
+
+		
+	}
+   public void bringselectedexam(int chosenExamID) throws IOException {
+		SimpleClient.getClient().handlebringselectedexam(chosenExamID);
+		
+	}
+
+
+	public void showSelectedExamQuestion(Exam exam, Object[] examInfoObjects) throws IOException {
+
+		this.exam = exam;
+		
+	  	
+		ShowingSelectedExamQuestionController showingSelectedExamQuestionController = new ShowingSelectedExamQuestionController(this.exam,examInfoObjects,whatiam);
+
+		scene = new Scene(loadFXML("showingselectedexamquestions"), 600, 400);
+		stage.setScene(scene);
+
+		stage.setTitle("showing selected exam info");
+
+		stage.show();
+
+		
+	}
+
+	public void savingtheeditedexam(Object[] examInfoObjects1) throws IOException {
+		examInfoObjects1[2] = UserInfo;
+		SimpleClient.getClient().handlesavingtheeditedexam(examInfoObjects1);
+		
+	}
+
+
+	public void allsubjectforManager() throws IOException {
+
+	
+		SimpleClient.getClient().handleBringingallsubjectsformanager();
+
+	}
+  
 	public void savingthesolvedexam(Exam exam, int[] choosenAswers, Boolean shefinished) throws IOException {
 		SimpleClient.getClient().handlesavingthesolvedexam(exam,choosenAswers,shefinished,UserInfo);
 		scene = new Scene(loadFXML("student"), 600, 400);
@@ -411,6 +458,26 @@ public class App extends Application {             ////remember update question
 		stage.show();
 	}
 
-	
+	public void showwhatiamView() throws IOException {
+
+		switch (whatiam) {
+		case ("Teacher"):
+		
+			showTeacherView();
+			break;
+
+		case ("Manager"):
+			showManagerView();
+			break;
+
+		}
+		
+	}
+
+
+	public void BringingallCoursedformanager() throws IOException {
+		SimpleClient.getClient().handleBringingallCoursedformanager();
+	}
+
 
 }

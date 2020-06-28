@@ -1,6 +1,8 @@
 package il.cshaifasweng.OCSFMediatorExample.app;
 
 import java.io.IOException;
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -24,9 +26,9 @@ public class StartExamAPI {
 		String ID = arr[1];
 		String Code=arr[3];
 		String name, pass, url;
-		url = "jdbc:mysql://127.0.0.1/hsts";
+		url = "jdbc:mysql://127.0.0.1/hstsdatabase";
 		name = "root";
-		pass = "t12345";
+		pass = "lioncatc1";
 		Exam exam = new Exam();
 		Connection myConnection;
 		try {
