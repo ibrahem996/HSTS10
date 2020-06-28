@@ -65,10 +65,9 @@ public class ExamExecutingController {
 	private RadioButton Rad1;
 
 	@FXML
-	private RadioButton Rad2;
-
-	@FXML
 	private RadioButton Rad3;
+	@FXML
+	private RadioButton Rad2;
 
 	@FXML
 	private RadioButton Rad4;
@@ -109,6 +108,7 @@ public class ExamExecutingController {
 
 	@FXML
 	void OnRad1(ActionEvent event) {
+		exam.getQuestions().get(questionNum).setStudentAnswer(1);
 		ChoosenAswers[questionNum] = 1;
 		Rad1.setSelected(true);
 		Rad2.setSelected(false);
@@ -118,6 +118,7 @@ public class ExamExecutingController {
 
 	@FXML
 	void OnRad2(ActionEvent event) {
+		exam.getQuestions().get(questionNum).setStudentAnswer(2);
 		ChoosenAswers[questionNum] = 2;
 		Rad2.setSelected(true);
 		Rad1.setSelected(false);
@@ -127,6 +128,7 @@ public class ExamExecutingController {
 
 	@FXML
 	void OnRad3(ActionEvent event) {
+		exam.getQuestions().get(questionNum).setStudentAnswer(3);
 		ChoosenAswers[questionNum] = 3;
 		Rad3.setSelected(true);
 		Rad1.setSelected(false);
@@ -136,6 +138,7 @@ public class ExamExecutingController {
 
 	@FXML
 	void OnRad4(ActionEvent event) {
+		exam.getQuestions().get(questionNum).setStudentAnswer(4);
 		ChoosenAswers[questionNum] = 4;
 		Rad4.setSelected(true);
 		Rad1.setSelected(false);
@@ -150,7 +153,7 @@ public class ExamExecutingController {
 		if (questionNum == 1) {
 			backbtn.setVisible(false);
 		}
-		if(questionNum == questions.size()-2) {
+		if (questionNum == questions.size() - 2) {
 			nextbtn.setVisible(true);
 			submiteditingbtn.setVisible(false);
 			backbtn.setVisible(true);
@@ -167,7 +170,7 @@ public class ExamExecutingController {
 		quesnum.setText(questionNum + 1 + " / " + numofques);
 		if (questionNum == 1) {
 			backbtn.setVisible(true);
-			
+
 		}
 
 		if (questionNum == questions.size() - 1) {
@@ -211,6 +214,20 @@ public class ExamExecutingController {
 
 	private void fillthenewlists(int qnumber) {
 		newCommentPerStudentList.add(studntcmnttxt.getText());
+		if (ChoosenAswers[qnumber] == 1) {
+			OnRad1(null);
+		} else if (ChoosenAswers[qnumber] == 2) {
+			OnRad2(null);
+		} else if (ChoosenAswers[qnumber] == 3) {
+			OnRad3(null);
+		} else if (ChoosenAswers[qnumber] == 4) {
+			OnRad4(null);
+		} else {
+			Rad1.setSelected(false);
+			Rad2.setSelected(false);
+			Rad3.setSelected(false);
+			Rad4.setSelected(false);
+		}
 
 	}
 
@@ -245,15 +262,15 @@ public class ExamExecutingController {
 		assert lastquestionlabel != null : "fx:id=\"lastquestionlabel\" was not injected: check your FXML file 'examexecutintg.fxml'.";
 		assert submiteditingbtn != null : "fx:id=\"submiteditingbtn\" was not injected: check your FXML file 'examexecutintg.fxml'.";
 		assert Rad1 != null : "fx:id=\"Rad1\" was not injected: check your FXML file 'examexecutintg.fxml'.";
-		assert Rad2 != null : "fx:id=\"Rad2\" was not injected: check your FXML file 'examexecutintg.fxml'.";
 		assert Rad3 != null : "fx:id=\"Rad3\" was not injected: check your FXML file 'examexecutintg.fxml'.";
-		assert Rad4 != null : "fx:id=\"Rad4\" was not injected: check your FXML file 'examexecutintg.fxml'.";
 		assert quesnum != null : "fx:id=\"quesnum\" was not injected: check your FXML file 'examexecutintg.fxml'.";
 		assert timertxt != null : "fx:id=\"timertxt\" was not injected: check your FXML file 'examexecutintg.fxml'.";
+		assert Rad2 != null : "fx:id=\"Rad2\" was not injected: check your FXML file 'examexecutintg.fxml'.";
+		assert Rad4 != null : "fx:id=\"Rad4\" was not injected: check your FXML file 'examexecutintg.fxml'.";
 
 		FillTheQuestions(questionNum);
 		Timer myTimer = new Timer();
-		duration++;
+		timertxt.setText(Integer.toString(duration) + " minutes left");
 		myTimer.schedule(new TimerTask() {
 			@Override
 			public void run() {

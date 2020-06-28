@@ -33,20 +33,19 @@ public class solvedExam {
 	@JoinColumn(name = "student_id")
 	private Student student;
 
-	@Column(name = "chosenanswers")
-	@ElementCollection(targetClass = Integer.class)
-	private List<Integer> questionsSolved;
+	
+	//private List<Integer> questionsSolved;
 
 	private Boolean checkedornot;
 	private Boolean shefinished;
 	private int Grade;
 
 	// constructor
-	public solvedExam(Exam exam, Student student, List<Integer> chosenanswers, Boolean shefinished) {
+	public solvedExam(Exam exam, Student student, Boolean shefinished) {
 		this.exam = exam;
 		this.student = student;
-		questionsSolved = new ArrayList<Integer>();
-		questionsSolved = chosenanswers;
+//		questionsSolved = new ArrayList<Integer>();
+//		questionsSolved = chosenanswers;
 		// choseanswerforquestion(this.exam.getQuestions(),chosenanswers);
 		checkedornot = false;
 		this.shefinished = shefinished;
@@ -60,7 +59,7 @@ public class solvedExam {
 	// methods
 	public int getId() {
 
-		return id;
+		return this.id;
 	}
 
 	public int getGrade() {
@@ -105,13 +104,13 @@ public class solvedExam {
 		this.student = student;
 	}
 
-	public List<Integer> getQuestionsSolved() {
-		return questionsSolved;
-	}
-
-	public void setQuestionsSolved(List<Integer> questionsSolved) {
-		this.questionsSolved = questionsSolved;
-	}
+//	public List<Integer> getQuestionsSolved() {
+//		return questionsSolved;
+//	}
+//
+//	public void setQuestionsSolved(List<Integer> questionsSolved) {
+//		this.questionsSolved = questionsSolved;
+//	}
 
 //	public void choseanswerforquestion(List<Question> questions, List<Integer> chosenanswers)
 //	{

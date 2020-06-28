@@ -11,6 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+
 import il.cshaifasweng.OCSFMediatorExample.Commands.Command;
 import il.cshaifasweng.OCSFMediatorExample.entities.Course;
 import il.cshaifasweng.OCSFMediatorExample.entities.Exam;
@@ -334,51 +336,73 @@ public class ExamAPI {
 
 	public static void SavingTheSolvedExam(Command command, ConnectionToClient client) throws SQLException {
 		// command[0]=exam;command[1]=answers;command[2]=finished;command[3]=studentusername
-		Statement stmt = connectionToDB();
 
+		Statement stmt = connectionToDB();
+		System.out.println("hhhhhhhhhhhhh");
 		List<Object> examsInfo = new ArrayList<Object>();
 		examsInfo = (List<Object>) command.getCommand();
+		System.out.println("aaaaaaaaaaaa");
 		Exam exam = null;
 		exam = (Exam) examsInfo.get(0);
 		int[] choosenAswers = new int[exam.getQuestions().size()];
 		choosenAswers = (int[]) examsInfo.get(1);
 		Boolean shefinished = (Boolean) examsInfo.get(2);
 		String user = (String) examsInfo.get(3);
-		Student student = null;
+		Student student = new Student();
+		System.out.println("bbbbbbbbbbbbbbbbb");
+		System.out.println(user);
 		student = student.getStudentByuserName(user);
+		System.out.println("kkkkkkkkkkk");
 		List<Integer> list = Arrays.stream(choosenAswers).boxed().collect(Collectors.toList());
-		solvedExam solved = new solvedExam(exam, student, list, shefinished);
+		solvedExam solved = new solvedExam(exam, student, shefinished);
 
-		
 		List<Question> questions = exam.getQuestions();
 		int i = 0;
+
 		int grade = 0;
-		for (Question question : questions) {//calculating the grade
-			if(list.get(i)==question.getCorrectAnswer()) {
-				grade+=exam.getGrades().get(i);
+		for (Question question : questions) {// calculating the grade
+			if (question.getStudentAnswer() == question.getCorrectAnswer()) {
+				grade += exam.getGrades().get(i);
 			}
 			i++;
 		}
-		
+		System.out.println("cccccccccccccccc");
 		solved.setGrade(grade);
+		String sql;
+		System.out.println("iddddddddd" + solved.getId());
+		if (shefinished) {
+			 sql = "INSERT INTO solvedexam ( exam_id, student_id, checkedornot, shefinished, Grade) VALUES ('"
+					+ exam.getId() + "', '" + student.getId() + "', 0 , 1, '" + grade + "')";
+			 System.out.println("iddddddddd" + solved.getId());
+		} else {
+			 sql = "INSERT INTO solvedexam (exam_id, student_id, checkedornot, shefinished, Grade) VALUES ('"
+					 + exam.getId() + "', '" + student.getId() + "', 0 , 0, '" + grade + "')";
+		}
 		
-		String sql = "INSERT INTO solvedexam (id, exam_id, student_id, checkedornot, shefinished, Grade) VALUES ('"
-				+ solved.getId() + "', '" + exam.getId() + "', '" + student.getId() + "', 0 , '" + shefinished + "', '"
-						+ grade +"')";
-
 		stmt.executeUpdate(sql);
-		
-		for (Question question : questions) {
+		sql =  "SELECT * FROM solvedexam WHERE exam_id = '" + exam.getId() + "' AND student_id = '" + student.getId() + "'";
+		ResultSet rs=stmt.executeQuery(sql);
+		rs.next();
+		int solved_id=rs.getInt("id");
+		System.out.println("solved_idddddddd = " + solved_id);
+//		for (Question question : questions) {
+//			sql = "INSERT INTO solvedexam_question (solvedExam_id, questionsSolved_id ) VALUES ('" + solved_id
+//					+ "', " + "'" + question.getId() + "')";
+//			stmt.executeUpdate(sql);
+//
+//			sql = "INSERT INTO solvedexam_questionssolved (solvedExam_id, chosenanswers ) VALUES ('" + solved_id + "', "
+//					+ "'" + list.get(i) + "')";
+//			stmt.executeUpdate(sql);
+//
+//			i++;
+//		}
 
-			sql = "INSERT INTO solvedexam_question (solvedExam_id, questionsSolved_id ) VALUES ('" + solved.getId()
-					+ "', " + "'" + question.getId() + "')";
-			stmt.executeUpdate(sql);
-
-			sql = "INSERT INTO exam_questiongrade (solvedExam_id, chosenanswers ) VALUES ('" + solved.getId() + "', "
-					+ "'" + list.get(i) + "')";
-			stmt.executeUpdate(sql);
-
-			i++;
+		System.out.println("eeeeeeeeeeeee");
+		try {
+			client.sendToClient(command);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

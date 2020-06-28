@@ -153,7 +153,7 @@ public class SimpleServer extends AbstractServer { //////// remember change from
 
 		case savingthesolvedexam:
 
-			System.out.println("savingtheeditedexamCommand");
+			System.out.println("savingthesolvedexamCommand");
 			try {
 				ExamAPI.SavingTheSolvedExam(command, client);
 			} catch (SQLException e) {

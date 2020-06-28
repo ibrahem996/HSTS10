@@ -56,10 +56,10 @@
          </font>
       </Button>
       <RadioButton fx:id="Rad1" layoutX="366.0" layoutY="128.0" mnemonicParsing="false" onAction="#OnRad1" />
-      <RadioButton fx:id="Rad2" layoutX="366.0" layoutY="311.0" mnemonicParsing="false" onAction="#OnRad2" />
       <RadioButton fx:id="Rad3" layoutX="366.0" layoutY="252.0" mnemonicParsing="false" onAction="#OnRad3" />
-      <RadioButton fx:id="Rad4" layoutX="366.0" layoutY="191.0" mnemonicParsing="false" onAction="#OnRad4" />
       <Text fx:id="quesnum" layoutX="300.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" />
       <Text fx:id="timertxt" layoutX="446.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="103.1999633789062" />
+      <RadioButton fx:id="Rad2" layoutX="366.0" layoutY="192.0" mnemonicParsing="false" onAction="#OnRad2" />
+      <RadioButton fx:id="Rad4" layoutX="366.0" layoutY="311.0" mnemonicParsing="false" onAction="#OnRad4" />
    </children>
 </AnchorPane>
