@@ -93,9 +93,6 @@ public class ExamExecutingController {
 	public ExamExecutingController(Exam exam1) {
 		System.out.println("controllll");
 		exam = exam1;
-		System.out.println(exam.getQuestions().get(2).getQuestion());
-		System.out.println(exam.getQuestions().get(2).getAnswers().get(0).getAnswer());
-		System.out.println(exam.getGrades().get(1));
 		ChoosenAswers = new int[exam.getQuestions().size()];
 		numofques = exam.getQuestions().size();
 		duration = (int) exam.getDuration();
