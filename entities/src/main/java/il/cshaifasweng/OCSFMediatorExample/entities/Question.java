@@ -33,7 +33,6 @@ public class Question implements Serializable{
 		private int id;
 		
 
-		int studentAnswer = 0;
 	
 		String questionString;
 		
@@ -83,11 +82,11 @@ public class Question implements Serializable{
 			
 			this.id = this.subject.getId() * 1000 + questionNum; 
 			this.subject.setNum(); 
-			studentAnswer= 0;
+			
 		}
 
 		public Question() {
-			studentAnswer= 0;
+			
 		}
 		
 		//Methods
@@ -149,13 +148,7 @@ public class Question implements Serializable{
 		{
 			return firstAppearance;
 		}
-		public int getStudentAnswer() {
-			return studentAnswer;
-		}
-
-		public void setStudentAnswer(int studentAnswer) {
-			this.studentAnswer = studentAnswer;
-		}
+		
 
 
 		

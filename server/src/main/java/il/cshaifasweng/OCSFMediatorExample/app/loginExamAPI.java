@@ -41,11 +41,11 @@ public class loginExamAPI {
 					temp[2] = "true"; // checks if the code is exists, and if the student have the same code
 					temp[3] = codeId; // stores the code
 					int examid= rs.getInt("id");
-					sql = "SELECT id FROM solvedexam WHERE student_id = '" + ID + "' And exam_id = '" + examid + "'";
-					rs = stmt.executeQuery(sql);
-					if(rs.next()) {
-						temp[2]="submitted";
-					}
+//					sql = "SELECT id FROM solvedexam WHERE student_id = '" + ID + "' And exam_id = '" + examid + "'";
+//					rs = stmt.executeQuery(sql);
+//					if(rs.next()) {
+//						temp[2]="submitted";
+//					}
 				} else {
 					temp[2] = "false";
 					temp[3] = "false";

@@ -111,7 +111,6 @@ public class ExamExecutingController {
 
 	@FXML
 	void OnRad1(ActionEvent event) {
-		exam.getQuestions().get(questionNum).setStudentAnswer(1);
 		ChoosenAswers[questionNum] = 1;
 		Rad1.setSelected(true);
 		Rad2.setSelected(false);
@@ -121,7 +120,6 @@ public class ExamExecutingController {
 
 	@FXML
 	void OnRad2(ActionEvent event) {
-		exam.getQuestions().get(questionNum).setStudentAnswer(2);
 		ChoosenAswers[questionNum] = 2;
 		Rad2.setSelected(true);
 		Rad1.setSelected(false);
@@ -131,7 +129,6 @@ public class ExamExecutingController {
 
 	@FXML
 	void OnRad3(ActionEvent event) {
-		exam.getQuestions().get(questionNum).setStudentAnswer(3);
 		ChoosenAswers[questionNum] = 3;
 		Rad3.setSelected(true);
 		Rad1.setSelected(false);
@@ -141,7 +138,6 @@ public class ExamExecutingController {
 
 	@FXML
 	void OnRad4(ActionEvent event) {
-		exam.getQuestions().get(questionNum).setStudentAnswer(4);
 		ChoosenAswers[questionNum] = 4;
 		Rad4.setSelected(true);
 		Rad1.setSelected(false);
@@ -295,6 +291,8 @@ public class ExamExecutingController {
             		if(!submitted) {
             			App.getInstance().savingthesolvedexam(exam, ChoosenAswers, false);
             		}
+            		
+            		
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

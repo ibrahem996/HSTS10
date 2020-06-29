@@ -38,6 +38,7 @@ public class Exam implements Serializable
 	
 	double duration;
 	
+	int executed;///exit to execute
 	
 	
 	String GeneralCommentTeacher;
@@ -91,6 +92,7 @@ public class Exam implements Serializable
 		this.GeneralCommentTeacher = generalCommentTeacher;
 		this.id = this.course.getId() * 100 + subject_id * 10000 +  examNum; 
 		this.course.setNum(); 
+		this.executed=0;
 		for (Question question : questions)   
 		{
 			question.getExams().add(this); 
@@ -104,6 +106,7 @@ public class Exam implements Serializable
 	
 
 	public Exam() {
+		this.executed=0;
 	}
 
 	
@@ -163,6 +166,12 @@ public class Exam implements Serializable
 
 	public void setDuration(double duration) {
 		this.duration = duration;
+	}
+	public int getExecuted() {
+		return executed;
+	}
+	public void setDuration() {
+		this.executed=1;
 	}
 
 	public Course getCourse() {
@@ -237,6 +246,28 @@ public class Exam implements Serializable
 		}
 		
 		return chosenExam;
+	}
+	
+	
+	
+	public List<Exam> getExamCreatedByTeacher(String createdByteacher)
+	{
+		
+		List<Exam> chosenExams = new  ArrayList<Exam>();
+		List<Exam> exams = new  ArrayList<Exam>();
+		exams = InitlizeDataBase.getAllexams();
+		String createdbyString;
+		for(Exam exam : exams)
+		{
+			createdbyString = exam.getCreatedByteacher().getUserName();
+			if ((createdbyString.equals(createdByteacher))&& exam.getExecuted()==1)
+			{
+				System.out.println(	exam.getId());
+				chosenExams.add(exam);
+		}
+			}
+
+		return chosenExams;
 	}
 	
 	

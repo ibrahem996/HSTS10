@@ -78,8 +78,7 @@ public class SimpleClient extends AbstractClient {
 	private void handleStartExamCommandFromServer() throws IOException {
 		System.out.println("handleStartExam111111111");
 		Exam msg = (Exam) command.getCommand();
-		ExamExecutingController examexecutingcontroller = new ExamExecutingController(msg);
-		App.getInstance().StartExamAnswer();
+		App.getInstance().StartExamAnswer(msg);
 
 	}
 

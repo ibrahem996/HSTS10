@@ -143,10 +143,10 @@ public class ExamAPI {
 		// course.addExam(exam);
 		// teacher.addExamstoTeacher(exam);
 
-		String sql = "INSERT INTO exam (id, code, duration, number, course_id,teacher_id,examExecutaion,GeneralCommentStudent,GeneralCommentTeacher) VALUES ('"
+		String sql = "INSERT INTO exam (id, code, duration, number, course_id,teacher_id,examExecutaion,GeneralCommentStudent,GeneralCommentTeacher,executed ) VALUES ('"
 				+ exam.getId() + "', " + "'" + null + "', " + "'" + duration + "', " + "'" + foundValue + "', " + "'"
 				+ course.getId() + "', " + "'" + teacher.getId() + "', " + " 1 , " + "'" + generalCommentStudent + "', "
-				+ "'" + generalCommentTeacher + "') ";
+				+ "'" + generalCommentTeacher + "', " + " 0 , " + "'"+ "') ";
 
 		stmt.executeUpdate(sql);
 		int i = 0;
@@ -179,6 +179,7 @@ public class ExamAPI {
 		}
 
 	}
+
 
 	public static void BringingExamInfo(Command command, ConnectionToClient client) throws SQLException {
 
@@ -347,14 +348,15 @@ public class ExamAPI {
 		student = student.getStudentByuserName(user);
 		System.out.println("kkkkkkkkkkk");
 		List<Integer> list = Arrays.stream(choosenAswers).boxed().collect(Collectors.toList());
-		solvedExam solved = new solvedExam(exam, student, shefinished);
+		solvedExam solved = new solvedExam(exam, student, shefinished ,list);
 
 		List<Question> questions = exam.getQuestions();
+		
 		int i = 0;
-
+		
 		int grade = 0;
 		for (Question question : questions) {// calculating the grade
-			if (question.getStudentAnswer() == question.getCorrectAnswer()) {
+			if (choosenAswers[i] == question.getCorrectAnswer()) {
 				grade += exam.getGrades().get(i);
 			}
 			i++;
@@ -379,17 +381,22 @@ public class ExamAPI {
 		rs.next();
 		int solved_id = rs.getInt("id");
 		System.out.println("solved_idddddddd = " + solved_id);
-//		for (Question question : questions) {
+		i=0;
+		for (Question question : questions) {
 //			sql = "INSERT INTO solvedexam_question (solvedExam_id, questionsSolved_id ) VALUES ('" + solved_id
-//					+ "', " + "'" + question.getId() + "')";
+//					+ "', '" + question.getId() + "')";
 //			stmt.executeUpdate(sql);
-//
-//			sql = "INSERT INTO solvedexam_questionssolved (solvedExam_id, chosenanswers ) VALUES ('" + solved_id + "', "
-//					+ "'" + list.get(i) + "')";
+							   
+			sql = "INSERT INTO solvedexam_questionssolved (solvedExam_id, chosenanswers ) VALUES ('" + solved_id + "', "
+			+ "'" + choosenAswers[i] + "')";
+			stmt.executeUpdate(sql);
+			
+//			sql = "INSERT INTO exam_questiongrade (Exam_id,QuestionGrade ) VALUES ('" + exam.getId() + "', " + "'"
+//					+ gradesDoubles.get(i) + "')";
 //			stmt.executeUpdate(sql);
-//
-//			i++;
-//		}
+
+			i++;
+		}
 
 		System.out.println("eeeeeeeeeeeee");
 		try {

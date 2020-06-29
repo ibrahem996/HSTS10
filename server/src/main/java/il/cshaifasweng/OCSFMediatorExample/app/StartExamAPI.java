@@ -21,7 +21,7 @@ import il.cshaifasweng.OCSFMediatorExample.server.ocsf.ConnectionToClient;
 public class StartExamAPI {
 	
 	public static void ReturnExam(Command command, ConnectionToClient client) {
-		String[] arr=new String[2];
+		String[] arr=new String[4];
 		arr = (String[]) command.getCommand();
 		String ID = arr[1];
 		String Code=arr[3];

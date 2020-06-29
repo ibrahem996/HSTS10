@@ -96,9 +96,9 @@ public class QuestionsAPI {																	//remember to add Update Question
 
 
         
-        String sql =  "INSERT INTO question (id, firstAppearance, questionString, TheAnswer, subject_id ,studentAnswer) VALUES ('"
+        String sql =  "INSERT INTO question (id, firstAppearance, questionString, TheAnswer) VALUES ('"
       		  + question_id + "', " + "'" + new Timestamp(firstAppearance.getTimeInMillis()) + "', " + "'" + questionString + "', " +
-      		  "'" + answer_id + "', " + "'" + subject_id + "' , 0 )"; 
+      		  "'" + answer_id + "', " + "'" + subject_id + "'"; 
       		  stmt.executeUpdate(sql);
       		  
       		  
