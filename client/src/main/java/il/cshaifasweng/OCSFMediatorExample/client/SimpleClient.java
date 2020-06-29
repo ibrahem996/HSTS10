@@ -457,4 +457,43 @@ public class SimpleClient extends AbstractClient {
 
 	}
 
+	public void handleAllExamstoShowResultsTeacher(String UserInfo) throws IOException {
+		commandRequest = true;
+		command = new Command(UserInfo, CommandType.AllExamstoShowResultsTeacherCommand);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handleAllExamstoShowResultsTeacherFromServer();		
+	}
+
+	private void handleAllExamstoShowResultsTeacherFromServer() throws IOException {
+		List<Exam> allExamsToseeResult = new ArrayList<Exam>();
+		System.out.println("handleAllExamstoShowResultsTeacher from server");
+		allExamsToseeResult =  (List<Exam>) command.getCommand();
+		System.out.println("gggggggr");
+		DisplayExamsToSeeResultsController displayExamsToSeeResultsController = new DisplayExamsToSeeResultsController(allExamsToseeResult, whatiam);
+		System.out.println("ggggggghhhhhhsr");
+
+		App.getInstance().displayExamtoseeResultsView();
+		
+	}
+
+	public void handledisplaySolvedExam(int chosenintger) throws IOException {
+		commandRequest = true;
+		command = new Command(chosenintger, CommandType.displaySolvedExamCommand);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handleisplaySolvedExamFromServer();		
+	}
+
+	private void handleisplaySolvedExamFromServer() throws IOException {
+		List <Object> solvedExamIinfo = new ArrayList<Object>();
+		solvedExamIinfo = (List<Object>) command.getCommand();
+		int [] arr = (int[]) solvedExamIinfo.get(0);
+		int examid = arr[1];
+		DisplaySolvedExam displaySolvedExam = new DisplaySolvedExam(examid,solvedExamIinfo);
+		App.getInstance().showDisplaySolvedExam();
+		
+		
+	}
+
 }

@@ -63,8 +63,9 @@ public class TeacherController {
     }
 
     @FXML
-    void tdsplyexamrsltac(ActionEvent event) {
+    void tdsplyexamrsltac(ActionEvent event) throws IOException {
 
+    	App.getInstance().AllExamstoShowResultsTeacher();
     }
 
     @FXML

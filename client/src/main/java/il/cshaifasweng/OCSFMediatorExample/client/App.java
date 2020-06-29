@@ -477,4 +477,38 @@ public class App extends Application {             ////remember update question
 	}
 
 
+	
+
+
+	public void AllExamstoShowResultsTeacher() throws IOException {
+
+		SimpleClient.getClient().handleAllExamstoShowResultsTeacher(UserInfo);
+
+	}
+
+
+	public void displayExamtoseeResultsView() throws IOException {
+		scene = new Scene(loadFXML("displayexamstoseeResults"), 600, 400);
+		stage.setScene(scene);
+		stage.setTitle("Displaying Exam");
+		stage.show();
+		
+	}
+
+
+	public void bringallsolvedExams(int chosenintger) throws IOException {
+		SimpleClient.getClient().handledisplaySolvedExam(chosenintger);
+
+	}
+
+
+	public void showDisplaySolvedExam() throws IOException {
+		scene = new Scene(loadFXML("displaysolvedexam"), 600, 400);
+		stage.setScene(scene);
+		stage.setTitle("Displaying Exam");
+		stage.show();
+		
+	}
+
+
 }
