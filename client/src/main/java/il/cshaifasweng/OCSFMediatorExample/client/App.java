@@ -144,11 +144,13 @@ public class App extends Application {             ////remember update question
 		else if (arr[2].equalsIgnoreCase("false")) {
 			addingTextToCodeOrId("loginexam.fxml", "Wrong Code.");
 		}
+//		else if (arr[2].equalsIgnoreCase("submitted")) {
+//			addingTextToCodeOrId("loginexam.fxml", "This exam already submitted.");/////////zedha
+//		}
 		if (arr[0].equalsIgnoreCase("true")&&arr[2].equalsIgnoreCase("true")) {
 			if(!(arr[1].equalsIgnoreCase(this.UserId))){
 				addingTextToCodeOrId("loginexam.fxml", "Incompetable ID.");
 			}else {
-				//7sb alcode if mmo7szss
 				SimpleClient.getClient().handleStartExam(arr);
 			}
 			
@@ -465,6 +467,40 @@ public class App extends Application {             ////remember update question
 
 	public void BringingallCoursedformanager() throws IOException {
 		SimpleClient.getClient().handleBringingallCoursedformanager();
+	}
+
+
+	
+
+
+	public void AllExamstoShowResultsTeacher() throws IOException {
+
+		SimpleClient.getClient().handleAllExamstoShowResultsTeacher(UserInfo);
+
+	}
+
+
+	public void displayExamtoseeResultsView() throws IOException {
+		scene = new Scene(loadFXML("displayexamstoseeResults"), 600, 400);
+		stage.setScene(scene);
+		stage.setTitle("Displaying Exam");
+		stage.show();
+		
+	}
+
+
+	public void bringallsolvedExams(int chosenintger) throws IOException {
+		SimpleClient.getClient().handledisplaySolvedExam(chosenintger);
+
+	}
+
+
+	public void showDisplaySolvedExam() throws IOException {
+		scene = new Scene(loadFXML("displaysolvedexam"), 600, 400);
+		stage.setScene(scene);
+		stage.setTitle("Displaying Exam");
+		stage.show();
+		
 	}
 
 

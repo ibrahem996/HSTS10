@@ -1,5 +1,6 @@
 package il.cshaifasweng.OCSFMediatorExample.entities;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
@@ -19,7 +20,7 @@ import com.mysql.cj.conf.ConnectionUrlParser.Pair;
 ////we may need id for solvedexam
 @Entity
 @Table(name = "solvedexam")
-public class solvedExam {
+public class solvedExam implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,20 +34,22 @@ public class solvedExam {
 	@JoinColumn(name = "student_id")
 	private Student student;
 
-	
-	//private List<Integer> questionsSolved;
+	@Column(name = "chosenanswers")
+	@ElementCollection 
+	private List<Integer> chosenanswers;
 
 	private Boolean checkedornot;
 	private Boolean shefinished;
 	private int Grade;
 
 	// constructor
-	public solvedExam(Exam exam, Student student, Boolean shefinished) {
+	public solvedExam(Exam exam, Student student, Boolean shefinished, List<Integer> chosenanswers) {
 		this.exam = exam;
 		this.student = student;
 //		questionsSolved = new ArrayList<Integer>();
 //		questionsSolved = chosenanswers;
 		// choseanswerforquestion(this.exam.getQuestions(),chosenanswers);
+		this.chosenanswers=chosenanswers;
 		checkedornot = false;
 		this.shefinished = shefinished;
 		Grade = 0;
@@ -102,6 +105,14 @@ public class solvedExam {
 
 	public void setStudent(Student student) {
 		this.student = student;
+	}
+	
+	public List<Integer> getChosenAnswers(){
+		return chosenanswers;
+	}
+	
+	public void setChosenAnswers(List<Integer> chosenanswers) {
+		this.chosenanswers = chosenanswers;
 	}
 
 //	public List<Integer> getQuestionsSolved() {

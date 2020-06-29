@@ -19,7 +19,9 @@ public enum CommandType {
 	savingtheeditedexamCommand(14),
 	bringingallsubjectformanagerCommand(15),
 	bringingallCoursesformanagerCommand(16),
-    savingthesolvedexam(18);
+    savingthesolvedexam(18),
+    AllExamstoShowResultsTeacherCommand(19),
+    displaySolvedExamCommand(20);
 
     private int CommandTypeValue;
 
