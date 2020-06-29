@@ -45,7 +45,7 @@
       <Text fill="WHITE" layoutX="22.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer 4 :" wrappingWidth="72.8460693359375" />
       <TextArea fx:id="studntcmnttxt" editable="false" layoutX="423.0" layoutY="206.0" prefHeight="26.0" prefWidth="149.0" />
       <Text layoutX="423.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comment :" wrappingWidth="103.1999633789062" />
-      <Label fx:id="lastquestionlabel" layoutX="279.0" layoutY="90.0" prefHeight="26.0" prefWidth="149.0" text="Last Question !!!">
+      <Label fx:id="lastquestionlabel" layoutX="422.0" layoutY="98.0" prefHeight="26.0" prefWidth="149.0" text="Good Luck!!!">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>

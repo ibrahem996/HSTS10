@@ -181,8 +181,7 @@ public class ExamAPI {
 
 	}
 
-	
-	
+
 	public static void BringingExamInfo(Command command, ConnectionToClient client) throws SQLException {
 
 		int id = (int) command.getCommand();

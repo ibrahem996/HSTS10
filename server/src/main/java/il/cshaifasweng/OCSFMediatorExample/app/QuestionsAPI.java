@@ -95,10 +95,11 @@ public class QuestionsAPI {																	//remember to add Update Question
         System.out.println( theAnswers.get(0).getId());
 
 
-        
+
         String sql =  "INSERT INTO question (id, firstAppearance, questionString, TheAnswer, subject_id ) VALUES ('"
       		  + question_id + "', " + "'" + new Timestamp(firstAppearance.getTimeInMillis()) + "', " + "'" + questionString + "', " +
       		  "'" + answer_id + "', " + "'" + subject_id + "')"; 
+
       		  stmt.executeUpdate(sql);
       		  
       		  

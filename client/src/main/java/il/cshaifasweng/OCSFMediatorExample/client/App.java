@@ -131,7 +131,7 @@ public class App extends Application {             ////remember update question
 	}
     
 	public void startExam(String[] arr) throws IOException {
-		this.UserId = arr[0];
+		
 		SimpleClient.getClient().handleLoginToExam(arr);
 	}
 
@@ -189,12 +189,16 @@ public class App extends Application {             ////remember update question
 			case("Incompetable ID."):
 				((LoginExamController) controller).getWrongId().setText("Incompetable ID.");
 			break;
+			case("This exam already submitted."):
+				((LoginExamController) controller).getWrongId().setText("This exam already submitted.");
+			break;
 			case("false"):
 				((PrimaryController) controller).getUserNameText().setText("Invalid input!");
 			break;
 			case("isconnected"):
 				((PrimaryController) controller).getUserNameText().setText("Your account is already cnnected!");
 			break;
+			
 		}
 		
 		scene = new Scene(mainAnchor, 600, 400);
@@ -273,24 +277,27 @@ public class App extends Application {             ////remember update question
 		stage.setScene(scene);
 		stage.show();
 	}
-	public void StartExamAnswer() throws IOException {/////////////////sending exam to the controller to show it
+	public void StartExamAnswer(Exam exam) throws IOException {/////////////////sending exam to the controller to show it
 		
 
-//		if(msg.getExamExecutaion().equals("true")) {
-//			System.out.println("bbbbbbbbbbb");
-//			scene = new Scene(loadFXML("examexecutintg"), 600, 400);//mmo7shav
-//			stage.setScene(scene);
-//			stage.show();
-//		}else {
+		if(exam.getExamExecutaion()==true) {
+			System.out.println("bbbbbbbbbbb");
+
+			ExamExecutingController examexecutingcontroller = new ExamExecutingController(exam);
+			scene = new Scene(loadFXML("examexecutintg"), 600, 400);//mmo7shav
+			stage.setScene(scene);
+			stage.show();
+		}else {
 			System.out.println("ccccccccccc");
 			System.out.println("dddddddddd");
-			scene = new Scene(loadFXML("examexecutintg"), 600, 400);//ydne
+			
+			scene = new Scene(loadFXML("manualexam"), 600, 400);//ydne
 			System.out.println("eeeeeee");
 			stage.setScene(scene);
 			System.out.println("ffffffffffff");
 			stage.show();
 			System.out.println("hhhhhhhhhhhh");
-//		}
+		}
 		
 		
 	}

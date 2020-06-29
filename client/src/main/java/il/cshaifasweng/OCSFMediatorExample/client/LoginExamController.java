@@ -21,8 +21,8 @@ public class LoginExamController {
 	public Text getWrongId() {
 		return WrongId;
 	}
-	
-	public void updateWrongeid(String msg ) {
+
+	public void updateWrongeid(String msg) {
 		WrongId.setText(msg);
 	}
 
@@ -59,15 +59,15 @@ public class LoginExamController {
 
 		if (ExamCode.getText().length() != 4) {
 			WrongCode.setText("The code should be 4 digits/letters.");
-		}
+		} else {
+			String[] arr = { IDText.getText(), ExamCode.getText() };
 
-		String[] arr = { IDText.getText(), ExamCode.getText() };
-
-		try {
-			App.getInstance().startExam(arr);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				App.getInstance().startExam(arr);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}
