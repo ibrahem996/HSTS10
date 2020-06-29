@@ -18,9 +18,9 @@ public class logoutAPI {
 		arr = (String[]) command.getCommand();
 		String userName = arr[0];
 		String name, pass, url;
-		url = "jdbc:mysql://127.0.0.1/hstsdatabase";
+		url = "jdbc:mysql://127.0.0.1/hsts";
 		name = "root";
-		pass = "9064";
+		pass = "t12345";
 		Connection myConnection;
 		try {
 			myConnection = DriverManager.getConnection(url, name, pass);
