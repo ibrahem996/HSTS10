@@ -177,23 +177,26 @@ public class SimpleServer extends AbstractServer { //////// remember change from
 			}
 
 			break;
-			
-               case AllExamstoShowResultsTeacherCommand:
-            	   System.out.println("AllExamstoShowResultsTeacherCommand");
-            	   ExamAPI.AllExamstoShowResultsTeacher(command, client);
-            	   break;
-			
-			
-               case displaySolvedExamCommand:
-            	   System.out.println("displaySolvedExamCommand");
+
+
+		case AllExamstoShowResultsTeacherCommand:
+			System.out.println("AllExamstoShowResultsTeacherCommand");
+			ExamAPI.AllExamstoShowResultsTeacher(command, client);
+
+			break;
+
+		case displaySolvedExamCommand:
+			System.out.println("displaySolvedExamCommand");
+
 			try {
 				ExamAPI.displaySolvedExam(command, client);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+        break;
             	   
-            	   break;
+            	   
             	   
                case bringsSpecificSolvedExamCommand:
             	   System.out.println("bringsSpecificSolvedExamCommand");
@@ -246,6 +249,12 @@ public class SimpleServer extends AbstractServer { //////// remember change from
             	   
 			try {
 				ExamAPI.checkingAddtimeRequestManager(command,client);
+
+			break;
+
+		case onexecCommand:
+			try {
+				ExamAPI.onexecute(command, client);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -257,10 +266,16 @@ public class SimpleServer extends AbstractServer { //////// remember change from
             	   System.out.println("bringTimeRequestExamCommand");
 			try {
 				ExamAPI.bringTimeRequestExamManager(command,client);
+			break;
+
+		case savingtheuploadedexam:
+			try {
+				ExamAPI.savingManualExam(command, client);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
 			
 			break;
 			
@@ -274,7 +289,17 @@ public class SimpleServer extends AbstractServer { //////// remember change from
 			}
    				
             	break;
+
 			
+		case getsolvedexam:
+			try {
+				System.out.println("6666666666666666666666666666666");
+				ExamAPI.getsolved(command, client);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 	}
 

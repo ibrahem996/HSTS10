@@ -36,6 +36,11 @@ public class Exam implements Serializable
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int number;
 	
+	Boolean Onexecute = false;
+	
+	
+
+
 	double duration;
 	
 	int executed;///exit to execute
@@ -47,7 +52,7 @@ public class Exam implements Serializable
 	
     Boolean examExecutaion;
     
-	@ManyToOne (cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@ManyToOne (cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name = "course_id")
 	private Course course;
 	 
@@ -124,6 +129,17 @@ public class Exam implements Serializable
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public Boolean getOnexecute() {
+		return Onexecute;
+	}
+
+
+
+	public void setOnexecute(Boolean onexecute) {
+		Onexecute = onexecute;
+	}
+
 
 	public char[] getCode() {
 		return code;

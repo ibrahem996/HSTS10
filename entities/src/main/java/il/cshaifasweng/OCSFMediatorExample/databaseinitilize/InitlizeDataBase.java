@@ -1,8 +1,11 @@
 package il.cshaifasweng.OCSFMediatorExample.databaseinitilize;
 
 
+import java.io.File;
 import java.util.ArrayList;   
 import java.util.List;
+import java.util.Map;
+
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -394,14 +397,22 @@ public class InitlizeDataBase {
 	
 	public static <T> List<T> getAll(Class<T> object) 
 	{
+		System.out.println("getal11111111111");
 		CriteriaBuilder builder = session.getCriteriaBuilder();
+		System.out.println("getal2222222222222");
 		CriteriaQuery<T> criteriaQuery = builder.createQuery(object);
+		System.out.println("getal333333333333");
 		Root<T> rootEntry = criteriaQuery.from(object);
+		System.out.println("getall44444444444444");
 		CriteriaQuery<T> allCriteriaQuery = criteriaQuery.select(rootEntry);
+		
+		System.out.println("getall55555555555");
 		TypedQuery<T> allQuery = session.createQuery(allCriteriaQuery);
+		System.out.println("getall666666666666666666");
 		return allQuery.getResultList();
 	}
 	
+
 	public static List<Teacher> getAllteachers()
 	{
 		List<Teacher> teachers = new  ArrayList<Teacher>();
@@ -415,9 +426,38 @@ public class InitlizeDataBase {
 		return students;
 	}
 	
+	public static List<solvedExam> getallsolvedExam() {
+		System.out.println("initttttt11");
+		List<solvedExam> solvedexam = new ArrayList<solvedExam>();
+		solvedexam = getAll(solvedExam.class);
+		File file;
+		System.out.println("initttttt22");
+		for (solvedExam solved : solvedexam) {
+			file=solved.getFile();
+		}
+		return solvedexam;
+	}
+
+	
 	public static List<Exam> getAllexams() {
 		List<Exam> exams = new ArrayList<Exam>();
 		exams = getAll(Exam.class);
+		return exams;
+	}
+	
+	public static List<solvedExam> getSolvedExamByStudentID(String student_id){
+		List<solvedExam> exams = new ArrayList<solvedExam>();
+		System.out.println("gggggggggggggggggggggggggg");
+		exams = getAll(solvedExam.class);
+		System.out.println("sssssssssssssssssssssssss");
+		for(solvedExam exam : exams)
+		{
+			if (Integer.toString(exam.getId()).equals(student_id))
+			{
+				exams.add(exam);
+			}
+		}
+		System.out.println("ddddddddddddddddddddddddddd");
 		return exams;
 	}
 	

@@ -1,5 +1,6 @@
 package il.cshaifasweng.OCSFMediatorExample.client;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -394,9 +395,6 @@ public class SimpleClient extends AbstractClient {
 
 	}
 
-
-	
-
 	public void handleBringingallsubjectsformanager() throws IOException {
 		commandRequest = true;
 		command = new Command(null, CommandType.bringingallsubjectformanagerCommand);
@@ -461,7 +459,7 @@ public class SimpleClient extends AbstractClient {
 		command = new Command(UserInfo, CommandType.AllExamstoShowResultsTeacherCommand);
 		SimpleClient.getClient().sendToServer(command);
 		waitForServerResponse();
-		handleAllExamstoShowResultsTeacherFromServer();		
+		handleAllExamstoShowResultsTeacherFromServer();
 	}
 
 	private void handleAllExamstoShowResultsTeacherFromServer() throws IOException {
@@ -470,8 +468,9 @@ public class SimpleClient extends AbstractClient {
 		allExamsToseeResult =  (List<Exam>) command.getCommand();
 		DisplayExamsToSeeResultsController displayExamsToSeeResultsController = new DisplayExamsToSeeResultsController(allExamsToseeResult, whatiam);
 
+
 		App.getInstance().displayExamtoseeResultsView();
-		
+
 	}
 
 	public void handledisplaySolvedExam(int chosenintger) throws IOException {
@@ -479,16 +478,67 @@ public class SimpleClient extends AbstractClient {
 		command = new Command(chosenintger, CommandType.displaySolvedExamCommand);
 		SimpleClient.getClient().sendToServer(command);
 		waitForServerResponse();
-		handleisplaySolvedExamFromServer();		
+		handleisplaySolvedExamFromServer();
 	}
 
 	private void handleisplaySolvedExamFromServer() throws IOException {
-		List <Object> solvedExamIinfo = new ArrayList<Object>();
+		List<Object> solvedExamIinfo = new ArrayList<Object>();
 		solvedExamIinfo = (List<Object>) command.getCommand();
+
 		DisplaySolvedExam displaySolvedExam = new DisplaySolvedExam(solvedExamIinfo);
+
+//		int[] arr = (int[]) solvedExamIinfo.get(0);
+//  int examid = arr[1];
+	//	DisplaySolvedExam displaySolvedExam = new DisplaySolvedExam(examid, solvedExamIinfo);
+
 		App.getInstance().showDisplaySolvedExam();
+
+	}
+
+	public void onexec(int examid) throws IOException {
+
+		command = new Command(examid, CommandType.onexecCommand);
+		SimpleClient.getClient().sendToServer(command);
+	}
+
+	public void handlesavingtheuploadedexam(Exam exam, File file, String userid) throws IOException {
+		// TODO Auto-generated method stub
+		List<Object> CodeInfoExam = new ArrayList<Object>();
+		CodeInfoExam.add(exam);
+		CodeInfoExam.add(file);
+		CodeInfoExam.add(userid);
+		command = new Command(CodeInfoExam, CommandType.savingtheuploadedexam);
+		SimpleClient.getClient().sendToServer(command);
+
+	}
+
+	public void handleGetSolved(String userId, int gradesorscanned) throws IOException {
+		// TODO Auto-generated method stub
+		System.out.println("444444444444444444444444");
+		commandRequest = true;
+		Object[] SolvedInfoExam = new Object[2];
+		SolvedInfoExam[0]=userId;
+		SolvedInfoExam[1]=gradesorscanned;
+		command = new Command(SolvedInfoExam, CommandType.getsolvedexam);
+		System.out.println("5555555555555555555");
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handleGetSolvedFromServer();
+	}
+
+	private void handleGetSolvedFromServer() throws IOException {
+		// TODO Auto-generated method stub
+		System.out.println("777777777777777777777777777");
+		Object[] examsInfo = new Object[2];
+		examsInfo = (Object[]) command.getCommand();
 		
-		
+		List<solvedExam> solved = (List<solvedExam>) examsInfo[0];
+		int gradesorscanned = (int) examsInfo[1];
+		if (gradesorscanned == 1) {
+			App.getInstance().showGradesView(solved);
+		} else if (gradesorscanned == 2) {
+			App.getInstance().showScannedExam(solved);
+		}
 	}
 
 	public void handlebringsspecificsolvedexam(int chosenintger) throws IOException {
