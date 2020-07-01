@@ -24,7 +24,7 @@ public class App
 		
 		  url = "jdbc:mysql://127.0.0.1/hstsdatabase"; 
 		  name = "root"; 
-		  pass = "9064";
+		  pass = "t12345";
 		  
 		  Connection myConnection = DriverManager.getConnection(url,name,pass);
 		  Statement stmt = (Statement) myConnection.createStatement();

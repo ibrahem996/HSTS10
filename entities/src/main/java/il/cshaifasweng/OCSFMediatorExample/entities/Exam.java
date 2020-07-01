@@ -36,7 +36,6 @@ public class Exam implements Serializable
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int number;
 	
-	Boolean Onexecute = false;
 	
 	
 
@@ -248,15 +247,7 @@ public class Exam implements Serializable
 		return teacherComment;
 	}
 	
-	public Boolean getOnexecute() {
-		return Onexecute;
-	}
-
-
-
-	public void setOnexecute(Boolean onexecute) {
-		Onexecute = onexecute;
-	}
+	
 
 
 

@@ -30,11 +30,12 @@ public enum CommandType {
     AddTimeforExamTeacherCommand(25),
     checkingAddtimeRequestCommand(26),
     bringTimeRequestExamCommand(27),
-    handleConfirmingtheaddingTimeByManagerCommand(28);
+    handleConfirmingtheaddingTimeByManagerCommand(28),
 
     onexecCommand(29), 
     savingtheuploadedexam(30), 
-    getsolvedexam(31);
+    getsolvedexam(31), 
+    ifextra(32);
 
 
     private int CommandTypeValue;

@@ -647,6 +647,18 @@ public class SimpleClient extends AbstractClient {
 		return resultcheckaddtime;
 		
 	}
+	public int handleifextra(int exam_id) throws IOException {
+		commandRequest = true;
+		command = new Command((Object)exam_id, CommandType.ifextra);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		return handleifextraFromServer();
+	}
+
+	private int handleifextraFromServer() {
+		return (int) command.getCommand();
+		
+	}
 
 	public void handlebringTimeRequestExam() throws IOException {
 
@@ -678,5 +690,7 @@ public class SimpleClient extends AbstractClient {
 
 		App.getInstance().showManagerView();
 	}
+
+
 
 }

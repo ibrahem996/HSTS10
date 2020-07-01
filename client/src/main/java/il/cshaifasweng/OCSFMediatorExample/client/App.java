@@ -585,5 +585,10 @@ public class App extends Application { //// remember update question
 		stage.show();		
 	}
 
+	public int ifextra(int exam_id) throws IOException {
+		return SimpleClient.getClient().handleifextra(exam_id);
+		
+	}
+
 
 }

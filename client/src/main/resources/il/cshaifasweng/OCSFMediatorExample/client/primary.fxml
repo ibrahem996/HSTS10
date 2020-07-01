@@ -38,10 +38,10 @@
 				</Lighting>
 			</effect>
 		</Button>
-		<TextField fx:id="usertxt" layoutX="198.0" layoutY="155.0" prefHeight="25.0" prefWidth="150.0" />
-		<PasswordField fx:id="passtxt" layoutX="197.0" layoutY="230.0" prefHeight="25.0" prefWidth="150.0" />
-		<Text fill="WHITE" layoutX="196.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" />
-		<Text fill="WHITE" layoutX="198.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" />
+		<TextField fx:id="usertxt" layoutX="193.0" layoutY="104.0" prefHeight="25.0" prefWidth="150.0" />
+		<PasswordField fx:id="passtxt" layoutX="192.0" layoutY="179.0" prefHeight="25.0" prefWidth="150.0" />
+		<Text fill="WHITE" layoutX="198.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username :" />
+		<Text fill="WHITE" layoutX="200.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" />
 		<MenuButton fx:id="interfaceid" layoutX="465.0" layoutY="37.0" mnemonicParsing="false" onAction="#interfaceac" text="Choose Interface">
 			<items>
 				<MenuItem fx:id="studentid" mnemonicParsing="false" onAction="#studentac" text="Student" />

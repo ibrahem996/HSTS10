@@ -28,7 +28,7 @@ public class StartExamAPI {
 		String name, pass, url;
 		url = "jdbc:mysql://127.0.0.1/hstsdatabase";
 		name = "root";
-		pass = "9064";
+		pass = "t12345";
 		Exam exam = new Exam();
 		Connection myConnection;
 		try {
@@ -38,7 +38,7 @@ public class StartExamAPI {
 			
 			ResultSet rs = stmt.executeQuery(sql);
 			rs.next();
-			int exam_id = rs.getInt(1);
+			int exam_id = rs.getInt("id");
 			Boolean onexec = rs.getBoolean("Onexecute");
 			int duration = rs.getInt("duration");
 			if(!onexec) {
@@ -127,6 +127,36 @@ public class StartExamAPI {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public static void checkifextra(Command command, ConnectionToClient client) throws SQLException {
+		
+		String name, pass, url;
+		url = "jdbc:mysql://127.0.0.1/hstsdatabase";
+		name = "root";
+		pass = "t12345";
+		Connection myConnection;
+		myConnection = DriverManager.getConnection(url, name, pass);
+		Statement stmt = (Statement) myConnection.createStatement();
+		int exam_id= (int) command.getCommand();
+		System.out.println("8744444444444444");
+		String sql="SELECT * FROM exam WHERE id = '" + exam_id + "' AND timeRequest = 2";
+		ResultSet rs = stmt.executeQuery(sql);
+		int extra;
+		if(rs.next()) {
+			 extra = (int) rs.getDouble("howMuchTimeToADD");
+		}else {
+			extra=0;
+		}
+		
+		command.setCommand(extra);
+
+		try {
+			client.sendToClient(command);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

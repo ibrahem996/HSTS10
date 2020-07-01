@@ -94,6 +94,7 @@ public class ExamExecutingController {
 	static int choosenAnswer;
 	static int duration;
 	static Boolean submitted;
+	static Boolean flag = false;
 
 	public ExamExecutingController(Exam exam1) {
 		System.out.println("controllll");
@@ -147,7 +148,7 @@ public class ExamExecutingController {
 
 	@FXML
 	void backac(ActionEvent event) {
-		questionNum-=1;
+		questionNum -= 1;
 		quesnum.setText(questionNum + 1 + " / " + numofques);
 		if (questionNum == 0) {
 			backbtn.setVisible(false);
@@ -165,7 +166,7 @@ public class ExamExecutingController {
 
 	@FXML
 	void nextac(ActionEvent event) {
-		questionNum+=1;
+		questionNum += 1;
 		quesnum.setText(questionNum + 1 + " / " + numofques);
 		if (questionNum == 1) {
 			backbtn.setVisible(true);
@@ -194,7 +195,7 @@ public class ExamExecutingController {
 
 	@FXML
 	void submiteditingac(ActionEvent event) throws IOException {
-		submitted=true;
+		submitted = true;
 		App.getInstance().savingthesolvedexam(exam, ChoosenAswers, true);
 	}
 
@@ -230,9 +231,6 @@ public class ExamExecutingController {
 
 	}
 
-	
-
-	
 	@FXML
 	void initialize() {
 
@@ -273,36 +271,60 @@ public class ExamExecutingController {
 		FillTheQuestions(questionNum);
 
 		Task<Void> sleeper = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                try {
-                	while(duration>0) {
-                		timertxt.setText(Integer.toString(duration--) + " minutes left");
-                		Thread.sleep(60000);
-                	}
-                } catch (InterruptedException e) {
-                }
-                return null;
-            }
-        };
-        sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
-            @Override
-            public void handle(WorkerStateEvent event) {
-            	try {
-            		if(!submitted) {
-            			App.getInstance().savingthesolvedexam(exam, ChoosenAswers, false);
-            		}
-            		App.getInstance().Onexec(exam.getId());
-            		
+			@Override
+			protected Void call() throws Exception {
+				try {
+					while (duration > 0) {
+						timertxt.setText(Integer.toString(duration--) + " minutes left");
+						Thread.sleep(60000);
+					}
+				} catch (InterruptedException e) {
+				}
+				return null;
+			}
+		};
+		sleeper.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
+			@Override
+			public void handle(WorkerStateEvent event) {
+				try {
+					if (!submitted ) {
+						App.getInstance().savingthesolvedexam(exam, ChoosenAswers, false);
+					}
+					App.getInstance().Onexec(exam.getId());
+
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-            }
-        });
-        new Thread(sleeper).start();
-    
+			}
+		});
+		new Thread(sleeper).start();
+
+		new Thread() {
+			public void run() {
+				if (duration == 1) {
+					try {
+						int extra = ifextr();
+						if (extra > 0 && !flag) {
+							flag = true;
+							duration += extra;
+							
+						}
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+
+			}
+		}.start();
+
 		System.out.println("enddddddddinittttttttttt");
 
+	}
+
+	static int ifextr() throws IOException {
+		System.out.println("exxxxxxxxxxxxxxxx= " + exam.getId());
+		return App.getInstance().ifextra(exam.getId());
 	}
 }

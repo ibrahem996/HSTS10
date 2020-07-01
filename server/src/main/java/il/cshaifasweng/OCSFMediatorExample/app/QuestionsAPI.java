@@ -23,7 +23,7 @@ public class QuestionsAPI {																	//remember to add Update Question
 	{
 		String url = "jdbc:mysql://127.0.0.1/hstsdatabase";
 		String name = "root";
-		String pass = "9064";
+		String pass = "t12345";
 		Connection myConnection = DriverManager.getConnection(url,name,pass);
 		Statement stmt = (Statement) myConnection.createStatement();
 		return stmt;
@@ -67,7 +67,7 @@ public class QuestionsAPI {																	//remember to add Update Question
         String sql1 = "SELECT number FROM subject WHERE id = '" + newQuestion.getSubject().getId() + "'";
 	    ResultSet rs = stmt.executeQuery(sql1);
 	    if(rs.next()){
-	    	   foundType = rs.getString(1);
+	    	   foundType = rs.getString("number");///////////////numbe???????????
 	           System.out.println( foundType);
 
 	    	}
@@ -165,15 +165,15 @@ public class QuestionsAPI {																	//remember to add Update Question
 
 	    	   Object[] qinfObjects = new Object [8];
 	    	
-	    	   int qid = rs.getInt(1);
+	    	   int qid = rs.getInt("id");
 	           System.out.println(qid);
 	           qinfObjects[0]=qid;
 	           
-	           String qString =  rs.getString(4);
+	           String qString =  rs.getString("questionString");
 	           System.out.println(qString);
 	           qinfObjects[1]=qString;
 	      
-	           int correct = rs.getInt(2);
+	           int correct = rs.getInt("TheAnswer");
 	           System.out.println(correct);
 	           qinfObjects[2] = correct;
 	           
