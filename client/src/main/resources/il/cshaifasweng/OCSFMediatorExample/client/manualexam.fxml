@@ -1,8 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.OCSFMediatorExample.client.ManualExamController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+      <Text layoutX="201.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manual Exam">
+         <font>
+            <Font name="Algerian" size="28.0" />
+         </font>
+      </Text>
+      <Button fx:id="open" layoutX="262.0" layoutY="136.0" mnemonicParsing="false" onAction="#OnOpen" text="Open Exam" />
+      <Button fx:id="submittxt" layoutX="271.0" layoutY="200.0" mnemonicParsing="false" onAction="#Onsubmit" text="Submitt" />
+      <Text fx:id="timertxt" layoutX="225.0" layoutY="255.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="150.0" />
+      <Button fx:id="Homebtn" layoutX="516.0" layoutY="334.0" mnemonicParsing="false" onAction="#OnHome" text="Home" />
+   </children>
 </AnchorPane>
-

@@ -147,9 +147,9 @@ public class ExamExecutingController {
 
 	@FXML
 	void backac(ActionEvent event) {
-		questionNum--;
+		questionNum-=1;
 		quesnum.setText(questionNum + 1 + " / " + numofques);
-		if (questionNum == 1) {
+		if (questionNum == 0) {
 			backbtn.setVisible(false);
 		}
 		if (questionNum == questions.size() - 2) {
@@ -165,7 +165,7 @@ public class ExamExecutingController {
 
 	@FXML
 	void nextac(ActionEvent event) {
-		questionNum++;
+		questionNum+=1;
 		quesnum.setText(questionNum + 1 + " / " + numofques);
 		if (questionNum == 1) {
 			backbtn.setVisible(true);
@@ -189,6 +189,7 @@ public class ExamExecutingController {
 	@FXML
 	void signoutac(ActionEvent event) throws IOException {
 		App.getInstance().LogOut();
+		App.getInstance().showBackToPrimaryView();
 	}
 
 	@FXML
@@ -291,7 +292,7 @@ public class ExamExecutingController {
             		if(!submitted) {
             			App.getInstance().savingthesolvedexam(exam, ChoosenAswers, false);
             		}
-            		
+            		App.getInstance().Onexec(exam.getId());
             		
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
