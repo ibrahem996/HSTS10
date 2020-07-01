@@ -17,6 +17,7 @@ import il.cshaifasweng.OCSFMediatorExample.entities.Course;
 import il.cshaifasweng.OCSFMediatorExample.entities.Question;
 import il.cshaifasweng.OCSFMediatorExample.entities.Subject;
 import il.cshaifasweng.OCSFMediatorExample.entities.Teacher;
+import il.cshaifasweng.OCSFMediatorExample.entities.solvedExam;
 
 public class SimpleClient extends AbstractClient {
 
@@ -83,7 +84,7 @@ public class SimpleClient extends AbstractClient {
 	}
 
 	private void handleLoginToExamCommandFromServer() throws IOException {
-		System.out.println("handleStartExam111111111");
+		System.out.println("handleStartExam");
 		String[] msg = (String[]) command.getCommand();
 		System.out.println(msg[0]);
 		System.out.println(msg[1]);
@@ -97,7 +98,7 @@ public class SimpleClient extends AbstractClient {
 	}
 
 	private void handleLogininCommandFromServer() throws IOException {
-		System.out.println("handleSignin10");
+		System.out.println("handleSignin");
 		String[] msg = (String[]) command.getCommand();
 
 		System.out.println(msg[0]);
@@ -106,7 +107,6 @@ public class SimpleClient extends AbstractClient {
 		switch (msg[1]) {
 
 		case ("student"):
-			System.out.println("tjrebeeee333333");
 			App.getInstance().showStudentView(msg);
 			break;
 
@@ -132,7 +132,6 @@ public class SimpleClient extends AbstractClient {
 		 */
 
 		System.out.println("loginCommand");
-		// client.setInfo("username", msg);
 
 	}
 
@@ -469,9 +468,7 @@ public class SimpleClient extends AbstractClient {
 		List<Exam> allExamsToseeResult = new ArrayList<Exam>();
 		System.out.println("handleAllExamstoShowResultsTeacher from server");
 		allExamsToseeResult =  (List<Exam>) command.getCommand();
-		System.out.println("gggggggr");
 		DisplayExamsToSeeResultsController displayExamsToSeeResultsController = new DisplayExamsToSeeResultsController(allExamsToseeResult, whatiam);
-		System.out.println("ggggggghhhhhhsr");
 
 		App.getInstance().displayExamtoseeResultsView();
 		
@@ -488,12 +485,148 @@ public class SimpleClient extends AbstractClient {
 	private void handleisplaySolvedExamFromServer() throws IOException {
 		List <Object> solvedExamIinfo = new ArrayList<Object>();
 		solvedExamIinfo = (List<Object>) command.getCommand();
-		int [] arr = (int[]) solvedExamIinfo.get(0);
-		int examid = arr[1];
-		DisplaySolvedExam displaySolvedExam = new DisplaySolvedExam(examid,solvedExamIinfo);
+		DisplaySolvedExam displaySolvedExam = new DisplaySolvedExam(solvedExamIinfo);
 		App.getInstance().showDisplaySolvedExam();
 		
 		
+	}
+
+	public void handlebringsspecificsolvedexam(int chosenintger) throws IOException {
+		System.out.println("handlebringsspecificsolvedexam");
+
+		commandRequest = true;
+		command = new Command(chosenintger, CommandType.bringsSpecificSolvedExamCommand);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handlebringsspecificsolvedexamFromServer();	
+	}
+
+	private void handlebringsspecificsolvedexamFromServer() throws IOException {
+		
+		
+		solvedExam solvedexam = (solvedExam) command.getCommand();
+		ShowingSolvedExamQuestionController showingsolvedexamquestioncontroller = new ShowingSolvedExamQuestionController(solvedexam,whatiam);
+		App.getInstance().showSolvedExamQuestionView();
+		
+		
+	}
+
+	public void handleconfirmsolvedexam(String[] solvedInfo) throws IOException {
+		commandRequest = true;
+		command = new Command(solvedInfo, CommandType.confirmSolvedExamCommand);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handleconfirmsolvedexamFromServer();	
+	}
+
+	private void handleconfirmsolvedexamFromServer() throws IOException {
+		App.getInstance().showTeacherView();
+	}
+
+	public void handleallExamstoShowResultsManager() throws IOException {
+		commandRequest = true;
+		command = new Command(null, CommandType.AllExamstoShowResultsManagerCommand);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handleallExamstoShowResultsManagerFromServer();	
+		
+	}
+
+	private void handleallExamstoShowResultsManagerFromServer() throws IOException {
+		List<Exam> allExamsToseeResult = new ArrayList<Exam>();
+		System.out.println("handleallExamstoShowResultsManager from server");
+		allExamsToseeResult =  (List<Exam>) command.getCommand();
+		System.out.println(whatiam);
+
+		DisplayExamsToSeeResultsController displayExamsToSeeResultsController = new DisplayExamsToSeeResultsController(allExamsToseeResult, whatiam);
+
+		App.getInstance().displayExamtoseeResultsView();
+		
+	}
+
+	public void handleBringExamOnExecute(String userInfo) throws IOException {
+		commandRequest = true;
+		command = new Command(userInfo, CommandType.BringExamOnExecuteCommand);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handleBringExamOnExecuteFromServer();	
+		
+		
+	}
+
+	private void handleBringExamOnExecuteFromServer() throws IOException {
+		List<Object[]> allExamsOnExecute = new ArrayList<Object[]>();
+		System.out.println("handleBringExamOnExecute from server");
+		allExamsOnExecute =  (List<Object[]>) command.getCommand();
+		
+
+		DisplayExamOnExecuteController displayExamOnExecuteController = new DisplayExamOnExecuteController(allExamsOnExecute,whatiam);
+
+		App.getInstance().displayExamOnExecuteView();
+		
+	}
+
+	public void handleAddTimeforExamTeacher(String[] examonExecuteinfo) throws IOException {
+		commandRequest = true;
+		command = new Command(examonExecuteinfo, CommandType.AddTimeforExamTeacherCommand);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handleAddTimeforExamTeacherFromServer();	
+		
+	}
+
+	private void handleAddTimeforExamTeacherFromServer() throws IOException {
+
+		App.getInstance().showTeacherView();
+		
+			
+	}
+
+	public Boolean handlecheckingAddtimeRequest() throws IOException {
+		commandRequest = true;
+		command = new Command(null, CommandType.checkingAddtimeRequestCommand);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		return handlecheckingAddtimeRequestFromServer();	
+	}
+
+	private Boolean handlecheckingAddtimeRequestFromServer() {
+
+		Boolean resultcheckaddtime = (Boolean) command.getCommand();
+		
+		return resultcheckaddtime;
+		
+	}
+
+	public void handlebringTimeRequestExam() throws IOException {
+
+		commandRequest = true;
+		command = new Command(null, CommandType.bringTimeRequestExamCommand);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handlebringTimeRequestExamFromServer();
+	}
+
+	private void handlebringTimeRequestExamFromServer() throws IOException {
+		List<Object[]> alladdingtimerequestexams = new ArrayList<Object[]>();
+		System.out.println("handlebringTimeRequestExam from server");
+		alladdingtimerequestexams =  (List<Object[]>) command.getCommand();
+		AllTimeAddingRequestManagerController allTimeAddingRequestManagerController = new AllTimeAddingRequestManagerController(alladdingtimerequestexams);
+		App.getInstance().showAllAddingTimeRequestExams();
+		
+	}
+
+	public void handleconfirmingtheaddingTimeByManager(String chosen) throws IOException {
+		commandRequest = true;
+		command = new Command(chosen, CommandType.handleConfirmingtheaddingTimeByManagerCommand);
+		SimpleClient.getClient().sendToServer(command);
+		waitForServerResponse();
+		handleconfirmingtheaddingTimeByManagerFromServer();
+	}
+
+	private void handleconfirmingtheaddingTimeByManagerFromServer() throws IOException {
+
+		App.getInstance().showManagerView();
 	}
 
 }

@@ -40,7 +40,7 @@
             <Font name="Aharoni Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="532.0" layoutY="17.0" mnemonicParsing="false" text="Sign out">
+      <Button fx:id="signoutbtn" layoutX="532.0" layoutY="17.0" mnemonicParsing="false" onAction="#signoutac" text="Sign out">
          <effect>
             <Lighting>
                <bumpInput>
@@ -106,4 +106,3 @@
       </Button>
    </children>
 </AnchorPane>
-

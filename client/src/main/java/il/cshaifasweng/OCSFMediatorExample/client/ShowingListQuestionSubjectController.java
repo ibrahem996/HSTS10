@@ -238,7 +238,10 @@ public class ShowingListQuestionSubjectController {
     }
 
     @FXML
-    void signoutac(ActionEvent event) {
+    void signoutac(ActionEvent event) throws IOException {
+    	
+    	App.getInstance().LogOut();
+    	App.getInstance().showBackToPrimaryView();
 
     }
     
@@ -253,7 +256,7 @@ public class ShowingListQuestionSubjectController {
     	answer3txt.setText(qinfObjects[5].toString());
     	answer4txt.setText(qinfObjects[6].toString());
     	correctAnwer = (int) qinfObjects[2];
-
+    	chosenAnswer = correctAnwer; 
     	switch(correctAnwer) {
         
         case 1:

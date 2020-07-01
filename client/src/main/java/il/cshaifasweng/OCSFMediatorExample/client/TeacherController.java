@@ -22,9 +22,6 @@ public class TeacherController {
     private Button tcreateexbtn;
 
     @FXML
-    private Button tchngegrdbtn;
-
-    @FXML
     private Button tdsplyexamrsltbtn;
 
     @FXML
@@ -35,6 +32,18 @@ public class TeacherController {
 
     @FXML
     private Button showqustlistbtn;
+    
+    @FXML
+    private Button addtimebtn;
+
+    
+    @FXML
+    void addtimeac(ActionEvent event) throws IOException {
+    	
+    	App.getInstance().bringExamOnExecute();
+
+    }
+    
     
     @FXML
     void shoqustlistac(ActionEvent event) throws IOException {
@@ -52,11 +61,6 @@ public class TeacherController {
     
 
     @FXML
-    void tchngegrdbac(ActionEvent event) {
-
-    }
-
-    @FXML
     void tcreateexac(ActionEvent event) throws IOException {
     	
     	App.getInstance().checkCourses(0);
@@ -69,7 +73,9 @@ public class TeacherController {
     }
 
     @FXML
-    void tsignoutac(ActionEvent event) {
+    void tsignoutac(ActionEvent event) throws IOException {
+    	App.getInstance().LogOut();
+    	App.getInstance().showBackToPrimaryView();
 
     }
     
@@ -83,9 +89,12 @@ public class TeacherController {
     void initialize() {
         assert taddqustbtn != null : "fx:id=\"taddqustbtn\" was not injected: check your FXML file 'teacher.fxml'.";
         assert tcreateexbtn != null : "fx:id=\"tcreateexbtn\" was not injected: check your FXML file 'teacher.fxml'.";
-        assert tchngegrdbtn != null : "fx:id=\"tchngegrdbtn\" was not injected: check your FXML file 'teacher.fxml'.";
         assert tdsplyexamrsltbtn != null : "fx:id=\"tdsplyexamrsltbtn\" was not injected: check your FXML file 'teacher.fxml'.";
         assert tsignoutbtn != null : "fx:id=\"tsignoutbtn\" was not injected: check your FXML file 'teacher.fxml'.";
+        assert displayexamtbtn != null : "fx:id=\"displayexamtbtn\" was not injected: check your FXML file 'teacher.fxml'.";
+        assert showqustlistbtn != null : "fx:id=\"showqustlistbtn\" was not injected: check your FXML file 'teacher.fxml'.";
+        assert addtimebtn != null : "fx:id=\"addtimebtn\" was not injected: check your FXML file 'teacher.fxml'.";
+
 
     }
 }

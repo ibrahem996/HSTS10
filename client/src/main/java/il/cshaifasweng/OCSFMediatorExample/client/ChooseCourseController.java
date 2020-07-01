@@ -44,7 +44,9 @@ public class ChooseCourseController {
    	}
 
     @FXML
-    void backac(ActionEvent event) {
+    void backac(ActionEvent event) throws IOException {
+    	
+    	App.getInstance().showwhatiamView();
 
     }
 
@@ -53,7 +55,10 @@ public class ChooseCourseController {
     }
 
     @FXML
-    void signoutac(ActionEvent event) {
+    void signoutac(ActionEvent event) throws IOException {
+    	
+    	App.getInstance().LogOut();
+    	App.getInstance().showBackToPrimaryView();
 
     }
     EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() { 

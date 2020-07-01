@@ -511,4 +511,82 @@ public class App extends Application {             ////remember update question
 	}
 
 
+	public void bringsspecificsolvedexam(int chosenintger) throws IOException {
+		SimpleClient.getClient().handlebringsspecificsolvedexam(chosenintger);
+
+	}
+
+
+	public void showSolvedExamQuestionView() throws IOException {	
+		
+
+		scene = new Scene(loadFXML("showingsolvedexamquestion"), 600, 400);
+		stage.setScene(scene);
+		stage.setTitle("Displaying solved Exam");
+		stage.show();
+	}
+
+
+	public void confirmsolvedexam(String[] solvedInfo) throws IOException {
+		SimpleClient.getClient().handleconfirmsolvedexam(solvedInfo);
+	}
+
+
+	public void AllExamstoShowResultsManager() throws IOException {
+		SimpleClient.getClient().handleallExamstoShowResultsManager();
+
+	}
+
+
+	public void bringExamOnExecute() throws IOException {
+
+		System.out.println(UserInfo);
+		SimpleClient.getClient().handleBringExamOnExecute(UserInfo);
+	}
+
+
+	public void displayExamOnExecuteView() throws IOException {
+		scene = new Scene(loadFXML("displayexamonexecutaion"), 600, 400);
+		stage.setScene(scene);
+		stage.setTitle("Showing Exam On Executation");
+		stage.show();
+		
+	}
+
+
+	public void addTimeforExamTeacher(String[] examonExecuteinfo) throws IOException {
+
+		examonExecuteinfo[2] = UserInfo;
+		SimpleClient.getClient().handleAddTimeforExamTeacher(examonExecuteinfo);
+
+		
+	}
+
+
+	public Boolean checkingAddtimeRequest() throws IOException {
+		return SimpleClient.getClient().handlecheckingAddtimeRequest();
+		
+	}
+
+
+	public void bringTimeRequestExam() throws IOException {
+		SimpleClient.getClient().handlebringTimeRequestExam();
+		
+	}
+
+
+	public void confirmingtheaddingTimeByManager(String chosen) throws IOException {
+		SimpleClient.getClient().handleconfirmingtheaddingTimeByManager(chosen);
+		
+	}
+
+
+	public void showAllAddingTimeRequestExams() throws IOException {
+		scene = new Scene(loadFXML("alltimeaddingrequestmanager"), 600, 400);
+		stage.setScene(scene);
+		stage.setTitle("Adding Time Requests");
+		stage.show();		
+	}
+
+
 }
