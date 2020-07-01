@@ -5,12 +5,19 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.OCSFMediatorExample.client.ExamExecutingController">
    <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0">
+         <image>
+            <Image url="@../../../../../../../../../../../../190141213.jpg" />
+         </image>
+      </ImageView>
    <!--  
       <ImageView fitHeight="410.0" fitWidth="600.0" layoutY="3.0">
          <image>
@@ -28,23 +35,26 @@
             <Font name="Aharoni Bold" size="12.0" />
          </font>
       </Button>
-      <Text fill="WHITE" layoutX="22.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer 2 :" wrappingWidth="72.8460693359375" />
+      <Text layoutX="22.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer 2 :" wrappingWidth="72.8460693359375" />
       <TextField fx:id="answer1txt" editable="false" layoutX="20.0" layoutY="123.0" prefHeight="26.0" prefWidth="334.0" />
-      <Text fill="WHITE" layoutX="22.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer 1 :" wrappingWidth="72.8460693359375" />
+      <Text layoutX="22.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer 1 :" wrappingWidth="72.8460693359375" />
       <Button fx:id="nextbtn" layoutX="506.0" layoutY="363.0" mnemonicParsing="false" onAction="#nextac" prefHeight="22.0" prefWidth="65.0" text="next">
          <font>
             <Font name="Aharoni Bold" size="12.0" />
          </font>
       </Button>
-      <Text fill="WHITE" layoutX="20.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question : " wrappingWidth="148.79999999999995" />
+      <Text layoutX="20.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question : " wrappingWidth="148.79999999999995" />
       <TextArea fx:id="questiontxt" layoutX="20.0" layoutY="41.0" prefHeight="16.0" prefWidth="334.0" />
       <TextField fx:id="answer2txt" editable="false" layoutX="20.0" layoutY="187.0" prefHeight="26.0" prefWidth="334.0" />
       <TextField fx:id="answer3txt" editable="false" layoutX="20.0" layoutY="248.0" prefHeight="26.0" prefWidth="334.0" />
       <TextField fx:id="answer4txt" editable="false" layoutX="20.0" layoutY="307.0" prefHeight="26.0" prefWidth="334.0" />
-      <Text fill="WHITE" layoutX="22.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer 3 :" wrappingWidth="72.8460693359375" />
-      <Text fill="WHITE" layoutX="22.0" layoutY="304.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer 4 :" wrappingWidth="72.8460693359375" />
+      <Text layoutX="22.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer 3 :" wrappingWidth="72.8460693359375" />
+      <Text layoutX="22.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer 4 :" wrappingWidth="72.8460693359375" />
       <TextArea fx:id="studntcmnttxt" editable="false" layoutX="423.0" layoutY="206.0" prefHeight="26.0" prefWidth="149.0" />
-      <Text layoutX="423.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comment :" wrappingWidth="103.1999633789062" />
+      <Text layoutX="423.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comment :" wrappingWidth="103.1999633789062">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
       <Label fx:id="lastquestionlabel" layoutX="422.0" layoutY="98.0" prefHeight="26.0" prefWidth="149.0" text="Good Luck!!!">
          <font>
             <Font name="System Bold" size="16.0" />

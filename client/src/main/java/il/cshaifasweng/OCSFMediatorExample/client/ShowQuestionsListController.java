@@ -49,13 +49,14 @@ public class ShowQuestionsListController {
     }
 
     @FXML
-    void qbackac(ActionEvent event) {
-
+    void qbackac(ActionEvent event) throws IOException {
+    	App.getInstance().showwhatiamView();
     }
 
     @FXML
-    void signoutac(ActionEvent event) {
-
+    void signoutac(ActionEvent event) throws IOException {
+    	App.getInstance().LogOut();
+    	App.getInstance().showBackToPrimaryView();
     }
     
     EventHandler<ActionEvent> event1 = new EventHandler<ActionEvent>() { 

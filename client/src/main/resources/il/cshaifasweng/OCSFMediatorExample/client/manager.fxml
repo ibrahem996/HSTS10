@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
 <?import javafx.scene.effect.Shadow?>
@@ -14,7 +15,7 @@
    <children>
       <ImageView fitHeight="400.0" fitWidth="600.0">
          <image>
-            <Image url="@ manage image.jpg" />
+            <Image url="@../../../../../../../../../../../../istock-487974242-1024x620.jpg" />
          </image>
       </ImageView>
       <Button fx:id="mdsplyexamsbtn" layoutX="472.0" layoutY="114.0" mnemonicParsing="false" onAction="#mdsplyexamsac" prefHeight="36.0" prefWidth="98.0" text="Display Exams">
@@ -102,5 +103,10 @@
          <font>
             <Font name="Algerian" size="24.0" />
          </font></Text>
+      <Label fx:id="addingtimerequestlabel" layoutX="231.0" layoutY="317.0" prefHeight="110.0" prefWidth="338.0" text="There is an Adding Time Request, Please Confirm !" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

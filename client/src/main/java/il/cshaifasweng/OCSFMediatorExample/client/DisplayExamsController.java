@@ -37,7 +37,7 @@ public class DisplayExamsController {
     private Button backbtn;
 
     @FXML
-    private ListView listViewid;
+    private ListView <String> listViewid;
     
 
     @FXML
@@ -70,9 +70,12 @@ public class DisplayExamsController {
 
     
     public DisplayExamsController(List<Object> examsInfoList,String whatiam) {
-
     	this.examsInfo = examsInfoList;
+
     	this.whatiam = whatiam;
+    	
+
+
 	}
     
     public DisplayExamsController() {
@@ -98,12 +101,17 @@ public class DisplayExamsController {
     
 
 	@FXML
-    void backac(ActionEvent event) {
-
+    void backac(ActionEvent event) throws IOException {
+		
+		App.getInstance().chooseCourseController();
+	       
     }
 
     @FXML
-    void signoutac(ActionEvent event) {
+    void signoutac(ActionEvent event) throws IOException {
+    	
+    	App.getInstance().LogOut();
+    	App.getInstance().showBackToPrimaryView();
 
     }
     
@@ -158,7 +166,8 @@ public class DisplayExamsController {
 
     @FXML
     void initialize() {
-    	
+    	System.out.println("QQQQ5");
+
     	int i = 0 ;
     	manualbtn.setVisible(false);
     	compbtn.setVisible(false);
@@ -194,10 +203,15 @@ public class DisplayExamsController {
 
 			  List<Object> tempList = examsInfo;
 			  examobjects = (Object[]) tempList.get(i);
+			  
 			  int examid = (int) examobjects[0];
 			  String examIDString = Integer.toString(examid);
-			  int duration = (int) examobjects[1];
-			  String durationString = Integer.toString(duration);
+			  
+			  String str = examobjects[1].toString();
+			  double d = Double.valueOf(str).doubleValue();
+			  double duration = d;
+			  
+			  String durationString = Double. toString(duration);
 			  String fullnameString = (String) examobjects[2];
 			  
 			  String fullInfoString = "Exam ID: " + examIDString + "\n" + "Duration: " + durationString +"\n" + "Created By: " + fullnameString;

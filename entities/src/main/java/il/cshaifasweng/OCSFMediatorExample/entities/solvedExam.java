@@ -48,8 +48,11 @@ public class solvedExam implements Serializable {
 	private Boolean checkedornot;
 	private Boolean shefinished;
 	private int Grade;
+	
 
 	// constructor
+	
+	
 	public solvedExam(Exam exam, Student student, Boolean shefinished, List<Integer> chosenanswers) {
 		this.exam = exam;
 		this.student = student;
@@ -122,8 +125,25 @@ public class solvedExam implements Serializable {
 	public void setChosenAnswers(List<Integer> chosenanswers) {
 		this.chosenanswers = chosenanswers;
 	}
+	
+	public String getGeneralCommentString() {
+		return generalCommentString;
+	}
 
-	public File getFile() {
+	public void setGeneralCommentString(String generalCommentString) {
+		this.generalCommentString = generalCommentString;
+	}
+
+
+	public String getExplainationForGradeChanging() {
+		return explainationForGradeChanging;
+	}
+
+	public void setExplainationForGradeChanging(String explainationForGradeChanging) {
+		this.explainationForGradeChanging = explainationForGradeChanging;
+	}
+
+  	public File getFile() {
 		return file;
 	}
 
@@ -131,106 +151,6 @@ public class solvedExam implements Serializable {
 		this.file = file;
 	}
 
-	public static List<solvedExam> getSolvedExamByStudentID(String student) {
-
-		List<solvedExam> solvedExams = InitlizeDataBase.getSolvedExamByStudentID(student);
-		return solvedExams;
-	}
-
-	///////////////////////////////////////////
-
-	public solvedExam getsolvedExamBySolvedId(int solved) {
-		System.out.println("bbbbbbbbbbbbbb");
-		Exam exam = new Exam();
-		List<Integer> chosenanswer = new ArrayList<Integer>();
-		solvedExam chosenSolvedExam = new solvedExam();
-		List<solvedExam> solvedexams = new ArrayList<solvedExam>();
-		solvedexams = InitlizeDataBase.getallsolvedExam();
-		for (solvedExam solvedexam : solvedexams) {
-
-			if (solvedexam.getId() == solved) {
-				System.out.println("bifbbbb");
-
-				System.out.println(solvedexam.getGrade());
-				System.out.println(solvedexam.getId());
-				System.out.println(solvedexam.getshefinished());
-				System.out.println(solvedexam.getcheckedornot());
-
-				chosenSolvedExam = solvedexam;
-				List<Question> allexamQuestions = new ArrayList<Question>();
-				List<Double> graded = new ArrayList<Double>();
-
-				exam = chosenSolvedExam.getExam();
-
-				int choose_answer;
-				String questionString;
-				String answer0String;
-				String answer1String;
-				String answer2String;
-				String answer3String;
-				double grade;
-				String teatchercomment;
-				String studentStringcomment;
-				chosenanswer = chosenSolvedExam.getChosenAnswers();
-				allexamQuestions = exam.getQuestions();
-				graded = exam.getGrades();
-				for (int i = 0; i < allexamQuestions.size(); i++) {
-					questionString = exam.getQuestions().get(i).getQuestion();
-					answer0String = allexamQuestions.get(i).getAnswers().get(0).getAnswer();
-					answer1String = allexamQuestions.get(i).getAnswers().get(1).getAnswer();
-					answer2String = allexamQuestions.get(i).getAnswers().get(2).getAnswer();
-					answer3String = allexamQuestions.get(i).getAnswers().get(3).getAnswer();
-
-					teatchercomment = exam.getTeacherComment().get(i);
-					studentStringcomment = exam.getStudentComment().get(i);
-					grade = exam.getGrades().get(i);
-
-					System.out.println(exam.getQuestions().get(i).getQuestion());
-					System.out.println(allexamQuestions.get(i).getAnswers().get(0).getAnswer());
-					System.out.println(allexamQuestions.get(i).getAnswers().get(1).getAnswer());
-					System.out.println(allexamQuestions.get(i).getAnswers().get(2).getAnswer());
-					System.out.println(allexamQuestions.get(i).getAnswers().get(3).getAnswer());
-					System.out.println(exam.getTeacherComment().get(i));
-					System.out.println(exam.getStudentComment().get(i));
-					System.out.println(exam.getGrades().get(i));
-					choose_answer = chosenanswer.get(i);
-
-				}
-
-			}
-
-		}
-
-		return chosenSolvedExam;
-
-	}
-
-//	public static List<solvedExam> getsolvedExamByStudentId(String studentid) {
-//		System.out.println("bbbbbbbbbbbbbb");
-//		List<solvedExam> chosenSolvedExam = new  ArrayList<solvedExam>();
-//		System.out.println("cccc");
-//		List<solvedExam> solvedexams = new ArrayList<solvedExam>();
-//		System.out.println("dddd");
-//		solvedexams = InitlizeDataBase.getallsolvedExam();
-//		System.out.println("eeeeeee");
-//		for (solvedExam solvedexam : solvedexams) {
-//			if (Integer.toString(solvedexam.getStudent().getId()).equals(studentid) && solvedexam.getcheckedornot()==true) {
-//				System.out.println("fffff");
-//				chosenSolvedExam.add(solvedexam);
-//			}
-//
-//		}
-//		System.out.println("hhhhh");
-//		return chosenSolvedExam;
-//	
-//	
-//	
-//	
-//	}
-	
-	
-	
-	
 	public static List<solvedExam> getsolvedExamByStudentId(String studentid) {
 		System.out.println("bbbbbbbbbbbbbb");
 		Exam exam = new Exam();
@@ -302,46 +222,76 @@ public class solvedExam implements Serializable {
 		return chosenSolvedExam;
 
 	}
+  public solvedExam getsolvedExamBySolvedId(int solved)
+	{			  System.out.println("bbbbbbbbbbbbbb");
+	  Exam exam = new Exam();
+	  List <Integer >chosenanswer=new ArrayList<Integer>();
+		solvedExam chosenSolvedExam = new solvedExam();
+		List<solvedExam> solvedexams = new  ArrayList<solvedExam>();
+		solvedexams = InitlizeDataBase.getallsolvedExam();
+		for(solvedExam solvedexam : solvedexams)
+		{
+			
+			if (solvedexam.getId() == solved)
+			{System.out.println("bifbbbb");
+				
+				System.out.println(	solvedexam.getGrade());
+				System.out.println(	solvedexam.getId());
+				System.out.println(	solvedexam.getshefinished());
+				System.out.println(	solvedexam.getcheckedornot());
+				
+				chosenSolvedExam = solvedexam;
+				List<Question> allexamQuestions = new ArrayList<Question>();
+				List<Double> graded = new ArrayList<Double>();
+			
+				
+				exam= chosenSolvedExam.getExam();
+				 
+				 int choose_answer; 
+				String questionString;
+				String answer0String;
+				String answer1String;
+				String answer2String;
+				String answer3String;
+				double grade;
+				String teatchercomment;
+				String studentStringcomment;
+				chosenanswer = chosenSolvedExam.getChosenAnswers();
+				allexamQuestions = exam.getQuestions();
+				graded = exam.getGrades();
+				for (int i = 0; i < allexamQuestions.size(); i++) {
+					questionString = exam.getQuestions().get(i).getQuestion();
+					answer0String = allexamQuestions.get(i).getAnswers().get(0).getAnswer();
+					answer1String = allexamQuestions.get(i).getAnswers().get(1).getAnswer();
+					answer2String = allexamQuestions.get(i).getAnswers().get(2).getAnswer();
+					answer3String = allexamQuestions.get(i).getAnswers().get(3).getAnswer();
 
-	public String getGeneralCommentString() {
-		return generalCommentString;
+					teatchercomment = exam.getTeacherComment().get(i);
+					studentStringcomment = exam.getStudentComment().get(i);
+					grade = exam.getGrades().get(i);
+					
+					 
+					  System.out.println(exam.getQuestions().get(i).getQuestion());
+					 System.out.println(allexamQuestions.get(i).getAnswers().get(0).getAnswer());
+					  System.out.println(allexamQuestions.get(i).getAnswers().get(1).getAnswer());
+					 System.out.println(allexamQuestions.get(i).getAnswers().get(2).getAnswer());
+					  System.out.println(allexamQuestions.get(i).getAnswers().get(3).getAnswer());
+					  System.out.println(exam.getTeacherComment().get(i));
+					  System.out.println(exam.getStudentComment().get(i));
+					  System.out.println(exam.getGrades().get(i));
+					  choose_answer=chosenanswer.get(i);
+
+				}
+				
+	     	}
+			
+			}
+
+		return chosenSolvedExam;
+		
+		
 	}
+  
 
-	public void setGeneralCommentString(String generalCommentString) {
-		this.generalCommentString = generalCommentString;
-	}
-
-	public String getExplainationForGradeChanging() {
-		return explainationForGradeChanging;
-	}
-
-	public void setExplainationForGradeChanging(String explainationForGradeChanging) {
-		this.explainationForGradeChanging = explainationForGradeChanging;
-	}
-	
-	
-	
-	
-///////////////////////////////////////////////////////////////////////////////////////
-//	public List<Integer> getQuestionsSolved() {
-//		return questionsSolved;
-//	}
-//
-//	public void setQuestionsSolved(List<Integer> questionsSolved) {
-//		this.questionsSolved = questionsSolved;
-//	}
-
-//	public void choseanswerforquestion(List<Question> questions, List<Integer> chosenanswers)
-//	{
-//		int chosen;
-//		List<Integer> answerstemp = chosenanswers;
-//		for (Question question : questions)
-//		{
-//			chosen = answerstemp.remove(0);
-//			Pair<Question, Integer> onePair = new Pair<>(question, chosen);
-//			this.questionsSolved.add(onePair);
-//		}
-//	
-//	}
 
 }

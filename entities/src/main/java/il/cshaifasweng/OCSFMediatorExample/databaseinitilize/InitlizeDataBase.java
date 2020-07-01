@@ -625,6 +625,12 @@ public class InitlizeDataBase {
 		return courses;
 	}
 	
+	public static List<solvedExam> getallsolvedExam() {
+		List<solvedExam> solvedexam = new ArrayList<solvedExam>();
+		solvedexam = getAll(solvedExam.class);
+		return solvedexam;
+	}
+	
 	public static void LoadData(String[] args,int flag) {
 		try {
 			SessionFactory sessionFactory = getSessionFactory();

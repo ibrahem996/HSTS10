@@ -22,9 +22,9 @@ public class App
     {
     	String name,pass,url;
 		
-		  url = "jdbc:mysql://127.0.0.1/hsts"; 
+		  url = "jdbc:mysql://127.0.0.1/hstsdatabase"; 
 		  name = "root"; 
-		  pass = "t12345";
+		  pass = "9064";
 		  
 		  Connection myConnection = DriverManager.getConnection(url,name,pass);
 		  Statement stmt = (Statement) myConnection.createStatement();

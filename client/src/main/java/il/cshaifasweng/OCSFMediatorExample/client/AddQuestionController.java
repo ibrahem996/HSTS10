@@ -32,6 +32,9 @@ public class AddQuestionController {
 
     @FXML
     private MenuButton chosesubbtn;
+    
+    @FXML
+    private Button signoutbtn;
 
     @FXML
     private TextArea qusttxt;
@@ -67,14 +70,19 @@ public class AddQuestionController {
 
     static private List<Subject> subjects = new ArrayList<Subject>();;
     
-    public  AddQuestionController() {
+    public  AddQuestionController() throws IOException {
+    	
     }
     
     public  AddQuestionController( List<Subject> subjects) {
     	this.subjects = subjects;
 	}
     
-	
+    @FXML
+    void signoutac(ActionEvent event) throws IOException {
+    	App.getInstance().LogOut();
+    	App.getInstance().showBackToPrimaryView();
+    }
     
     
     @FXML
@@ -116,7 +124,9 @@ public class AddQuestionController {
     }
 
     @FXML
-    void qbackac(ActionEvent event) {
+    void qbackac(ActionEvent event) throws IOException {
+    	
+    	App.getInstance().showTeacherView();
 
     }
     @FXML

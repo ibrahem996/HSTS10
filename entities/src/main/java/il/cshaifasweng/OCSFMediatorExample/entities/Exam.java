@@ -77,13 +77,20 @@ public class Exam implements Serializable
     @ElementCollection //(targetClass = String.class)
 	private List<String> teacherComment;
 	
+	private Boolean Onexecute = false;
 	
+	private int timeRequest;
+	
+	private double howMuchTimeToADD;
 
 
 	
 
 	//constructor
 	
+	
+
+
 	public Exam(double duration, Course course, Teacher createdByteacher,String generalCommentTeacher,String generalCommentStudent, List<Double> grades,List<Question> questions,List<String> commentsStudent,List<String> commentsTeacher) {
 		int examNum = course.getNum(); 
 		examExecutaion = true;
@@ -107,7 +114,6 @@ public class Exam implements Serializable
 		
 
 	}
-	
 	
 
 	public Exam() {
@@ -241,6 +247,41 @@ public class Exam implements Serializable
 	public List<String> getTeacherComment() {
 		return teacherComment;
 	}
+	
+	public Boolean getOnexecute() {
+		return Onexecute;
+	}
+
+
+
+	public void setOnexecute(Boolean onexecute) {
+		Onexecute = onexecute;
+	}
+
+
+
+	public int getTimeRequest() {
+		return timeRequest;
+	}
+
+
+
+	public void setTimeRequest(int timeRequest) {
+		this.timeRequest = timeRequest;
+	}
+
+
+
+	public double getHowMuchTimeToADD() {
+		return howMuchTimeToADD;
+	}
+
+
+
+	public void setHowMuchTimeToADD(double howMuchTimeToADD) {
+		this.howMuchTimeToADD = howMuchTimeToADD;
+	}
+
 
 
 
@@ -286,6 +327,25 @@ public class Exam implements Serializable
 		return chosenExams;
 	}
 	
+	public List<Exam> getExamforManagerResult()
+	{
+		
+		List<Exam> chosenExams = new  ArrayList<Exam>();
+		List<Exam> exams = new  ArrayList<Exam>();
+		exams = InitlizeDataBase.getAllexams();
+		String createdbyString;
+		for(Exam exam : exams)
+		{
+			createdbyString = exam.getCreatedByteacher().getUserName();
+			if (exam.getExecuted()==1)
+			{
+				System.out.println(	exam.getId());
+				chosenExams.add(exam);
+		}
+			}
+
+		return chosenExams;
+	}
 	
 	
 

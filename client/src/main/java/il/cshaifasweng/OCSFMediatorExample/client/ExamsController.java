@@ -59,13 +59,13 @@ public class ExamsController {
     	this.courses = courses;
 	}
     
-    public ExamsController() {
-		
+    public ExamsController()  {
    	}
 
 	@FXML
-    void backac(ActionEvent event) {
+    void backac(ActionEvent event) throws IOException {
 
+		App.getInstance().showwhatiamView();
     }
 
     @FXML
@@ -106,7 +106,10 @@ public class ExamsController {
 	}
 
 	@FXML
-    void signoutac(ActionEvent event) {
+    void signoutac(ActionEvent event) throws IOException {
+		
+		App.getInstance().LogOut();
+    	App.getInstance().showBackToPrimaryView();
 
     }
     

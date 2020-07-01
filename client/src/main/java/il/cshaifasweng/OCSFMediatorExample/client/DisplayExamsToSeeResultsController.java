@@ -74,12 +74,17 @@ public class DisplayExamsToSeeResultsController {
     }
 
     @FXML
-    void backac(ActionEvent event) {
+    void backac(ActionEvent event) throws IOException {
 
+    	App.getInstance().showwhatiamView();
+    	
     }
 
     @FXML
-    void signoutac(ActionEvent event) {
+    void signoutac(ActionEvent event) throws IOException {
+    	
+    	App.getInstance().LogOut();
+    	App.getInstance().showBackToPrimaryView();
 
     }
 
