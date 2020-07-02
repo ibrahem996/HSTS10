@@ -12,7 +12,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.OCSFMediatorExample.client.ShowingSelectedExamQuestionController">
    <children>
-      <ImageView fitHeight="400.0" fitWidth="600.0" layoutY="13.0">
+      <ImageView fitHeight="414.0" fitWidth="600.0" layoutY="-1.0">
          <image>
             <Image url="@../../../../../../../../../../../../76785673-mockup-for-check-list-empty-note-paper-with-pen-on-brown-wood-background-office-writer-or-study-conc.jpg" />
          </image>

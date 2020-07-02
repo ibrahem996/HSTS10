@@ -22,7 +22,6 @@ public class SimpleServer extends AbstractServer { //////// remember change from
 
 	public SimpleServer(int port) {
 		super(port);
-
 	}
 
 	@Override
@@ -177,28 +176,142 @@ public class SimpleServer extends AbstractServer { //////// remember change from
 			}
 
 			break;
-			
-               case AllExamstoShowResultsTeacherCommand:
-            	   System.out.println("AllExamstoShowResultsTeacherCommand");
-            	   ExamAPI.AllExamstoShowResultsTeacher(command, client);
-            	   
-            	   
-            	   break;
-			
-			
-               case displaySolvedExamCommand:
-            	   System.out.println("displaySolvedExamCommand");
+
+		case AllExamstoShowResultsTeacherCommand:
+			System.out.println("AllExamstoShowResultsTeacherCommand");
+			ExamAPI.AllExamstoShowResultsTeacher(command, client);
+
+			break;
+
+		case displaySolvedExamCommand:
+			System.out.println("displaySolvedExamCommand");
+
 			try {
 				ExamAPI.displaySolvedExam(command, client);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-            	   
-            	   break;
-			
-			
-		}
-	}
+			break;
 
+		case bringsSpecificSolvedExamCommand:
+			System.out.println("bringsSpecificSolvedExamCommand");
+			ExamAPI.bringsSpecificSolvedExam(command, client);
+			break;
+
+		case confirmSolvedExamCommand:
+			System.out.println("confirmSolvedExamCommand");
+			try {
+				ExamAPI.confirmSolvedExam(command, client);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+
+		case savingtheuploadedexam:
+			try {
+				ExamAPI.savingManualExam(command, client);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			break;
+
+		case AllExamstoShowResultsManagerCommand:
+			System.out.println("AllExamstoShowResultsManagerCommand");
+
+			ExamAPI.AllExamsforManagerResult(command, client);
+			break;
+
+		case BringExamOnExecuteCommand:
+			System.out.println("BringExamOnExecuteCommand");
+
+			try {
+				ExamAPI.BringExamOnExecute(command, client);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+
+		case getsolvedexam:
+			try {
+				System.out.println("6666666666666666666666666666666");
+				ExamAPI.getsolved(command, client);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			break;
+
+		case AddTimeforExamTeacherCommand:
+
+			System.out.println("AddTimeforExamTeacherCommand");
+
+			try {
+				ExamAPI.addTimeForExam(command, client);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			break;
+		case onexecCommand:
+			try {
+				ExamAPI.onexecute(command, client);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			break;
+
+		case checkingAddtimeRequestCommand:
+
+			System.out.println("checkingAddtimeRequestCommand");
+
+			try {
+				ExamAPI.checkingAddtimeRequestManager(command, client);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			break;
+
+		case bringTimeRequestExamCommand:
+			System.out.println("bringTimeRequestExamCommand");
+			try {
+				ExamAPI.bringTimeRequestExamManager(command, client);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			break;
+
+		case handleConfirmingtheaddingTimeByManagerCommand:
+
+			try {
+				ExamAPI.handleConfirmingtheaddingTimeByManager(command, client);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			break;
+			
+		case ifextra:
+			try {
+				StartExamAPI.checkifextra(command, client);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+		}
+
+	}
 }

@@ -63,8 +63,8 @@ public class ShowingSelectedExamInfo {
    	}
 
 	@FXML
-    void backac(ActionEvent event) {
-
+    void backac(ActionEvent event) throws IOException {
+		App.getInstance().displayExamView();
     }
 
     @FXML
@@ -85,8 +85,11 @@ public class ShowingSelectedExamInfo {
     }
 
     @FXML
-    void signoutac(ActionEvent event) {
+    void signoutac(ActionEvent event) throws IOException {
 
+    	App.getInstance().LogOut();
+    	App.getInstance().showBackToPrimaryView();
+    	
     }
    
 

@@ -238,14 +238,7 @@ public class ShowingSelectedExamQuestionController {
 
 
 	   }
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-    	
+    
     	
     	
     	lastquestionlabel.setVisible(false);

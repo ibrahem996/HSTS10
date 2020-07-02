@@ -17,7 +17,7 @@
             <Image url="@ teacherImage.jpeg" />
          </image>
       </ImageView>
-      <Button fx:id="taddqustbtn" layoutX="68.0" layoutY="121.0" mnemonicParsing="false" onAction="#taddqustionbtn" prefHeight="42.0" prefWidth="167.0" text="ADD Question">
+      <Button fx:id="taddqustbtn" layoutX="329.0" layoutY="118.0" mnemonicParsing="false" onAction="#taddqustionbtn" prefHeight="42.0" prefWidth="167.0" text="ADD Question">
          <font>
             <Font name="Algerian" size="10.0" />
          </font>
@@ -31,7 +31,7 @@
                </light>
             </Lighting>
          </effect></Button>
-      <Button fx:id="tcreateexbtn" layoutX="68.0" layoutY="217.0" mnemonicParsing="false" onAction="#tcreateexac" prefHeight="42.0" prefWidth="167.0" text="CREATE EXAM">
+      <Button fx:id="tcreateexbtn" layoutX="68.0" layoutY="210.0" mnemonicParsing="false" onAction="#tcreateexac" prefHeight="42.0" prefWidth="167.0" text="CREATE EXAM">
          <font>
             <Font name="Algerian" size="10.0" />
          </font>
@@ -46,22 +46,7 @@
             </Lighting>
          </effect>
       </Button>
-      <Button fx:id="tchngegrdbtn" layoutX="68.0" layoutY="302.0" mnemonicParsing="false" onAction="#tchngegrdbac" prefHeight="42.0" prefWidth="167.0" text="CHANGE GRADE">
-         <font>
-            <Font name="Algerian" size="12.0" />
-         </font>
-         <effect>
-            <Lighting>
-               <bumpInput>
-                  <Shadow />
-               </bumpInput>
-               <light>
-                  <Light.Distant color="#cccccc" />
-               </light>
-            </Lighting>
-         </effect>
-      </Button>
-      <Button fx:id="tdsplyexamrsltbtn" layoutX="329.0" layoutY="302.0" mnemonicParsing="false" onAction="#tdsplyexamrsltac" prefHeight="42.0" prefWidth="167.0" text="Display Exam Results">
+      <Button fx:id="tdsplyexamrsltbtn" layoutX="75.0" layoutY="303.0" mnemonicParsing="false" onAction="#tdsplyexamrsltac" prefHeight="42.0" prefWidth="159.0" text="Display Exam Results">
          <font>
             <Font name="Algerian" size="10.0" />
          </font>
@@ -102,7 +87,7 @@
          <font>
             <Font name="Algerian" size="24.0" />
          </font></Text>
-      <Button fx:id="displayexamtbtn" layoutX="329.0" layoutY="121.0" mnemonicParsing="false" onAction="#displayexamacac" prefHeight="42.0" prefWidth="167.0" text="Display Exams">
+      <Button fx:id="displayexamtbtn" layoutX="68.0" layoutY="118.0" mnemonicParsing="false" onAction="#displayexamacac" prefHeight="42.0" prefWidth="167.0" text="Display Exams">
          <font>
             <Font name="Algerian" size="10.0" />
          </font>
@@ -132,6 +117,20 @@
             </Lighting>
          </effect>
       </Button>
+      <Button fx:id="addtimebtn" layoutX="329.0" layoutY="303.0" mnemonicParsing="false" onAction="#addtimeac" prefHeight="42.0" prefWidth="167.0" text="ADD Time  For exam">
+         <font>
+            <Font name="Algerian" size="10.0" />
+         </font>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#cccccc" />
+               </light>
+            </Lighting>
+         </effect>
+      </Button>
    </children>
 </AnchorPane>
-

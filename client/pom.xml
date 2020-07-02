@@ -12,6 +12,22 @@
 	<artifactId>client</artifactId>
 	<dependencies>
 		<dependency>
+			<groupId>org.apache.xmlgraphics</groupId>
+			<artifactId>batik-dom</artifactId>
+			<version>1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.15</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.15</version>
+		</dependency>
+		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-base</artifactId>
 			<version>${javafx.version}</version>
@@ -32,18 +48,10 @@
 			<version>${javafx.version}</version>
 			<classifier>win</classifier>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-graphics</artifactId>
-			<version>${javafx.version}</version>
-			<classifier>linux</classifier>
-		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-			<artifactId>javafx-graphics</artifactId>
-			<version>${javafx.version}</version>
-			<classifier>mac</classifier>
-		</dependency> -->
+		<!-- <dependency> <groupId>org.openjfx</groupId> <artifactId>javafx-graphics</artifactId> 
+			<version>${javafx.version}</version> <classifier>linux</classifier> </dependency> 
+			<dependency> <groupId>org.openjfx</groupId> <artifactId>javafx-graphics</artifactId> 
+			<version>${javafx.version}</version> <classifier>mac</classifier> </dependency> -->
 		<dependency>
 			<groupId>org.greenrobot</groupId>
 			<artifactId>eventbus</artifactId>
@@ -76,7 +84,8 @@
 						</goals>
 						<configuration>
 							<transformers>
-								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+								<transformer
+									implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<mainClass>il.cshaifasweng.OCSFMediatorExample.client.Main</mainClass>
 								</transformer>
 							</transformers>

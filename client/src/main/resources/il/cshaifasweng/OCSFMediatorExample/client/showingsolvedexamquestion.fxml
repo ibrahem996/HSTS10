@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.OCSFMediatorExample.client.ShowingSolvedExamQuestionController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0">
+         <image>
+            <Image url="@../../../../../../../../../../../../76785673-mockup-for-check-list-empty-note-paper-with-pen-on-brown-wood-background-office-writer-or-study-conc.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="qbackbtn" layoutX="536.0" layoutY="364.0" mnemonicParsing="false" onAction="#qbackac" prefHeight="26.0" prefWidth="53.0" text="Back">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#bce1f2" />
+               </light>
+            </Lighting>
+         </effect>
+         <font>
+            <Font name="Aharoni Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="signoutbtn" layoutX="523.0" layoutY="15.0" mnemonicParsing="false" onAction="#signoutac" text="Sign out">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#a6d5ea" />
+               </light>
+            </Lighting>
+         </effect>
+         <font>
+            <Font name="Aharoni Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="nextbtn" layoutX="437.0" layoutY="364.0" mnemonicParsing="false" onAction="#nextac" prefHeight="26.0" prefWidth="53.0" text="Next">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#bce1f2" />
+               </light>
+            </Lighting>
+         </effect>
+         <font>
+            <Font name="Aharoni Bold" size="12.0" />
+         </font>
+      </Button>
+      <Text layoutX="35.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Question :" wrappingWidth="62.399999999999864" />
+      <Text layoutX="28.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer 4:" wrappingWidth="62.399999999999864" />
+      <Text layoutX="28.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer 3 :" wrappingWidth="62.399999999999864" />
+      <Text layoutX="28.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer 2 :" wrappingWidth="148.0000366210936" />
+      <Text layoutX="31.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Answer 1 :" wrappingWidth="62.399999999999864" />
+      <Button fx:id="confirmbtn" layoutX="24.0" layoutY="364.0" mnemonicParsing="false" onAction="#confirmac" prefHeight="26.0" prefWidth="74.0" text="Confirm">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#bce1f2" />
+               </light>
+            </Lighting>
+         </effect>
+         <font>
+            <Font name="Aharoni Bold" size="12.0" />
+         </font>
+      </Button>
+      <TextArea fx:id="qusttext" editable="false" layoutX="28.0" layoutY="37.0" prefHeight="38.0" prefWidth="243.0" />
+      <TextField fx:id="answer1txt" editable="false" layoutX="28.0" layoutY="125.0" prefHeight="26.0" prefWidth="243.0" />
+      <TextField fx:id="answer2txt" editable="false" layoutX="28.0" layoutY="188.0" prefHeight="26.0" prefWidth="243.0" />
+      <TextField fx:id="answer3txt" editable="false" layoutX="28.0" layoutY="257.0" prefHeight="26.0" prefWidth="243.0" />
+      <TextField fx:id="answer4txt" editable="false" layoutX="24.0" layoutY="324.0" prefHeight="26.0" prefWidth="252.0" />
+      <RadioButton fx:id="select1btn" disable="true" layoutX="294.0" layoutY="129.0" mnemonicParsing="false" onAction="#select1ac" />
+      <RadioButton fx:id="select3btn" disable="true" layoutX="294.0" layoutY="261.0" mnemonicParsing="false" onAction="#select3ac" />
+      <RadioButton fx:id="select2btn" disable="true" layoutX="294.0" layoutY="192.0" mnemonicParsing="false" onAction="#select2ac" />
+      <RadioButton fx:id="select4btn" disable="true" layoutX="294.0" layoutY="328.0" mnemonicParsing="false" onAction="#select4ac" />
+      <Label fx:id="lastQuestionLabel" layoutX="211.0" layoutY="85.0" prefHeight="18.0" prefWidth="148.0" text="Last Question !!!">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="changegradebtn" layoutX="483.0" layoutY="86.0" mnemonicParsing="false" onAction="#changegradeac" prefHeight="26.0" prefWidth="105.0" text="Change Grade">
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant color="#bce1f2" />
+               </light>
+            </Lighting>
+         </effect>
+         <font>
+            <Font name="Aharoni Bold" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="finalgradetxt" layoutX="437.0" layoutY="134.0" />
+      <TextArea fx:id="explainationtxt" layoutX="398.0" layoutY="178.0" prefHeight="63.0" prefWidth="185.0" />
+      <TextArea fx:id="generalcomnttxt" layoutX="398.0" layoutY="268.0" prefHeight="63.0" prefWidth="185.0" />
+   </children>
+</AnchorPane>

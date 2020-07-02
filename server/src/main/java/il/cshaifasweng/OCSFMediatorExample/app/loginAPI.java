@@ -26,7 +26,7 @@ public class loginAPI { ///// remember to check if connected
 
 		try {
 			String name, pass, url;
-			url = "jdbc:mysql://127.0.0.1/hsts";
+			url = "jdbc:mysql://127.0.0.1/hstsdatabase";
 			name = "root";
 			pass = "t12345";
 			Connection myConnection = DriverManager.getConnection(url, name, pass);

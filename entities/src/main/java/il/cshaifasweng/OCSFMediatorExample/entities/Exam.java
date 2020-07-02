@@ -36,6 +36,10 @@ public class Exam implements Serializable
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int number;
 	
+	
+	
+
+
 	double duration;
 	
 	int executed;///exit to execute
@@ -47,7 +51,7 @@ public class Exam implements Serializable
 	
     Boolean examExecutaion;
     
-	@ManyToOne (cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@ManyToOne (cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name = "course_id")
 	private Course course;
 	 
@@ -72,13 +76,20 @@ public class Exam implements Serializable
     @ElementCollection //(targetClass = String.class)
 	private List<String> teacherComment;
 	
+	private Boolean Onexecute = false;
 	
+	private int timeRequest;
+	
+	private double howMuchTimeToADD;
 
 
 	
 
 	//constructor
 	
+	
+
+
 	public Exam(double duration, Course course, Teacher createdByteacher,String generalCommentTeacher,String generalCommentStudent, List<Double> grades,List<Question> questions,List<String> commentsStudent,List<String> commentsTeacher) {
 		int examNum = course.getNum(); 
 		examExecutaion = true;
@@ -103,7 +114,6 @@ public class Exam implements Serializable
 
 	}
 	
-	
 
 	public Exam() {
 		this.executed=0;
@@ -118,6 +128,17 @@ public class Exam implements Serializable
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public Boolean getOnexecute() {
+		return Onexecute;
+	}
+
+
+
+	public void setOnexecute(Boolean onexecute) {
+		Onexecute = onexecute;
+	}
+
 
 	public char[] getCode() {
 		return code;
@@ -225,6 +246,33 @@ public class Exam implements Serializable
 	public List<String> getTeacherComment() {
 		return teacherComment;
 	}
+	
+	
+
+
+
+	public int getTimeRequest() {
+		return timeRequest;
+	}
+
+
+
+	public void setTimeRequest(int timeRequest) {
+		this.timeRequest = timeRequest;
+	}
+
+
+
+	public double getHowMuchTimeToADD() {
+		return howMuchTimeToADD;
+	}
+
+
+
+	public void setHowMuchTimeToADD(double howMuchTimeToADD) {
+		this.howMuchTimeToADD = howMuchTimeToADD;
+	}
+
 
 
 
@@ -270,6 +318,25 @@ public class Exam implements Serializable
 		return chosenExams;
 	}
 	
+	public List<Exam> getExamforManagerResult()
+	{
+		
+		List<Exam> chosenExams = new  ArrayList<Exam>();
+		List<Exam> exams = new  ArrayList<Exam>();
+		exams = InitlizeDataBase.getAllexams();
+		String createdbyString;
+		for(Exam exam : exams)
+		{
+			createdbyString = exam.getCreatedByteacher().getUserName();
+			if (exam.getExecuted()==1)
+			{
+				System.out.println(	exam.getId());
+				chosenExams.add(exam);
+		}
+			}
+
+		return chosenExams;
+	}
 	
 	
 

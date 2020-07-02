@@ -4,11 +4,18 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="il.cshaifasweng.OCSFMediatorExample.client.DisplayExamsController">
    <children>
+      <ImageView fitHeight="406.0" fitWidth="210.0" layoutX="390.0" layoutY="-5.0">
+         <image>
+            <Image url="@../../../../../../../../../../../../test-score-sheet-with-answers_93675-5220.jpg" />
+         </image>
+      </ImageView>
       <Button fx:id="signoutbtn" layoutX="522.0" layoutY="14.0" mnemonicParsing="false" onAction="#signoutac" text="Sign Out">
          <font>
             <Font name="Aharoni Bold" size="12.0" />
@@ -19,20 +26,26 @@
             <Font name="Aharoni Bold" size="12.0" />
          </font>
       </Button>
-      <ListView fx:id="listViewid" layoutY="-4.0" orientation="HORIZONTAL" prefHeight="400.0" prefWidth="390.0" />
+      <ListView fx:id="listViewid" orientation="HORIZONTAL" prefHeight="400.0" prefWidth="390.0" />
       <Button fx:id="submitbtn" layoutX="425.0" layoutY="363.0" mnemonicParsing="false" onAction="#submitac" prefHeight="22.0" prefWidth="65.0" text="Submit">
          <font>
             <Font name="Aharoni Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="examextractionbtn" layoutX="422.0" layoutY="83.0" mnemonicParsing="false" onAction="#examextractionac" prefHeight="22.0" prefWidth="163.0" text="Selected Exam Extraction">
+      <Button fx:id="examextractionbtn" layoutX="410.0" layoutY="83.0" mnemonicParsing="false" onAction="#examextractionac" prefHeight="22.0" prefWidth="184.0" text="Selected Exam Extraction">
          <font>
             <Font name="Aharoni Bold" size="12.0" />
          </font>
       </Button>
-      <TextField fx:id="codebtn" layoutX="410.0" layoutY="171.0" prefHeight="26.0" prefWidth="175.0" promptText="Code (4 Digits)" />
-      <CheckBox fx:id="manualbtn" layoutX="411.0" layoutY="243.0" mnemonicParsing="false" onAction="#manualac" text="Manual" />
-      <CheckBox fx:id="compbtn" layoutX="491.0" layoutY="243.0" mnemonicParsing="false" onAction="#compac" text="Computrizied" />
+      <TextField fx:id="codebtn" layoutX="410.0" layoutY="141.0" prefHeight="26.0" prefWidth="184.0" promptText="Code (4 Digits)" />
+      <CheckBox fx:id="manualbtn" layoutX="411.0" layoutY="243.0" mnemonicParsing="false" onAction="#manualac" text="Manual">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></CheckBox>
+      <CheckBox fx:id="compbtn" layoutX="491.0" layoutY="243.0" mnemonicParsing="false" onAction="#compac" text="Computrizied">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></CheckBox>
       <Button fx:id="DisplaySelectedExambtn" layoutX="422.0" layoutY="297.0" mnemonicParsing="false" onAction="#DisplaySelectedExamac" prefHeight="22.0" prefWidth="163.0" text="Display Selected Exam">
          <font>
             <Font name="Aharoni Bold" size="12.0" />

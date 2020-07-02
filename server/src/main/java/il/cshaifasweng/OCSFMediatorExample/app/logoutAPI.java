@@ -18,7 +18,7 @@ public class logoutAPI {
 		arr = (String[]) command.getCommand();
 		String userName = arr[0];
 		String name, pass, url;
-		url = "jdbc:mysql://127.0.0.1/hsts";
+		url = "jdbc:mysql://127.0.0.1/hstsdatabase";
 		name = "root";
 		pass = "t12345";
 		Connection myConnection;

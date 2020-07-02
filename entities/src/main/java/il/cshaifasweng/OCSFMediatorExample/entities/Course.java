@@ -133,6 +133,21 @@ public class Course implements Serializable {
 		
 		return courses;
 	}
+
+	public Course getCourseByID(int courseid) {
+		Course chosenCourse = null;
+		List<Course> courses = new  ArrayList<Course>();
+		courses = InitlizeDataBase.getallCourses();
+		for(Course course : courses)
+		{
+			if (course.id == courseid)
+			{
+				chosenCourse = course;
+			}
+		}
+		
+		return chosenCourse;
+	}
 	
 	
 	

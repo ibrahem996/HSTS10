@@ -255,9 +255,11 @@ public class ChoosingQuestionController {
     }
 
     @FXML
-    void signoutac(ActionEvent event) {
-
+    void signoutac(ActionEvent event) throws IOException {
+    	App.getInstance().LogOut();
+    	App.getInstance().showBackToPrimaryView();
     }
+    
     private void listscontrolling () {
 
     	if(selectedOrnot[questionNum]&&pressedselect)

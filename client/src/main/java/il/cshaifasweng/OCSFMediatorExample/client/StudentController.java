@@ -49,7 +49,7 @@ public class StudentController {
 	@FXML
 	void OnGrades(ActionEvent event) {
 		try {
-			App.getInstance().showGradesView();
+			App.getInstance().getSolvedExams(1);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -60,6 +60,7 @@ public class StudentController {
 	void OnLogOut(ActionEvent event) {
 		try {
 			App.getInstance().LogOut();
+			App.getInstance().showBackToPrimaryView();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,7 +70,7 @@ public class StudentController {
 	@FXML
 	void OnScanned(ActionEvent event) {
 		try {
-			App.getInstance().showScannedExam();
+			App.getInstance().getSolvedExams(2);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
